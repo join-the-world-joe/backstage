@@ -1,0 +1,30 @@
+# MySQL Master Server
+#[MySQL.test.Master]
+#Host = "192.168.130.128"
+#Port = "23305"
+#User = "root"
+#Password = "123456"
+
+#[MySQL.test.Master]
+#Host = "192.168.130.128"
+#Port = "23306"
+#User = "root"
+#Password = "123456"
+
+#[MySQL.test.Master]
+#Host = "192.168.130.128"
+#Port = "23307"
+#User = "root"
+#Password = "123456"
+
+# MySQL Master Slave Replication
+#[MySQL.Singapore.Master]
+#	Host = "192.168.130.128"
+#	Port = "13306"
+#	User = "root"
+#	Password = "123456"
+#[[MySQL.Singapore.Replicas]]
+#	Host = "192.168.130.128"
+#	Port = "13307"
+#	User = "root"
+#	Password = "123456"

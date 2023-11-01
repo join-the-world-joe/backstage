@@ -1,0 +1,102 @@
+
+# generate keyfile.yaml
+# openssl rand -base64 756 > <path-to-keyfile>
+# chmod 400 <path-to-keyfile>
+# chown 999:999 /data/replica.key
+
+# enter docker container
+# docker exec -it mongo1_5.0.5 /bin/bash
+# mongosh
+
+# initiate the replica set
+#    config = {
+#               "_id" : "replica",
+#               "members" : [{
+#                               "_id" : 1,
+#                                   "host" : "192.168.130.128:27021"
+#                               },
+#                               {
+#                                   "_id" : 2,
+#                                   "host" : "192.168.130.128:27022"
+#                               },
+#                               {
+#                                   "_id" : 3,
+#                                   "host" : "192.168.130.128:27023"
+#                               }
+#                ]}
+#    rs.initiate(config)
+#    rs.config()
+#    rs.status()
+
+# create admin
+#    admin = db.getSiblingDB("admin")
+#    admin.createUser({
+#       user: "root",
+#       pwd: "123456",
+#       roles: [ { role: "root", db: "admin" } ]
+#    })
+
+# helper commands
+# use db_name
+# db.getUsers()
+# db.dropAllUsers()
+# db.dropUser("test")
+# db.setSecondaryOk() // 在从库上允许读
+
+version: "3.9"
+services:
+    mongo1:
+        image: mongo:${MONGODB_VERSION}
+        container_name: mongo1_${MONGODB_VERSION}
+        ports:
+            - 27021:27017
+        entrypoint:
+        - bash
+        - -c
+        - |
+            chmod 400  /data/keyfile.yaml
+            chown 999:999  /data/keyfile.yaml
+            exec docker-entrypoint.sh $$@
+        command:
+            mongod --bind_ip_all --replSet replica --keyFile /data/keyfile.yaml
+        volumes:
+            - /home/Joe/work/Docker/mongodb/replica/data/mongo1:/data/db
+            - /home/Joe/work/Docker/mongodb/replica/data/keyfile.yaml:/data/keyfile.yaml
+            
+    mongo2:
+        image: mongo:${MONGODB_VERSION}
+        container_name: mongo2_${MONGODB_VERSION}
+        ports:
+            - 27022:27017
+        entrypoint:
+        - bash
+        - -c
+        - |
+            chmod 400  /data/keyfile.yaml
+            chown 999:999  /data/keyfile.yaml
+            exec docker-entrypoint.sh $$@
+        command:
+            mongod --bind_ip_all --replSet replica --keyFile /data/keyfile.yaml
+        volumes:
+            - /home/Joe/work/Docker/mongodb/replica/data/mongo2:/data/db
+            - /home/Joe/work/Docker/mongodb/replica/data/keyfile.yaml:/data/keyfile.yaml
+            
+    mongo3:
+        image: mongo:${MONGODB_VERSION}
+        container_name: mongo3_${MONGODB_VERSION}
+        ports:
+            - 27023:27017
+        entrypoint:
+            - bash
+            - -c
+            - |
+                chmod 400  /data/keyfile.yaml
+                chown 999:999  /data/keyfile.yaml
+                exec docker-entrypoint.sh $$@
+        command:
+            mongod --bind_ip_all --replSet replica --keyFile /data/keyfile.yaml
+        volumes:
+            - /home/Joe/work/Docker/mongodb/replica/data/mongo3:/data/db
+            - /home/Joe/work/Docker/mongodb/replica/data/keyfile.yaml:/data/keyfile.yaml
+            
+            

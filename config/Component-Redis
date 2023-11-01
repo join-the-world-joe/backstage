@@ -1,0 +1,28 @@
+## Redis Server
+#[Redis.test]
+#Name = "Redis Server"
+#Servers = ["192.168.130.128:16381"]
+#Password = "123456"
+
+#[Redis.test1]
+#Name = "Redis Server"
+#Servers = ["192.168.130.128:16381"]
+#Password = "123456"
+
+#[Redis.test2]
+#Name = "Redis Server"
+#Servers = ["192.168.130.128:16382"]
+#Password = "123456"
+
+#[Redis.test3]
+#Name = "Redis Server"
+#Servers = ["192.168.130.128:16383"]
+#Password = "123456"
+
+# Clustered Redis Server
+#[Redis.test]
+#Name = "Clustered Redis Server"
+#Servers = ["192.168.130.128:7001", "192.168.130.128:7002", "192.168.130.128:7003"]
+#Password = "123456"
+#[Redis.test.Param]
+#db = 0

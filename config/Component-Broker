@@ -1,0 +1,24 @@
+## NATS Server
+#[Broker.Centos-1]
+#User = "root"
+#Password = "123456"
+#Category = "NATS Server"
+#Servers = ["192.168.130.128:14111"]
+#
+#[Broker.Centos-2]
+#User = "root"
+#Password = "123456"
+#Category = "NATS Server"
+#Servers = ["192.168.130.128:14222"]
+#
+#[Broker.Centos-3]
+#User = "root"
+#Password = "123456"
+#Category = "NATS Server"
+#Servers = ["192.168.130.128:14333"]
+
+# Clustered NATS Server
+#User = "root"
+#Password = "123456"
+#Category = "Clustered NATS Server"
+#Servers = ["192.168.130.128:14555", "192.168.130.128:14666", "192.168.130.128:14777"]

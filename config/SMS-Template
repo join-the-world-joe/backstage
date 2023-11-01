@@ -1,0 +1,2 @@
+#[SMS.Behavior.Register]
+#Template = "[xxx科技有限公司]验证码${code}"

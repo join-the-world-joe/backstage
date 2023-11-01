@@ -1,0 +1,37 @@
+# enable slave replication for master
+# docker exec -it mid mysql -u root -p
+# GRANT REPLICATION SLAVE ON *.* TO 'root'@'%';
+# flush privileges;
+
+# config slave node
+# docker exec -it sid mysql -u root -p
+# CHANGE MASTER TO master_host='192.168.130.128', master_port=13306, master_user='root', master_password='123456';
+# start slave;
+
+version: "3.9"
+services:
+    mysql_master:
+        image: mysql:${VERSION}
+        container_name: mysq_master_${VERSION}
+        volumes:
+            - /home/Joe/work/Docker/mysql/master_slave/conf/master/my.cnf:/etc/mysql/my.cnf
+            - /home/Joe/work/Docker/mysql/master_slave/data/master:/var/lib/mysql:rw
+        ports:
+            - 13306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: '123456'
+        command:
+            mysqld
+            
+    mysql_slave:
+        image: mysql:${VERSION}
+        container_name: mysq_slave_${VERSION}
+        volumes:
+            - /home/Joe/work/Docker/mysql/master_slave/conf/slave/my.cnf:/etc/mysql/my.cnf
+            - /home/Joe/work/Docker/mysql/master_slave/data/slave:/var/lib/mysql:rw
+        ports:
+            - 13307:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: '123456'
+        command:
+            mysqld

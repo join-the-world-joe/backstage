@@ -1,0 +1,10 @@
+[Servant]
+Name = "Gateway"
+Endpoint = "/cmd"
+WebsocketEndpoint = "/ws"
+WebsocketReadDeadline = 30
+WebsocketAuthReadDeadline = 10
+
+[Encryption]
+Enable = false
+Algorithm = "AES"

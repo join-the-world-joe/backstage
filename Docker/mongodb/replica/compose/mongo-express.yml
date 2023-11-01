@@ -1,0 +1,14 @@
+
+# 要连上 primary node, 除非slave也可以读，否则无法读
+version: "3.9"
+services:
+    mongo-express:
+        image: mongo-express:${MONGO_EXPRESS_VERSINO}
+        ports:
+            - 18082:8081
+        environment:
+            ME_CONFIG_MONGODB_SERVER: mongo1_${MONGODB_VERSION}, mongo2_${MONGODB_VERSION}, mongo3_${MONGODB_VERSION}
+            ME_CONFIG_MONGODB_ADMINUSERNAME: root
+            ME_CONFIG_MONGODB_ADMINPASSWORD: 123456
+            ME_CONFIG_BASICAUTH_USERNAME: root
+            ME_CONFIG_BASICAUTH_PASSWORD: 123456

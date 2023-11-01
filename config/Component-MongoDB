@@ -1,0 +1,21 @@
+# MongoDB Server
+#[Mongo.Backend1]
+#	Servers = ["mongodb://192.168.130.128:37017"]
+#	User = "root"
+#	Password = "123456"
+#[Mongo.Backend2]
+#	Servers = ["mongodb://192.168.130.128:37018"]
+#	User = "root"
+#	Password = "123456"
+#[Mongo.Backend3]
+#	Servers = ["mongodb://192.168.130.128:37019"]
+#	User = "root"
+#	Password = "123456"
+
+#MongoDB Replica
+#[Mongo.Replica]
+#	Servers = ["mongodb://192.168.130.128:27021", "mongodb://192.168.130.128:27022", "mongodb://192.168.130.128:27023"]
+#	User = "root"
+#	Password = "123456"
+
+

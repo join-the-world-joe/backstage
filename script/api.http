@@ -1,0 +1,75 @@
+
+
+###
+POST {{scheme}}{{host}}:{{port}}/cmd
+Content-Type: application/x-www-form-urlencoded
+
+CMD=Stop
+
+######
+
+###
+POST {{scheme}}{{host}}:{{port}}/cmd
+Content-Type: application/x-www-form-urlencoded
+
+CMD=Dump Config
+
+######
+
+###
+POST {{scheme}}{{host}}:{{port}}/cmd
+Content-Type: application/x-www-form-urlencoded
+
+CMD=Dump Registry
+
+######
+
+###
+POST {{scheme}}{{host}}:{{port}}/cmd
+Content-Type: application/x-www-form-urlencoded
+
+CMD=Dump Broker
+
+######
+
+
+###
+GET {{HTTP_URL}}?id=789&value=3322
+
+###
+GET http://127.0.0.1:9090/someGet?id=789&value=3322
+
+###
+POST http://127.0.0.1:9090/postForm
+Content-Type: application/x-www-form-urlencoded
+
+id=a44fs&value=8iio1
+
+######
+
+POST http://127.0.0.1:9090/postJson
+Content-Type: application/json
+
+{ "id" : "id", "value": "value" }
+####
+
+POST http://127.0.0.1:9090/postJsonWithHeader
+header_key: my_header_value
+Content-Type: application/json
+
+{ "id" : "id", "value": "value" }
+
+###
+
+POST {{scheme}}{{host}}:{{port}}/echo
+Content-Type: application/x-www-form-urlencoded
+
+Input=Something
+
+######
+
+###
+GET {{scheme}}{{host}}:{{port}}/menu_list
+Authorization: {{token}}
+
+####

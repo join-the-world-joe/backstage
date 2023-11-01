@@ -1,0 +1,24 @@
+
+#docker network create --subnet=192.168.10.0/24 nats_cluster
+#ifconfig 
+#docker network ls
+
+version: "3.9"
+networks:
+    nats_cluster:
+        external: true
+        name: nats_cluster
+services:
+    nats_node_one:
+        image: nats:${NATS_VERSION}
+        container_name: nats_node_one_${NATS_VERSION}
+        ports:
+            - 24222:4222
+        networks:
+            nats_cluster:
+                ipv4_address: 192.168.10.27
+        volumes:
+            - /home/joe/work/Docker/nats/jet_stream/data/node_1:/data
+        command:
+            nats-server -p 4222 --user=root --pass=123456 --js --sd /data 
+    

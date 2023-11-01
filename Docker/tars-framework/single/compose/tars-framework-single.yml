@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+    database:
+        image: mysql:${DB_VERSION}
+        container_name: mysq_tars_${DB_VERSION}
+        ports:
+            - 4306:3306
+        volumes:
+            - /home/joe/work/Docker/tars-framework/single/data/mysql:/var/lib/mysql:rw
+        environment:
+            MYSQL_ROOT_PASSWORD: '123456'
+    tars-framework:
+        image: tarscloud/framework:${TARS_VERSION}
+        container_name: tars-framework_single_${TARS_VERSION}
+        network_mode: host
+        environment:
+            MYSQL_HOST: '192.168.130.128'
+            MYSQL_PORT: '4306'
+            MYSQL_ROOT_PASSWORD: '123456'
+            REBUILD: "false"
+            SLAVE: "false"
+            INET: "ens33"
+        volumes: 
+            - /home/joe/work/Docker/tars-framework/single/data/framework:/data/tars
+            - /etc/localtime:/etc/localtime 
+        depends_on:
+            - database

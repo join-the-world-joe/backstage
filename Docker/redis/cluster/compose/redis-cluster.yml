@@ -1,0 +1,86 @@
+# enter container
+# docker exec -it container_id /bin/bash
+
+# shutdown firewall
+# systemctl stop firewalld
+# service  iptables stop
+
+# setup cluster
+# redis-cli --cluster create 192.168.130.128:7001 192.168.130.128:7002 192.168.130.128:7003 --cluster-replicas 0 --pass 123456
+
+# for test purpose
+# set name joe
+
+# check issue if you meet cluster failures with docker
+# docker logs container_id
+
+# fix issue: Background save may fail under low memory condition. To fix this issue add
+# To fix this issue add 'vm.overcommit_memory = 1' to vi and then rebootd
+
+# fix issue: (error) MOVED ...
+# redis-cli -c -p port
+
+# cluster-docker-compose-up
+# cd /home/Joe/work/Docker/redis/cluster/compose \n
+# docker compose -f redis-cluster.yml up -d \n
+
+# cluster-docker-compose-down
+# cd /home/Joe/work/Docker/redis/cluster/compose \n
+# docker compose -f redis-cluster.yml down \n
+
+version: "3.9"
+services:
+    redis-master-1:
+        image: redis:${REDIS_VERSION}
+        container_name: redis_master_1
+        network_mode: host
+        volumes:
+            - /home/Joe/work/Docker/redis/cluster/conf/redis_master_1.conf:/redis/redis.conf
+        command:
+            redis-server /redis/redis.conf
+    redis-master-2:
+        image: redis:${REDIS_VERSION}
+        container_name: redis_master_2
+        network_mode: host
+        volumes:
+            - /home/Joe/work/Docker/redis/cluster/conf/redis_master_2.conf:/redis/redis.conf
+        command:
+            redis-server /redis/redis.conf
+    redis-master-3:
+        image: redis:${REDIS_VERSION}
+        container_name: redis_master_3
+        network_mode: host
+        volumes:
+            - /home/Joe/work/Docker/redis/cluster/conf/redis_master_3.conf:/redis/redis.conf
+        command:
+            redis-server /redis/redis.conf
+    redis-slave-1:
+        image: redis:${REDIS_VERSION}
+        container_name: redis_slave_1
+        network_mode: host
+        depends_on:
+            - redis-master-1
+        volumes:
+            - /home/Joe/work/Docker/redis/cluster/conf/redis_slave_1.conf:/redis/redis.conf
+        command:
+            redis-server /redis/redis.conf
+    redis-slave-2:
+        image: redis:${REDIS_VERSION}
+        container_name: redis_slave_2
+        network_mode: host
+        depends_on:
+            - redis-master-2
+        volumes:
+            - /home/Joe/work/Docker/redis/cluster/conf/redis_slave_2.conf:/redis/redis.conf
+        command:
+            redis-server /redis/redis.conf
+    redis-slave-3:
+        image: redis:${REDIS_VERSION}
+        container_name: redis_slave_3
+        network_mode: host
+        depends_on:
+            - redis-master-3
+        volumes:
+            - /home/Joe/work/Docker/redis/cluster/conf/redis_slave_3.conf:/redis/redis.conf
+        command:
+            redis-server /redis/redis.conf

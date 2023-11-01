@@ -1,0 +1,59 @@
+config = {
+    "_id" : "replica",
+    "members" : [
+        {
+            "_id" : 1,
+            "host" : "192.168.130.128:27021"
+        },
+        {
+            "_id" : 2,
+            "host" : "192.168.130.128:27022"
+        },
+        {
+            "_id" : 3,
+            "host" : "192.168.130.128:27023"
+        }
+    ]
+}
+
+rs.initiate(config)
+rs.config()
+rs.status()
+
+admin = db.getSiblingDB("admin")
+admin.createUser(
+  {
+    user: "root",
+    pwd: "123456", 
+    roles: [ { role: "root", db: "admin" } ]
+  }
+)
+
+use db_name
+db.getUsers()
+db.dropAllUsers()
+db.dropUser("test")
+db.setSecondaryOk() // 在从库上允许读; 默认不允许读写slave
+
+
+openssl rand -base64 756 > <path-to-keyfile>
+chmod 400 <path-to-keyfile>
+chown 999:999 /data/replica.key
+
+admin = db.getSiblingDB("admin")
+admin.createUser(
+  {
+    user: "admin",
+    pwd: "123456", 
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+  }
+)
+
+db.getSiblingDB("admin").createUser(
+  {
+    "user" : "root",
+    "pwd" : "123456",     
+    roles: [ { "role" : "clusterAdmin", "db" : "admin" } ]
+  }
+)
+

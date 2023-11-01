@@ -1,0 +1,56 @@
+# create-cluster-network
+#docker network create --subnet=192.168.10.0/24 nats_cluster
+#docker network ls
+
+# remove-cluster-network
+#docker network rm nats_cluster
+#docker network ls
+
+# cluster-docker-compose-up
+# cd /home/Joe/work/Docker/nats/cluster/compose \n
+# docker compose -f nats-cluster.yml up -d \n
+
+# cluster-docker-compose-down
+# cd /home/Joe/work/Docker/nats/cluster/compose \n
+# docker compose -f nats-cluster.yml down \n
+
+version: "3.9"
+networks:
+    nats_cluster:
+        external: true
+        name: nats_cluster
+services:
+    nats_seed:
+        image: nats:${NATS_VERSION}
+        container_name: nats-seed_${NATS_VERSION}
+        ports:
+            - 14555:4222
+        networks:
+            nats_cluster:
+                ipv4_address: 192.168.10.24
+        command:
+            nats-server -p 4222 --user=root --pass=123456 --name nats_seed --cluster_name nats_cluster --cluster=nats://0.0.0.0:6222
+    nats_one:
+        image: nats:${NATS_VERSION}
+        container_name: nats_one_${NATS_VERSION}
+        depends_on:
+            - nats_seed
+        ports:
+            - 14666:4222
+        networks:
+            nats_cluster:
+                ipv4_address: 192.168.10.25
+        command:
+            nats-server -p 4222 --user=root --pass=123456 --name nats_one --cluster_name nats_cluster --cluster=nats://0.0.0.0:6222 --routes nats://192.168.10.24:6222
+    nats_two:
+        image: nats:${NATS_VERSION}
+        container_name: nats_two_${NATS_VERSION}
+        depends_on:
+            - nats_seed
+        ports:
+            - 14777:4222
+        networks:
+            nats_cluster: 
+                ipv4_address: 192.168.10.26
+        command:
+            nats-server -p 4222 --user=root --pass=123456 --name nats_two --cluster_name nats_cluster --cluster=nats://0.0.0.0:6222 --routes nats://192.168.10.24:6222

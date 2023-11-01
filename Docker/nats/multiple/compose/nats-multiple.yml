@@ -1,0 +1,40 @@
+# multiple-docker-compose-up
+# cd /home/Joe/work/Docker/nats/single/compose \n
+# docker compose -f nats-multiple.yml up -d \n
+
+# multiple-docker-compose-down
+# cd /home/Joe/work/Docker/nats/single/compose \n
+# docker compose -f nats-multiple.yml down \n
+
+version: "3.9"
+services:
+    broker1:
+        image: nats:${NATS_VERSION}
+        container_name: nats-single1_${NATS_VERSION}
+        #network_mode: host
+        ports:
+            - 14111:4222
+            - 16111:6222
+            - 18111:8222
+        command:
+            nats-server --user=root --pass=123456
+    broker2:
+        image: nats:${NATS_VERSION}
+        container_name: nats-single2_${NATS_VERSION}
+        #network_mode: host
+        ports:
+            - 14222:4222
+            - 16222:6222
+            - 18222:8222
+        command:
+            nats-server --user=root --pass=123456
+    broker3:
+        image: nats:${NATS_VERSION}
+        container_name: nats-single3_${NATS_VERSION}
+        #network_mode: host
+        ports:
+            - 14333:4222
+            - 16333:6222
+            - 18333:8222
+        command:
+            nats-server --user=root --pass=123456

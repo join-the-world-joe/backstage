@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+    tars-node:
+        image: tarscloud/tars-node:${TARS_NODE_VERSION}
+        container_name: node
+        network_mode: host
+        environment:
+            WEB_HOST: 'http://192.168.130.128:3000'
+            INET: "ens33"
+        volumes: 
+            - /home/joe/work/Docker/tars-framework/node/data/node:/data/tars
+            - /etc/localtime:/etc/localtime 

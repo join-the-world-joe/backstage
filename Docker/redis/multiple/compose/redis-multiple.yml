@@ -1,0 +1,46 @@
+# enter container
+# docker exec -it redis1_6.2.6 /bin/bash
+
+# set password for the user, 'default'
+# redis-cli
+# acl setuser default on >123456
+
+# redis-multiple-docker-compose-up
+# cd /home/Joe/work/Docker/redis/multiple/compose \n
+# docker compose -f redis-multiple.yml up -d \n
+
+# redis-multiple-docker-compose-down
+# cd /home/Joe/work/Docker/redis/multiple/compose \n
+# docker compose -f redis-multiple.yml down \n
+
+version: "3.9"
+services:
+    cache1:
+        image: redis:${REDIS_VERSION}
+        container_name: redis1_${REDIS_VERSION}
+        ports:
+            - 16381:6379
+        volumes:
+            - /home/Joe/work/Docker/redis/single/conf/redis.conf:/redis/redis.conf
+        command:
+            redis-server /redis/redis.conf --appendonly yes
+            
+    cache2:
+        image: redis:${REDIS_VERSION}
+        container_name: redis2_${REDIS_VERSION}
+        ports:
+            - 16382:6379
+        volumes:
+            - /home/Joe/work/Docker/redis/single/conf/redis.conf:/redis/redis.conf
+        command:
+            redis-server /redis/redis.conf --appendonly yes
+            
+    cache3:
+        image: redis:${REDIS_VERSION}
+        container_name: redis3_${REDIS_VERSION}
+        ports:
+            - 16383:6379
+        volumes:
+            - /home/Joe/work/Docker/redis/single/conf/redis.conf:/redis/redis.conf
+        command:
+            redis-server /redis/redis.conf --appendonly yes

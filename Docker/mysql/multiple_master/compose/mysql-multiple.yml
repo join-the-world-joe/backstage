@@ -1,0 +1,43 @@
+# compose-up
+# cd /home/Joe/work/Docker/mysql/multiple_master/compose
+# docker compose -f mysql-multiple.yml up -d
+
+# compose-down
+# cd /home/Joe/work/Docker/mysql/multiple_master/compose
+# docker compose -f mysql-multiple.yml down
+
+version: "3.9"
+services:
+    master_node1:
+        image: mysql:${VERSION}
+        container_name: mysq_multiple_node1_${VERSION}
+        volumes:
+            - /home/Joe/work/Docker/mysql/multiple/data/master_node1:/var/lib/mysql:rw
+        ports:
+            - 12305:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: '123456'
+        command:
+            mysqld
+    master_node2:
+        image: mysql:${VERSION}
+        container_name: mysq_multiple_node2_${VERSION}
+        volumes:
+            - /home/Joe/work/Docker/mysql/multiple/data/master_node2:/var/lib/mysql:rw
+        ports:
+            - 12306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: '123456'
+        command:
+            mysqld
+    master_node3:
+        image: mysql:${VERSION}
+        container_name: mysq_multiple_node3_${VERSION}
+        volumes:
+            - /home/Joe/work/Docker/mysql/multiple/data/master_node3:/var/lib/mysql:rw
+        ports:
+            - 12307:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: '123456'
+        command:
+            mysqld

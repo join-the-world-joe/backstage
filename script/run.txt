@@ -1,0 +1,19 @@
+gateway
+cd service/gateway/cmd
+go build main.go
+.\main.exe -id="1" -version="1.0" -host="172.20.10.6" -http_port=10001 -rpc_port=11001 -nacos_host="192.168.130.129" -nacos_namespace_id="Test" -nacos_group="Service"
+
+sms
+cd service/sms/cmd
+go build main.go
+.\main.exe -id="1" -version="1.0" -host="172.20.10.6" -rpc_port=11005 -nacos_host="192.168.130.129" -nacos_namespace_id="Test" -nacos_group="Service"
+
+backend
+cd service/backend/cmd
+go build main.go
+.\main.exe -id="1" -version="1.0" -host="172.20.10.6" -rpc_port=11011 -nacos_host="192.168.130.129" -nacos_namespace_id="Test" -nacos_group="Service"
+
+account
+cd service/account/cmd
+go build main.go
+.\main.exe -id="1" -version="1.0" -host="172.20.10.6" -rpc_port=11008 -nacos_host="192.168.130.129" -nacos_namespace_id="Test" -nacos_group="Service"
