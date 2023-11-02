@@ -1,9 +1,9 @@
 package rate
 
 import (
+	"backstage/abstract/limiter"
 	"context"
 	"fmt"
-	"go-micro-framework/abstract/limiter"
 	"golang.org/x/time/rate"
 	"time"
 )

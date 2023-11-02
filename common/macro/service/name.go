@@ -1,9 +1,11 @@
 package service
 
 const (
-	Generic = "Generic"
-	Gateway = "Gateway"
-	Account = "Account"
-	SMS     = "SMS"
-	Backend = "Backend"
+	Generic         = "Generic"
+	FrontendGateway = "Frontend_Gateway"
+	BackendGateway  = "Backend_Gateway"
+	Account         = "Account"
+	SMS             = "SMS"
+	Admin           = "Admin"
+	Advertisement   = "Advertisement"
 )

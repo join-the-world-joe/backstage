@@ -1,11 +1,11 @@
 package cluster
 
 import (
+	"backstage/common/conf"
 	"context"
 	"errors"
 	"fmt"
 	"github.com/go-redis/redis/v8"
-	"go-micro-framework/common/conf"
 	"sync"
 )
 

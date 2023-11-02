@@ -1,7 +1,7 @@
 package breaker
 
 import (
-	breaker2 "go-micro-framework/abstract/breaker"
+	breaker2 "backstage/abstract/breaker"
 	"testing"
 	"time"
 )

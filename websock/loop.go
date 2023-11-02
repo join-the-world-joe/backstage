@@ -1,11 +1,11 @@
 package main
 
 import (
+	"backstage/common/payload"
+	"backstage/global/crypto"
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/websocket"
-	"go-micro-framework/common/payload"
-	"go-micro-framework/service/gateway/runtime"
 	"net/http"
 	"strings"
 )
@@ -89,7 +89,7 @@ func recvRoutine(conn *websocket.Conn) {
 
 		plainText := msg
 		if _encryption {
-			plainText, err = runtime.Decrypt(msg)
+			plainText, err = crypto.AESDecrypt(msg)
 			if err != nil {
 				panic(err)
 			}

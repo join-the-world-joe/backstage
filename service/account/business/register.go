@@ -4,7 +4,7 @@ import (
 	"backstage/common/cache/string/verification_code"
 	"backstage/common/code"
 	"backstage/common/db/mysql/server/user"
-	"backstage/common/service/account"
+	"backstage/common/protocol/account"
 	"backstage/global/log"
 	"context"
 )
@@ -19,7 +19,7 @@ func Register(ctx context.Context, req *account.RegisterReq, rsp *account.Regist
 	}
 
 	// check if mobile already exists
-	usr, err := user.Get(req.CountryCode, req.PhoneNumber)
+	usr, err := user.GetModelByMobile(req.CountryCode, req.PhoneNumber)
 	if usr != nil {
 		log.ErrorF("Register.user.Get failure, CountryCode[%v] PhoneNumber[%v] exists", req.CountryCode, req.PhoneNumber)
 		rsp.Code = code.EntryAlreadyExists

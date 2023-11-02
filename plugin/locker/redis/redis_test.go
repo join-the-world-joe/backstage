@@ -1,13 +1,13 @@
 package redis
 
 import (
+	"backstage/abstract/locker"
+	"backstage/common/cache/string/lock"
+	"backstage/common/conf"
+	"backstage/global/cache/redis"
 	"encoding/json"
 	"fmt"
 	"github.com/BurntSushi/toml"
-	"go-micro-framework/abstract/locker"
-	"go-micro-framework/common/cache/string/lock"
-	"go-micro-framework/common/conf"
-	"go-micro-framework/global/cache/redis"
 	"testing"
 	"time"
 )

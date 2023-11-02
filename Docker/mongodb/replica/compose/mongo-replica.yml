@@ -47,16 +47,16 @@ version: "3.9"
 services:
     mongo1:
         image: mongo:${MONGODB_VERSION}
-        container_name: mongo1_${MONGODB_VERSION}
+        container_name: mongo1
         ports:
             - 27021:27017
         entrypoint:
-        - bash
-        - -c
-        - |
-            chmod 400  /data/keyfile.yaml
-            chown 999:999  /data/keyfile.yaml
-            exec docker-entrypoint.sh $$@
+            - bash
+            - -c
+            - |
+                chmod 400  /data/keyfile.yaml
+                chown 999:999  /data/keyfile.yaml
+                exec docker-entrypoint.sh $$@
         command:
             mongod --bind_ip_all --replSet replica --keyFile /data/keyfile.yaml
         volumes:
@@ -65,16 +65,16 @@ services:
             
     mongo2:
         image: mongo:${MONGODB_VERSION}
-        container_name: mongo2_${MONGODB_VERSION}
+        container_name: mongo2
         ports:
             - 27022:27017
         entrypoint:
-        - bash
-        - -c
-        - |
-            chmod 400  /data/keyfile.yaml
-            chown 999:999  /data/keyfile.yaml
-            exec docker-entrypoint.sh $$@
+            - bash
+            - -c
+            - |
+                chmod 400  /data/keyfile.yaml
+                chown 999:999  /data/keyfile.yaml
+                exec docker-entrypoint.sh $$@
         command:
             mongod --bind_ip_all --replSet replica --keyFile /data/keyfile.yaml
         volumes:
@@ -83,7 +83,7 @@ services:
             
     mongo3:
         image: mongo:${MONGODB_VERSION}
-        container_name: mongo3_${MONGODB_VERSION}
+        container_name: mongo3
         ports:
             - 27023:27017
         entrypoint:

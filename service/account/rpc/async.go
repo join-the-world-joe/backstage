@@ -2,7 +2,7 @@ package rpc
 
 import (
 	"backstage/common/payload"
-	"backstage/common/service/account"
+	"backstage/common/protocol/account"
 	"backstage/global"
 	"backstage/service/account/business"
 	"context"

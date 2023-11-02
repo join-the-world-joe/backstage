@@ -3,7 +3,7 @@ package rpc
 import (
 	"backstage/abstract/registry"
 	"backstage/common/macro/service"
-	"backstage/common/service/gateway"
+	"backstage/common/protocol/gateway"
 	"context"
 	"testing"
 )

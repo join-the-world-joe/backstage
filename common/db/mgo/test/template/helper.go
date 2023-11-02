@@ -1,7 +1,7 @@
 package template
 
 func GetWhich() string {
-	return "Backend"
+	return "test"
 }
 
 func GetDBName() string {
@@ -9,5 +9,5 @@ func GetDBName() string {
 }
 
 func GetTableName() string {
-	return "template"
+	return "test"
 }

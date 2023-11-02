@@ -28,3 +28,15 @@
 #	Port = "13307"
 #	User = "root"
 #	Password = "123456"
+
+#[MySQL.test.Master]
+#	Host = "119.23.224.221"
+#	Port = "13306"
+#	User = "root"
+#	Password = "123456"
+#[[MySQL.test.Replicas]]
+#	Host = "119.23.224.221"
+#	Port = "13307"
+#	User = "root"
+#	Password = "123456"
+

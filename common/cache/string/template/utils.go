@@ -1,9 +1,9 @@
 package template
 
 import (
+	"backstage/common/conf"
+	"backstage/global/cache/redis"
 	"context"
-	"go-micro-framework/common/conf"
-	"go-micro-framework/global/cache/redis"
 )
 
 func Create(cf *conf.CacheConf, value string) error {

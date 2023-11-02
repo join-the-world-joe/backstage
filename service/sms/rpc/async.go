@@ -2,7 +2,7 @@ package rpc
 
 import (
 	"backstage/common/payload"
-	"backstage/common/service/sms"
+	"backstage/common/protocol/sms"
 	"backstage/global"
 	"backstage/service/sms/business"
 	"context"

@@ -1,10 +1,10 @@
 package template
 
 import (
+	"backstage/diagnostic"
+	"backstage/global/mysql"
 	"fmt"
 	"github.com/google/uuid"
-	"go-micro-framework/diagnostic"
-	"go-micro-framework/global/mysql"
 	"testing"
 )
 

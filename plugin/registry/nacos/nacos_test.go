@@ -63,11 +63,11 @@ func TestDeRegister(t *testing.T) {
 	r := newConfigClient(t)
 	service := &registry.Service{
 		Id:      "1",
-		Ip:      "192.168.0.70",
-		Port:    10001,
-		Name:    "Generic",
+		Ip:      "172.20.10.6",
+		Port:    11001,
+		Name:    "Gateway",
 		Group:   "Service",
-		Version: "v2.0",
+		Version: "1.0",
 	}
 	if err := r.DeRegister(service); err != nil {
 		t.Fatal(err)
@@ -81,7 +81,7 @@ func TestGetServiceList(t *testing.T) {
 	for {
 		list, err := r.ListServices(&registry.Service{
 			Group: "Service",
-			Name:  "Generic",
+			Name:  "Gateway",
 		})
 		if err != nil {
 			t.Fatal(err)

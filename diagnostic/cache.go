@@ -1,15 +1,15 @@
 package diagnostic
 
 import (
+	"backstage/common/conf"
+	"backstage/global/config"
 	"github.com/BurntSushi/toml"
-	"go-micro-framework/common/conf"
-	"go-micro-framework/global/config"
 )
 
 var cache_conf = `
 [Redis.test]
 	Name = "Redis Server"
-	Servers = ["192.168.130.128:16381"]
+	Servers = ["119.23.224.221:16381"]
 	Password = "123456"
 `
 

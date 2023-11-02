@@ -1,19 +1,31 @@
-gateway
-cd service/gateway/cmd
+backend_gateway
+cd service/backend_gateway/cmd
 go build main.go
-.\main.exe -id="1" -version="1.0" -host="172.20.10.6" -http_port=10001 -rpc_port=11001 -nacos_host="192.168.130.129" -nacos_namespace_id="Test" -nacos_group="Service"
+./main.exe -id="1" -version="1.0" -host="172.20.10.6" -http_port=10001 -rpc_port=11001 -nacos_host="119.23.224.221" -nacos_namespace_id="test" -nacos_group="Service"
+
+frontend_gateway
+cd service/frontend_gateway/cmd
+go build main.go
+./main.exe -id="1" -version="1.0" -host="172.20.10.6" -http_port=10002 -rpc_port=11002 -nacos_host="119.23.224.221" -nacos_namespace_id="test" -nacos_group="Service"
 
 sms
 cd service/sms/cmd
 go build main.go
-.\main.exe -id="1" -version="1.0" -host="172.20.10.6" -rpc_port=11005 -nacos_host="192.168.130.129" -nacos_namespace_id="Test" -nacos_group="Service"
+./main.exe -id="1" -version="1.0" -host="172.20.10.6" -rpc_port=11005 -nacos_host="119.23.224.221" -nacos_namespace_id="test" -nacos_group="Service"
 
-backend
-cd service/backend/cmd
+admin
+cd service/admin/cmd
 go build main.go
-.\main.exe -id="1" -version="1.0" -host="172.20.10.6" -rpc_port=11011 -nacos_host="192.168.130.129" -nacos_namespace_id="Test" -nacos_group="Service"
+./main.exe -id="1" -version="1.0" -host="172.20.10.6" -rpc_port=11011 -nacos_host="119.23.224.221" -nacos_namespace_id="test" -nacos_group="Service"
 
 account
 cd service/account/cmd
 go build main.go
-.\main.exe -id="1" -version="1.0" -host="172.20.10.6" -rpc_port=11008 -nacos_host="192.168.130.129" -nacos_namespace_id="Test" -nacos_group="Service"
+./main.exe -id="1" -version="1.0" -host="172.20.10.6" -rpc_port=11008 -nacos_host="119.23.224.221" -nacos_namespace_id="test" -nacos_group="Service"
+
+advertisement
+cd service/advertisement/cmd
+go build main.go
+./main.exe -id="1" -version="1.0" -host="172.20.10.6" -rpc_port=11012 -nacos_host="119.23.224.221" -nacos_namespace_id="test" -nacos_group="Service"
+
+

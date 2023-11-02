@@ -1,12 +1,12 @@
 package diagnostic
 
 import (
-	"go-micro-framework/global/log"
-	"go-micro-framework/plugin/logger/zap"
+	"backstage/global/log"
+	"backstage/plugin/logger/zap"
 )
 
 func SetupLogger() {
-	logFilePath := "D:\\Projects\\github\\go-micro-framework\\logs"
+	logFilePath := "D:\\Projects\\github\\backstage\\logs"
 	logFileName := "test.log"
 	// for logger
 	lg, err := zap.NewLogger(

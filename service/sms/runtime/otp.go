@@ -22,3 +22,10 @@ func OTPEndOfRegister() int {
 	}
 	return serviceConf.Servant.OTPEndOfRegister
 }
+
+func OTP(otp string) string {
+	if len(serviceConf.Servant.OTP) > 0 {
+		return serviceConf.Servant.OTP
+	}
+	return otp
+}

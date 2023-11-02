@@ -1,11 +1,11 @@
 package template
 
 import (
+	"backstage/common/conf"
+	"backstage/global/mgo"
 	"context"
 	"github.com/BurntSushi/toml"
 	"github.com/google/uuid"
-	"go-micro-framework/common/conf"
-	"go-micro-framework/global/mgo"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"testing"

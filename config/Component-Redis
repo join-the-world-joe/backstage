@@ -26,3 +26,8 @@
 #Password = "123456"
 #[Redis.test.Param]
 #db = 0
+
+#[Redis.test]
+#Name = "Redis Server"
+#Servers = ["119.23.224.221:16381"]
+#Password = "123456"

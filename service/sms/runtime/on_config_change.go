@@ -53,4 +53,10 @@ func servant(namespace, group, dataId, data string) {
 		log.Warn(fmt.Sprintf("Update log level from %s to %s", serviceConf.Servant.LogLevel, temp.Servant.LogLevel))
 		serviceConf.Servant.LogLevel = temp.Servant.LogLevel
 	}
+	if len(temp.Servant.OTP) > 0 {
+		log.Warn(fmt.Sprintf("Update OTP from to %s", temp.Servant.OTP))
+		serviceConf.Servant.OTP = temp.Servant.OTP
+	} else {
+		serviceConf.Servant.OTP = ""
+	}
 }

@@ -1,12 +1,12 @@
 package global
 
 import (
+	"backstage/abstract/logger"
+	"backstage/global/log"
+	"backstage/plugin/logger/zap"
+	nacos2 "backstage/plugin/registry/nacos"
 	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
 	"github.com/nacos-group/nacos-sdk-go/v2/vo"
-	"go-micro-framework/abstract/logger"
-	"go-micro-framework/global/log"
-	"go-micro-framework/plugin/logger/zap"
-	nacos2 "go-micro-framework/plugin/registry/nacos"
 	"testing"
 	"time"
 )

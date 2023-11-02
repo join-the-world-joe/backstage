@@ -1,8 +1,8 @@
 package mgo
 
 import (
+	"backstage/common/conf"
 	"context"
-	"go-micro-framework/common/conf"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
@@ -31,9 +31,7 @@ func _getMongoClient(cf *conf.MongoConf, which string) (*mongo.Client, error) {
 	}
 
 	_client, err = connectToMongo(
-		cf.Mongo[which].Servers,
-		cf.Mongo[which].User,
-		cf.Mongo[which].Password,
+		cf.Mongo[which].URI,
 	)
 	if err != nil {
 		return nil, err
@@ -43,30 +41,13 @@ func _getMongoClient(cf *conf.MongoConf, which string) (*mongo.Client, error) {
 	return _client, nil
 }
 
-func connectToMongo(servers []string, user, password string) (*mongo.Client, error) {
+func connectToMongo(uri string) (*mongo.Client, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), DefaultConnectionTimeout)
 	defer cancel()
 
-	url := ""
-	for k, v := range servers {
-		if k > 0 {
-			url = url + ","
-		}
-		url = url + v
-	}
-
-	//fmt.Println("url: ", url)
-
 	copts := []*options.ClientOptions{}
 
-	copts = append(copts, options.Client().ApplyURI(url))
-
-	if user != "" && password != "" {
-		copts = append(copts, options.Client().SetAuth(options.Credential{
-			Username: user,
-			Password: password,
-		}))
-	}
+	copts = append(copts, options.Client().ApplyURI(uri))
 
 	_client, err := mongo.Connect(ctx, copts...)
 	if err != nil {

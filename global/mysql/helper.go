@@ -62,12 +62,12 @@ func Query(which, dbName, sql string) (*sql.Rows, error) {
 	return _db.Raw(sql).Rows()
 }
 
-func Delete(which, dbName, tblName string, sql string) error {
+func Delete(which, dbName, sql string) error {
 	_db, err := GetDB(which, dbName)
 	if err != nil {
 		return err
 	}
-	return _db.Table(tblName).Exec(sql).Error
+	return _db.Exec(sql).Error
 }
 
 // for raw sql

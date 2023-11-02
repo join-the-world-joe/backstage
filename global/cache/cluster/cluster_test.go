@@ -1,10 +1,10 @@
 package cluster
 
 import (
+	"backstage/common/conf"
 	"context"
 	"github.com/BurntSushi/toml"
 	"github.com/google/uuid"
-	"go-micro-framework/common/conf"
 	"testing"
 )
 

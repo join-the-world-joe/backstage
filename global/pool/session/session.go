@@ -1,7 +1,7 @@
 package session
 
 import (
-	"go-micro-framework/common/payload"
+	"backstage/common/payload"
 	"sync"
 )
 

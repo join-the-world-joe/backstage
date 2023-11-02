@@ -1,7 +1,7 @@
 package timers
 
 import (
-	"go-micro-framework/abstract/timers"
+	"backstage/abstract/timers"
 	"time"
 )
 

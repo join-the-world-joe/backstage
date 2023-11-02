@@ -23,7 +23,7 @@ func (p *PacketClient) ToBytes() ([]byte, error) {
 }
 
 func ParsePacketClient(bytes []byte) (*PacketClient, error) {
-	packet := new(PacketClient)
+	packet := &PacketClient{Header: &Header{}}
 	return packet, json.Unmarshal(bytes, packet)
 }
 

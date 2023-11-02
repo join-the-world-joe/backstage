@@ -1,0 +1,3 @@
+[GracefulShutdown]
+Timeout = 60
+CheckInterval = 60

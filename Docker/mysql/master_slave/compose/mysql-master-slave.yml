@@ -5,7 +5,7 @@
 
 # config slave node
 # docker exec -it sid mysql -u root -p
-# CHANGE MASTER TO master_host='192.168.130.128', master_port=13306, master_user='root', master_password='123456';
+# CHANGE MASTER TO master_host='172.22.4.166', master_port=13306, master_user='root', master_password='123456';
 # start slave;
 
 version: "3.9"

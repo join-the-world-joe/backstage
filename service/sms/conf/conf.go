@@ -28,5 +28,6 @@ type ServantConf struct {
 		OTPLenOfRegister   int    `toml:"OTPLenOfRegister"`   // one-time passcode, changeable
 		OTPBeginOfRegister int    `toml:"OTPBeginOfRegister"` // OTPBeginOfRegister <= digit
 		OTPEndOfRegister   int    `toml:"OTPEndOfRegister"`   // digit >= OTPEndOfRegister
+		OTP                string `toml:"OTP"`                // for debug purposes
 	} `toml:"Servant"`
 }

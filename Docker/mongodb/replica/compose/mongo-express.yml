@@ -7,7 +7,7 @@ services:
         ports:
             - 18082:8081
         environment:
-            ME_CONFIG_MONGODB_SERVER: mongo1_${MONGODB_VERSION}, mongo2_${MONGODB_VERSION}, mongo3_${MONGODB_VERSION}
+            ME_CONFIG_MONGODB_SERVER: mongo1, mongo2, mongo3
             ME_CONFIG_MONGODB_ADMINUSERNAME: root
             ME_CONFIG_MONGODB_ADMINPASSWORD: 123456
             ME_CONFIG_BASICAUTH_USERNAME: root

@@ -3,7 +3,7 @@ package business
 import (
 	"backstage/common/cache/string/verification_code"
 	"backstage/common/code"
-	"backstage/common/service/sms"
+	"backstage/common/protocol/sms"
 	"backstage/global/config"
 	"backstage/global/log"
 	"backstage/service/sms/runtime"
@@ -33,6 +33,8 @@ func SendVerificationCode(ctx context.Context, req *sms.SendVerificationCodeReq,
 		rsp.Code = code.InternalError
 		return nil
 	}
+
+	c = runtime.OTP(c) // for debug purposes
 
 	// create short message
 	if len(req.Behavior) <= 0 {

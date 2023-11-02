@@ -2,7 +2,7 @@ package rpc
 
 import (
 	"backstage/common/payload"
-	"backstage/common/service/gateway"
+	"backstage/common/protocol/gateway"
 	"backstage/diagnostic"
 	"context"
 	"testing"
@@ -21,7 +21,7 @@ func TestBroadcast(t *testing.T) {
 	req := &gateway.BroadcastReq{Packet: packet}
 	rsp := &gateway.BroadcastRsp{}
 
-	err := Broadcast(context.Background(), req, rsp)
+	err := BroadcastFrontend(context.Background(), req, rsp)
 	if err != nil {
 		t.Fatal(err)
 	}

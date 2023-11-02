@@ -131,7 +131,7 @@ func (p *_service) Init() error {
 				return err
 			}
 
-			buffer.WriteString("\n\r")
+			buffer.WriteString("\n")
 		}
 
 	}

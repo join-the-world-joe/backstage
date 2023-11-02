@@ -3,8 +3,8 @@ package business
 import (
 	"backstage/common/major"
 	"backstage/common/payload"
+	"backstage/common/protocol/generic"
 	"backstage/common/route"
-	"backstage/common/service/generic"
 	"backstage/global"
 	"backstage/global/config"
 	"backstage/global/log"

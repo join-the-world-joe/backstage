@@ -10,6 +10,7 @@ type Model struct {
 	CountryCode string `gorm:"column:country_code;type:varchar(20) not null;index:idx_mobile,priority:1;default:'';comment:国家地区码, 如: 86" json:"country_code"`
 	PhoneNumber string `gorm:"column:phone_number;type:varchar(30) not null;index:idx_mobile,priority:2;default:'';comment:电话号码" json:"phone_number"`
 	Status      int    `gorm:"column:status;type:tinyint not null;default:0;comment:启/禁/停 用, 1-启用(active), 2-停用(inactive) 3-禁用(需要重置密码)" json:"status"`
+	MemberId    string `gorm:"column:member_id;type:varchar(40) not null;index:idx_member_id,unique;default:'';comment:会员编号" json:"member_id"`
 
 	CreatedAt time.Time `gorm:"type:DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP"`
 	UpdatedAt time.Time `gorm:"type:DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"`

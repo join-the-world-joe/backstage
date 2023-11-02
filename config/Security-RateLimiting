@@ -1,0 +1,20 @@
+[RateLimiting.SigIn]
+	Major = 5
+	Minor = 1
+	Period = 1000
+[RateLimiting.FetchUserListOfCondition]
+	Major = 5
+	Minor = 5
+	Period = 2000
+[RateLimiting.FetchRoleListOfCondition]
+	Major = 5
+	Minor = 7
+	Period = 100
+[RateLimiting.FetchMenuListOfCondition]
+	Major = 5
+	Minor = 3
+	Period = 300
+[RateLimiting.CheckPermission]
+	Major = 5
+	Minor = 21
+	Period = 10

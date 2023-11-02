@@ -2,29 +2,36 @@ package conf
 
 type RBACConf struct {
 	Role map[string]struct {
+		Rank        int    `toml:"Rank"`
+		Department  string `toml:"Department"`
 		Description string `toml:"Description"`
 	} `toml:"Role"`
 	Permission map[string]struct {
+		Major       int    `toml:"Major"`
 		Minor       int    `toml:"Minor"`
 		Description string `toml:"Description"`
 	} `toml:"Permission"`
 	Menu map[string]struct {
-		Item []string `toml:"Item"`
+		Item map[string]struct {
+			Description string `toml:"Description"`
+		} `toml:"Item"`
 	} `toml:"Menu"`
 	Table map[string]struct {
-		Attribute []string `toml:"Attribute"`
+		Field map[string]struct {
+			Description string `toml:"Description"`
+		} `toml:"Field"`
 	} `toml:"Table"`
 	RolePermission map[string]struct {
-		Permission []string `toml:"Permission"`
+		PermissionList []string `toml:"PermissionList"`
 	} `toml:"RolePermission"`
 	RoleMenu map[string]struct {
 		Menu map[string]struct {
-			Item []string `toml:"Item"`
+			ItemList []string `toml:"ItemList"`
 		} `toml:"Menu"`
 	} `toml:"RoleMenu"`
-	RoleAttribute map[string]struct {
+	RoleField map[string]struct {
 		Table map[string]struct {
-			Attribute []string `toml:"Attribute"`
+			FieldList []string `toml:"FieldList"`
 		} `toml:"Table"`
-	} `toml:"RoleAttribute"`
+	} `toml:"RoleField"`
 }

@@ -1,0 +1,17 @@
+[Servant]
+Name = "Frontend_Gateway"
+Endpoint = "/cmd"
+WebsocketEndpoint = "/ws"
+WebsocketReadDeadline = 30000
+WebsocketAuthReadDeadline = 10000
+
+[Encryption]
+Enable = true
+Algorithm = "AES"
+
+[Feedback]
+Enable = false
+Major = "major"
+Minor = "minor"
+Message = "{\"message\":\"服务器更新\"}"
+WaitForClose = 10

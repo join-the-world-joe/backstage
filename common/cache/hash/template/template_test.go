@@ -1,8 +1,8 @@
 package template
 
 import (
+	"backstage/common/conf"
 	"github.com/BurntSushi/toml"
-	"go-micro-framework/common/conf"
 	"testing"
 )
 

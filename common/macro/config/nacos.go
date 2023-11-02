@@ -23,4 +23,5 @@ const (
 	RBACDataId             = "RBAC"
 	TemplateDataId         = "Template"
 	GracefulShutdownDataId = "GracefulShutdown"
+	RateLimitingDataId     = "RateLimiting"
 )

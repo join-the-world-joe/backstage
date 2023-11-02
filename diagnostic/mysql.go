@@ -1,39 +1,26 @@
 package diagnostic
 
 import (
+	"backstage/common/conf"
+	"backstage/global/config"
 	"github.com/BurntSushi/toml"
-	"go-micro-framework/common/conf"
-	"go-micro-framework/global/config"
 )
 
 var mysql_conf = `
+#[MySQL.test.Master]
+#	Host = "119.23.224.221"
+#	Port = "13306"
+#	User = "root"
+#	Password = "123456"
+
 [MySQL.test.Master]
-	Host = "192.168.130.128"
-	Port = "12305"
+	Host = "119.23.224.221"
+	Port = "13306"
 	User = "root"
 	Password = "123456"
-
-[MySQL.HongKong.Master]
-	Host = "192.168.130.128"
-	Port = "12305"
-	User = "root"
-	Password = "123456"
-
-[MySQL.HongKong1.Master]
-	Host = "192.168.130.128"
-	Port = "12305"
-	User = "root"
-	Password = "123456"
-
-[MySQL.HongKong2.Master]
-	Host = "192.168.130.128"
-	Port = "12306"
-	User = "root"
-	Password = "123456"
-
-[MySQL.HongKong3.Master]
-	Host = "192.168.130.128"
-	Port = "12307"
+[[MySQL.test.Replicas]]
+	Host = "119.23.224.221"
+	Port = "13307"
 	User = "root"
 	Password = "123456"
 `

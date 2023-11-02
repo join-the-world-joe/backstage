@@ -1,47 +1,21 @@
 package template
 
 import (
+	"backstage/diagnostic"
+	"backstage/global/config"
+	"backstage/global/mgo"
 	"context"
-	"github.com/BurntSushi/toml"
 	"github.com/google/uuid"
-	"go-micro-framework/common/conf"
-	"go-micro-framework/global/mgo"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"testing"
 )
 
-var mgo_server = `
-[Mongo.Backend]
-	Servers = ["mongodb://192.168.130.128:37017"]
-	User = "root"
-	Password = "123456"
-[Mongo.Backend1]
-	Servers = ["mongodb://192.168.130.128:37017"]
-	User = "root"
-	Password = "123456"
-[Mongo.Backend2]
-	Servers = ["mongodb://192.168.130.128:37018"]
-	User = "root"
-	Password = "123456"
-[Mongo.Backend3]
-	Servers = ["mongodb://192.168.130.128:37019"]
-	User = "root"
-	Password = "123456"
-`
-
-var cf = func() *conf.MongoConf {
-	cf := &conf.MongoConf{}
-	if err := toml.Unmarshal([]byte(mgo_server), &cf); err != nil {
-		panic(err)
-	}
-	return cf
-}()
-
 func TestInsert(t *testing.T) {
+	diagnostic.SetupMongoDB()
 	for i := 1; i <= Mod; i++ {
 		id, err := mgo.InsertDoc(
-			cf,
+			config.MongoConf(),
 			context.Background(),
 			GetWhich(),
 			GetDBName(),
@@ -62,7 +36,7 @@ func TestInsertDocs(t *testing.T) {
 	docs := []interface{}{doc1, doc2, doc3}
 	for i := 1; i <= Mod; i++ {
 		objIdList, err := mgo.InsertDocs(
-			cf,
+			config.MongoConf(),
 			context.Background(),
 			GetWhich(),
 			GetDBName(),
@@ -84,7 +58,7 @@ func TestDeleteDoc(t *testing.T) {
 	}
 
 	affected, err := mgo.DeleteDoc(
-		cf,
+		config.MongoConf(),
 		context.Background(),
 		GetWhich(),
 		GetDBName(),
@@ -105,7 +79,7 @@ func TestDeleteDocs(t *testing.T) {
 	}
 
 	affected, err := mgo.DeleteDocs(
-		cf,
+		config.MongoConf(),
 		context.Background(),
 		GetWhich(),
 		GetDBName(),
@@ -136,7 +110,7 @@ func TestUpdateDoc(t *testing.T) {
 		},
 	}
 	objId, err := mgo.UpdateDoc(
-		cf,
+		config.MongoConf(),
 		context.Background(),
 		GetWhich(),
 		GetDBName(),
@@ -170,7 +144,7 @@ func TestUpdateDocs(t *testing.T) {
 		},
 	}
 	n1, n2, err := mgo.UpdateDocs(
-		cf,
+		config.MongoConf(),
 		context.Background(),
 		GetWhich(),
 		GetDBName(),
@@ -199,7 +173,7 @@ func TestQuery(t *testing.T) {
 	}
 
 	cur, err := mgo.Query(
-		cf,
+		config.MongoConf(),
 		context.Background(),
 		GetWhich(),
 		GetDBName(),
@@ -233,7 +207,7 @@ func TestFind(t *testing.T) {
 	sort := &bson.M{"field_1": 1, "field_2": -1}
 
 	cur, err := mgo.Find(
-		cf,
+		config.MongoConf(),
 		context.Background(),
 		GetWhich(),
 		GetDBName(),
@@ -261,7 +235,7 @@ func TestCreateIndex(t *testing.T) {
 		},
 	}
 	name, err := mgo.CreateIndex(
-		cf,
+		config.MongoConf(),
 		context.Background(),
 		GetWhich(),
 		GetDBName(),
@@ -276,7 +250,7 @@ func TestCreateIndex(t *testing.T) {
 
 func TestListIndex(t *testing.T) {
 	nameList, err := mgo.ListIndex(
-		cf,
+		config.MongoConf(),
 		context.Background(),
 		GetWhich(),
 		GetDBName(),
@@ -291,7 +265,7 @@ func TestListIndex(t *testing.T) {
 func TestDropIndex(t *testing.T) {
 	indexName := "field_1_1_field_2_-1"
 	err := mgo.DropIndex(
-		cf,
+		config.MongoConf(),
 		context.Background(),
 		GetWhich(),
 		GetDBName(),

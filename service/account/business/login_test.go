@@ -1,7 +1,7 @@
 package business
 
 import (
-	"backstage/common/service/account"
+	"backstage/common/protocol/account"
 	"backstage/diagnostic"
 	"context"
 	"testing"

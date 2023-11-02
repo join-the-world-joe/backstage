@@ -1,8 +1,6 @@
 package mysql
 
 import (
-	"github.com/BurntSushi/toml"
-	"go-micro-framework/common/conf"
 	"testing"
 )
 
@@ -58,26 +56,27 @@ func TestConnection1(t *testing.T) {
 	}
 }
 
-func TestConnection2(t *testing.T) {
-	which := "HongKong"
-	dbName := "test"
-	cf := &conf.MySQLConf{}
-	if err := toml.Unmarshal([]byte(mysql_multiple_master_conf), &cf); err != nil {
-		t.Fatal(err)
-	}
-	if _, err := GetDB(cf, which, dbName); err != nil {
-		t.Fatal(err)
-	}
-}
-
-func TestConnection3(t *testing.T) {
-	which := "Singapore"
-	dbName := "test"
-	cf := &conf.MySQLConf{}
-	if err := toml.Unmarshal([]byte(mysql_master_slave_conf), &cf); err != nil {
-		t.Fatal(err)
-	}
-	if _, err := GetDB(cf, which, dbName); err != nil {
-		t.Fatal(err)
-	}
-}
+//
+//func TestConnection2(t *testing.T) {
+//	which := "HongKong"
+//	dbName := "test"
+//	cf := &conf.MySQLConf{}
+//	if err := toml.Unmarshal([]byte(mysql_multiple_master_conf), &cf); err != nil {
+//		t.Fatal(err)
+//	}
+//	if _, err := GetDB(cf, which, dbName); err != nil {
+//		t.Fatal(err)
+//	}
+//}
+//
+//func TestConnection3(t *testing.T) {
+//	which := "Singapore"
+//	dbName := "test"
+//	cf := &conf.MySQLConf{}
+//	if err := toml.Unmarshal([]byte(mysql_master_slave_conf), &cf); err != nil {
+//		t.Fatal(err)
+//	}
+//	if _, err := GetDB(cf, which, dbName); err != nil {
+//		t.Fatal(err)
+//	}
+//}

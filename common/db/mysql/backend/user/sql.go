@@ -1,7 +1,18 @@
 package user
 
-import "fmt"
+import (
+	"backstage/utils/strings"
+	"fmt"
+)
 
-func sql1(countryCode, phoneNumber string) string {
-	return fmt.Sprintf("SELECT * FROM %v WHERE country_code = %v AND phone_number = %v", GetTableName(), countryCode, phoneNumber)
+func sqlDeleteAnyById(id int64) string {
+	return fmt.Sprintf("DELETE FROM %s WHERE id = %v", GetTableName(), id)
+}
+
+func sqlQueryUserIdListNotInUserIdList(userIdList []int64) string {
+	return fmt.Sprintf("SELECT id FROM %v WHERE id NOT IN %v AND visible = 1", GetTableName(), strings.WithinParenthesesInt64(userIdList))
+}
+
+func sqlQueryUserNameById(id int64) string {
+	return fmt.Sprintf("SELECT name FROM %v WHERE visible = 1 AND id = %v", GetTableName(), id)
 }

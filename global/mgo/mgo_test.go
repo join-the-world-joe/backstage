@@ -2,38 +2,16 @@ package mgo
 
 import (
 	"context"
-	"github.com/BurntSushi/toml"
-	"go-micro-framework/common/conf"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/mongo/readpref"
 	"testing"
 )
 
-var mgo_server = `
-[Mongo.Singapore1]
-	Servers = ["mongodb://192.168.130.128:37017"]
-	User = "root"
-	Password = "123456"
-[Mongo.Singapore2]
-	Servers = ["mongodb://192.168.130.128:37018"]
-	User = "root"
-	Password = "123456"
-[Mongo.Singapore3]
-	Servers = ["mongodb://192.168.130.128:37019"]
-	User = "root"
-	Password = "123456"
-`
-
-var mgo_replica = `
-[Mongo.Replica]
-	Servers = ["mongodb://192.168.130.128:27021", "mongodb://192.168.130.128:27022", "mongodb://192.168.130.128:27023"]
-	User = "root"
-	Password = "123456"
-`
-
 func TestRawConnection1(t *testing.T) {
-	servers := []string{"mongodb://192.168.130.128:37017"}
-	user := "root"
-	password := "123456"
-	client, err := connectToMongo(servers, user, password)
+	URI := "mongodb://root:123456@119.23.224.221:27001/?directConnection=true"
+	client, err := connectToMongo(URI)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -43,20 +21,27 @@ func TestRawConnection1(t *testing.T) {
 	}
 }
 
-func TestConnection1(t *testing.T) {
-	which := "Replica"
-	cf := &conf.MongoConf{}
-	if err := toml.Unmarshal([]byte(mgo_replica), &cf); err != nil {
-		t.Fatal(err)
-	}
-
-	client, err := GetClient(cf, which)
+func TestConnection2(t *testing.T) {
+	dbName := "backend"
+	tblName := "track"
+	doc := map[string]string{"key": "value"}
+	clientOpts := options.Client().ApplyURI(
+		"mongodb://root:123456@119.23.224.221:27001/?directConnection=true")
+	client, err := mongo.Connect(context.TODO(), clientOpts)
 	if err != nil {
 		t.Fatal(err)
 	}
-
-	err = client.Disconnect(context.Background())
+	err = client.Ping(context.Background(), readpref.Primary())
 	if err != nil {
 		t.Fatal(err)
 	}
+	_ctx, err := client.Database(dbName).Collection(tblName).InsertOne(context.Background(), &doc)
+	if err != nil {
+		t.Fatal(err)
+	}
+	id, ok := _ctx.InsertedID.(primitive.ObjectID)
+	if !ok {
+		t.Fatal("!ok")
+	}
+	t.Log("id: ", id)
 }

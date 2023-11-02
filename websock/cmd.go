@@ -1,13 +1,13 @@
 package main
 
 import (
+	"backstage/common/major"
+	"backstage/common/service/account"
+	"backstage/common/service/generic"
+	"backstage/common/service/sms"
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/websocket"
-	"go-micro-framework/common/major"
-	"go-micro-framework/common/service/account"
-	"go-micro-framework/common/service/generic"
-	"go-micro-framework/common/service/sms"
 	"time"
 )
 

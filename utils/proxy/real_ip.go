@@ -7,6 +7,17 @@ import (
 	"strings"
 )
 
+func ClientIP(r *http.Request) string {
+	IPAddress := r.Header.Get("X-Real-Ip")
+	if IPAddress == "" {
+		IPAddress = r.Header.Get("X-Forwarded-For")
+	}
+	if IPAddress == "" {
+		IPAddress = r.RemoteAddr
+	}
+	return IPAddress
+}
+
 func RealIP(r *http.Request) string {
 	remote := strings.Split(r.RemoteAddr, ":")[0]
 	if !IsInnerIp(remote) {

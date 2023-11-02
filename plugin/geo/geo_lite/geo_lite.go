@@ -1,8 +1,8 @@
 package geo_lite
 
 import (
+	"backstage/abstract/geo"
 	"github.com/oschwald/geoip2-golang"
-	"go-micro-framework/abstract/geo"
 	"net"
 )
 

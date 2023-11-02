@@ -1,2 +1,8 @@
-#[SMS.Behavior.Register]
-#Template = "[xxx科技有限公司]验证码${code}"
+[SMS.Behavior.Register]
+Template = "[xxx科技有限公司]Register验证码${code}"
+
+[SMS.Behavior.Login]
+Template = "[xxx科技有限公司]Login验证码${code}"
+
+[SMS.Behavior.SignIn]
+Template = "[xxx科技有限公司]SignIn验证码${code}"

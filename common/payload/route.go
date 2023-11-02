@@ -9,12 +9,14 @@ func GetUpstreamServiceName(packet *PacketInternal) string {
 	switch packet.GetRequest().GetHeader().GetMajor() {
 	case major.Generic:
 		return service.Generic
-	case major.Gateway:
-		return service.Gateway
+	case major.FrontendGateway:
+		return service.FrontendGateway
+	case major.BackendGateway:
+		return service.BackendGateway
 	case major.Account:
 		return service.Account
-	case major.Backend:
-		return service.Backend
+	case major.Admin:
+		return service.Admin
 	default:
 		return "Unknown"
 	}

@@ -1,7 +1,7 @@
 package rpc
 
 import (
-	"backstage/common/service/gateway"
+	"backstage/common/protocol/gateway"
 	"context"
 )
 

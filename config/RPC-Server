@@ -1,2 +1,17 @@
-[RPCServer.Gateway]
+[RPCServer.Backend_Gateway]
+Enable = true
+
+[RPCServer.Frontend_Gateway]
+Enable = true
+
+[RPCServer.Generic]
+Enable = true
+
+[RPCServer.Account]
+Enable = true
+
+[RPCServer.SMS]
+Enable = true
+
+[RPCServer.Admin]
 Enable = true

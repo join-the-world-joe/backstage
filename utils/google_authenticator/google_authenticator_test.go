@@ -1,6 +1,11 @@
 package google_authentictor
 
-import "testing"
+import (
+	"fmt"
+	"github.com/spf13/cast"
+	"testing"
+	"time"
+)
 
 func TestCreateCode(t *testing.T) {
 	secret := CreateGoogleSecret("666666")
@@ -12,4 +17,13 @@ func TestGetGoogleCode(t *testing.T) {
 	code, remain := GetGoogleCode(secret)
 	t.Log("Code: ", code)
 	t.Log("Remain: ", remain)
+}
+
+func genToken(t *testing.T) {
+
+}
+
+func TestEncryptToken(t *testing.T) {
+	userId := 1
+	t.Log(fmt.Sprintf("%v-%v", userId, CreateGoogleSecret(cast.ToString(time.Now().Unix()))))
 }

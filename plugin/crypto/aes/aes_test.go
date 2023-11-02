@@ -7,7 +7,7 @@ import (
 )
 
 func TestAESEncrypt(t *testing.T) {
-	plainText := "123456"
+	plainText := `{"header":{"major":"4","minor":"2"},"body":{"code":-35}}`
 	cto := NewCrypto(
 		WithKey(crypto.Key),
 		WithIV(crypto.IV),
@@ -20,6 +20,7 @@ func TestAESEncrypt(t *testing.T) {
 		return
 	}
 
+	//t.Log("Raw: ", string(cipherText))
 	t.Log(convert.Bytes2StringArray(cipherText))
 }
 
@@ -30,7 +31,7 @@ func TestAESDecrypt(t *testing.T) {
 		WithPadding(PKCS7),
 	)
 
-	cipherText := []byte{115, 95, 42, 5, 150, 253, 116, 174, 140, 237, 86, 198, 251, 217, 193, 24}
+	cipherText := []byte{171, 205, 28, 130, 28, 35, 176, 121, 112, 169, 215, 212, 45, 230, 171, 164, 9, 47, 2, 106, 134, 145, 242, 21, 32, 80, 172, 58, 208, 191, 25, 4, 178, 125, 198, 196, 25, 60, 136, 246, 196, 195, 237, 137, 25, 216, 18, 90, 212, 50, 212, 113, 120, 158, 255, 23, 180, 136, 116, 1, 130, 172, 251, 100}
 
 	plainText, err := cto.Decrypt(cipherText)
 	if err != nil {

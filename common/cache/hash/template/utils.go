@@ -1,10 +1,10 @@
 package template
 
 import (
+	"backstage/common/conf"
+	"backstage/global/cache/cluster"
 	"context"
 	"github.com/google/uuid"
-	"go-micro-framework/common/conf"
-	"go-micro-framework/global/cache/cluster"
 )
 
 func Create(cacheConf *conf.CacheConf) error {

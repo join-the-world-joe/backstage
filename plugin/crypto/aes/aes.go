@@ -57,30 +57,3 @@ func (p *_crypto) Decrypt(cipherText []byte) (plainText []byte, err error) {
 	}()
 	return openssl.AesCBCDecrypt(cipherText, []byte(p.opts.key), []byte(p.opts.iv), p.opts.padding)
 }
-
-//
-//func Echo(conn *websocket.Conn) {
-//	major := "1"
-//	minor := "1"
-//	message := "hello, I'm John!"
-//
-//	packet := &payload.PacketClient{
-//		Header: &payload.Header{
-//			Major: major,
-//			Minor: minor,
-//		},
-//		Body: []byte(message),
-//	}
-//
-//	bytes, err := packet.ToBytes()
-//	if err != nil {
-//		fmt.Println(err)
-//		return
-//	}
-//
-//	err = conn.WriteMessage(websocket.BinaryMessage, bytes)
-//	if err != nil {
-//		fmt.Println(err)
-//		return
-//	}
-//}

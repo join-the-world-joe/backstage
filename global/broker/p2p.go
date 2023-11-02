@@ -3,7 +3,7 @@ package broker
 import (
 	"backstage/common/broker"
 	"backstage/common/payload"
-	"backstage/common/service/gateway"
+	"backstage/common/protocol/gateway"
 	"encoding/json"
 	"fmt"
 )

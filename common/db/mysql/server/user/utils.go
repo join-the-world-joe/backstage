@@ -20,7 +20,21 @@ func Insert(model *Model) (*Model, error) {
 	return model, nil
 }
 
-func Get(countryCode, phoneNumber string) (*Model, error) {
+func GetModelById(id int64) (*Model, error) {
+	db, err := mysql.GetDB(GetWhich(), GetDbName())
+	if err != nil {
+		return nil, err
+	}
+	model := &Model{}
+	err = db.Table(GetTableName()).Where("id = ?", id).First(model).Error
+	if err != nil {
+		return nil, err
+	}
+
+	return model, nil
+}
+
+func GetModelByMobile(countryCode, phoneNumber string) (*Model, error) {
 	db, err := mysql.GetDB(GetWhich(), GetDbName())
 	if err != nil {
 		return nil, err

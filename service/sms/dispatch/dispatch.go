@@ -2,7 +2,7 @@ package dispatch
 
 import (
 	"backstage/common/payload"
-	"backstage/common/service/sms"
+	"backstage/common/protocol/sms"
 	"backstage/global/log"
 	"backstage/service/sms/business"
 	"context"

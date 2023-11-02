@@ -1,10 +1,10 @@
 package nacos
 
 import (
+	"backstage/abstract/config"
 	"fmt"
 	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
 	"github.com/nacos-group/nacos-sdk-go/v2/vo"
-	"go-micro-framework/abstract/config"
 	"testing"
 	"time"
 )

@@ -10,7 +10,7 @@ var _router *gin.Engine
 func SetRouter(router *gin.Engine) {
 	_router = router
 	_router.Use(middleware.Cors())
-	_router.Use(middleware.Permission())
+	//_router.Use(middleware.Permission())
 }
 
 func Router() *gin.Engine {

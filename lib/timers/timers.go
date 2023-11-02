@@ -1,10 +1,10 @@
 package timers
 
 import (
+	"backstage/abstract/timers"
 	"context"
 	"errors"
 	"fmt"
-	"go-micro-framework/abstract/timers"
 	"sync"
 	"time"
 )

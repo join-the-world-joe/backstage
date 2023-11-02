@@ -1,0 +1,134 @@
+[Role.Administrator]
+	Rank = 3
+	Department = "Board of Directors"
+	Description = "The top role of this organization"
+
+[Role.RD_Manager]
+	Rank = 2
+	Department = "Research and Development"
+	Description = "The manager of Research and Development department"
+[Role.Software_Engineer]
+	Rank = 1
+	Department = "Research and Development"
+	Description = "A Software Engineer of Research and Development department"
+[Role.Hardware_Engineer]
+	Rank = 1
+	Department = "Research and Development"
+	Description = "A Hardware Engineer of Research and Development department"
+
+[Role.Finance_Manger]
+	Rank = 2
+	Department = "Finance Department"
+	Description = "The manager of Finance Department"
+[Role.Purchasing_Specialist]
+	Rank = 1
+	Department = "Finance Department"
+	Description = "A Purchasing Specialist of Finance Department"
+[Role.Accounting_Specialist]
+	Rank = 1
+	Department = "Finance Department"
+	Description = "A Accounting Specialist of Finance Department"
+
+[Role.HR_Manger]
+	Rank = 2
+	Department = "Human Resources Department"
+	Description = "The manager of Human Resources Department"
+[Role.HR_Specialist]
+	Rank = 1
+	Department = "Human Resources Department"
+	Description = "A Human Resources Specialist of Human Resources Department"
+
+[Role.Marketing_Manger]
+	Rank = 2
+	Department = "Marketing Department"
+	Description = "The manager of Marketing Department"
+[Role.Sales_Specialist]
+	Rank = 1
+	Department = "Marketing Department"
+	Description = "A Sales Specialist of Marketing Department"
+
+[Role.Manufacturing_Manger]
+	Rank = 2
+	Department = "Manufacturing Department"
+	Description = "The manager of Manufacturing Department"
+[Role.Production_Specialist]
+	Rank = 1
+	Department = "Manufacturing Department"
+	Description = "A Production Specialist of Manufacturing Department"
+
+[Permission.FetchMenuListOfCondition]
+	Major = 5
+	Minor = 3
+	Description = "FetchMenuListOfCondition"
+[Permission.FetchUserListOfCondition]
+	Major = 5
+	Minor = 5
+	Description = "FetchUserListOfCondition"
+[Permission.FetchRoleListOfCondition]
+	Major = 5
+	Minor = 7
+	Description = "FetchRoleListOfCondition"
+[Permission.FetchPermissionListOfCondition]
+	Major = 5
+	Minor = 9
+	Description = "FetchPermissionListOfCondition"
+[Permission.InsertUserRecord]
+	Major = 5
+	Minor = 11
+	Description = "InsertUserRecord"
+[Permission.SoftDeleteUserRecord]
+	Major = 5
+	Minor = 13
+	Description = "SoftDeleteUserRecord"
+[Permission.UpdateUserRecord]
+	Major = 5
+	Minor = 15
+	Description = "UpdateUserRecord"
+
+[Menu.Admission]
+	Item.User.Description = "The management of users"
+	Item.Role.Description = "The management of roles"
+	Item.Menu.Description = "The management of menus"
+	Item.Permission.Description = "The management of permissions"
+	Item.Field.Description = "The management of fields"
+	Item.Track.Description = "The management of tracks"
+
+[Table.user]
+	Field.id.Description = "the description of id of user"
+	Field.name.Description = "the description of name of user"
+	Field.country_code.Description = "the description of country_code of user"
+	Field.phone_number.Description = "the description of phone_number of user"
+	Field.status.Description = "the description of status of user"
+	Field.created_at.Description = "the description of created_at of user"
+
+[RolePermission.RD_Manager]
+	PermissionList = ['FetchMenuListOfCondition', 'FetchUserListOfCondition', 'FetchRoleListOfCondition', 'UpdateUserRecord']
+[RolePermission.Finance_Manger]
+	PermissionList = ['FetchMenuListOfCondition', 'FetchUserListOfCondition', 'FetchRoleListOfCondition', 'UpdateUserRecord']
+[RolePermission.Manufacturing_Manger]
+	PermissionList = ['FetchMenuListOfCondition', 'FetchUserListOfCondition', 'FetchRoleListOfCondition', 'UpdateUserRecord']
+[RolePermission.Worker]
+	PermissionList = ['FetchMenuListOfCondition', 'FetchUserListOfCondition']
+[RolePermission.Sales]
+	PermissionList = ['FetchUserListOfCondition']
+
+[RoleMenu.RD_Manager.Menu.Admission]
+	ItemList = ['User']
+[RoleMenu.Finance_Manger.Menu.Admission]
+	ItemList = ['User']
+[RoleMenu.Manufacturing_Manger.Menu.Admission]
+	ItemList = ['User']
+
+[RoleField.RD_Manager.Table.user]
+	FieldList = ['name', 'id', 'gender', 'account', 'country_code', 'phone_number', 'status', 'created_at']
+[RoleField.Finance_Manger.Table.user]
+	FieldList = ['name', 'id', 'gender', 'account', 'country_code', 'phone_number', 'status']
+[RoleField.Manufacturing_Manger.Table.user]
+	FieldList = ['name', 'id', 'gender', 'account', 'country_code', 'phone_number', 'status']
+
+
+[RoleField.High.Table.user]
+	FieldList = ['name', 'id', 'gender', 'account', 'country_code', 'phone_number', 'status', 'created_at']
+
+[RoleField.Middle.Table.user]
+	FieldList = ['name', 'id', 'gender', 'account', 'country_code', 'phone_number', 'status', 'created_at']
