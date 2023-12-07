@@ -21,7 +21,7 @@ type RecordOfAdvertisement struct {
 	Status        int      `json:"status"`
 	SellingPrice  int      `json:"selling_price"`
 	PlaceOfOrigin string   `json:"place_of_origin"`
-	SellingPoint  []string `json:"selling_point"`
+	SellingPoints []string `json:"selling_points"`
 	Url           string   `json:"url"`
 	Stock         int      `json:"stock"`
 	ProductId     int64    `json:"product_id"`
@@ -78,7 +78,7 @@ func FetchRecordsOfAdvertisement(ctx context.Context, req *admin.FetchRecordsOfA
 		return nil
 	}
 	for _, m := range ml {
-		pml, err := selling_point_of_advertisement.GetModelListByProductId(m.ProductId)
+		pml, err := selling_point_of_advertisement.GetModelListByProductId(m.Id)
 		if err != nil {
 			log.Error("business.selling_point_of_advertisement.GetModelListByProductId failure, err: ", err.Error())
 			continue
@@ -94,7 +94,7 @@ func FetchRecordsOfAdvertisement(ctx context.Context, req *admin.FetchRecordsOfA
 			Status:        m.Status,
 			SellingPrice:  m.SellingPrice,
 			PlaceOfOrigin: m.PlaceOFOrigin,
-			SellingPoint:  points,
+			SellingPoints: points,
 			Url:           m.Url,
 			Stock:         m.Stock,
 			ProductId:     m.ProductId,

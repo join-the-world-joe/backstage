@@ -174,7 +174,7 @@ func TestFetchIdListOfAdvertisement(t *testing.T) {
 
 func TestFetchRecordsOfAdvertisement(t *testing.T) {
 	userId := int64(1)
-	idList := []int64{1}
+	idList := []int64{3}
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
 	req := &FetchRecordsOfAdvertisementReq{

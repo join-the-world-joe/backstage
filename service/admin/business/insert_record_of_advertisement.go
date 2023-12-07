@@ -66,15 +66,15 @@ func InsertRecordOfAdvertisement(ctx context.Context, req *admin.InsertRecordOfA
 	}
 
 	points := []string{}
-	if len(req.SellingPoint) > 0 {
+	if len(req.SellingPoints) > 0 {
 		//fmt.Printf("t1: %T\n", req.SellingPoint)
 		//fmt.Println("req.SellingPoint: ", req.SellingPoint)
-		err = json.Unmarshal([]byte(req.SellingPoint), &points)
+		err = json.Unmarshal([]byte(req.SellingPoints), &points)
 		if err == nil {
 			for _, v := range points {
 				_, err := selling_point_of_advertisement.InsertModel(&selling_point_of_advertisement.Model{
 					SellingPoint: v,
-					ProductId:    m.ProductId,
+					ProductId:    m.Id,
 				})
 				if err != nil {
 					log.Error("InsertRecordOfAdvertisement.selling_point_of_advertisement.InsertModel failure, err: ", err.Error())
