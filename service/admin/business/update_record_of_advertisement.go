@@ -9,6 +9,7 @@ import (
 	"backstage/global/log"
 	"backstage/global/rbac"
 	"context"
+	"fmt"
 	"github.com/spf13/cast"
 	"strings"
 )
@@ -78,8 +79,9 @@ func UpdateRecordOfAdvertisement(ctx context.Context, req *admin.UpdateRecordOfA
 		fieldList["description"] = string(req.Description)
 	}
 
-	err := advertisement.UpdateFieldListById(req.ProductId, fieldList)
+	err := advertisement.UpdateFieldListById(req.Id, fieldList)
 	if err != nil {
+		log.Error("UpdateRecordOfAdvertisement.advertisement.UpdateFieldListById failure, err: ", err.Error())
 		rsp.Code = code.InternalError
 		return nil
 	}
@@ -88,6 +90,7 @@ func UpdateRecordOfAdvertisement(ctx context.Context, req *admin.UpdateRecordOfA
 	idListToBeDeleted := []int64{}
 	requestedSellingPoints := []string{}
 	oriSellingPoints := map[string]int64{}
+	fmt.Println("req: ", req)
 	ml, err := selling_point_of_advertisement.GetModelListByAdvertisementId(req.Id)
 	if err != nil {
 		rsp.Code = code.DatabaseFailure
@@ -120,10 +123,12 @@ func UpdateRecordOfAdvertisement(ctx context.Context, req *admin.UpdateRecordOfA
 				idListToBeDeleted = append(idListToBeDeleted, oriId)
 			}
 		}
-		err = selling_point_of_advertisement.UpdateVisibleByIdList(idListToBeDeleted, 0)
-		if err != nil {
-			rsp.Code = code.DatabaseFailure
-			return nil
+		if len(idListToBeDeleted) > 0 {
+			err = selling_point_of_advertisement.UpdateVisibleByIdList(idListToBeDeleted, 0)
+			if err != nil {
+				rsp.Code = code.DatabaseFailure
+				return nil
+			}
 		}
 		for _, v := range pointsToBeAdded {
 			_, err = selling_point_of_advertisement.InsertModel(&selling_point_of_advertisement.Model{

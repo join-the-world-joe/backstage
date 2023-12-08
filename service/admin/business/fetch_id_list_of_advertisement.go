@@ -14,6 +14,7 @@ import (
 )
 
 type OutputOfIdListOfAdvertisement struct {
+	Behavior              int     `json:"behavior"`
 	IdListOfAdvertisement []int64 `json:"id_list_of_advertisement"`
 }
 
@@ -52,6 +53,7 @@ func FetchIdListOfAdvertisement(ctx context.Context, req *admin.FetchIdListOfAdv
 	}
 
 	output := &OutputOfIdListOfAdvertisement{
+		Behavior:              req.Behavior,
 		IdListOfAdvertisement: []int64{},
 	}
 

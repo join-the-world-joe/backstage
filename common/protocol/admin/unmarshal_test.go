@@ -1,6 +1,7 @@
 package admin
 
 import (
+	"backstage/common/payload"
 	"encoding/json"
 	"testing"
 )
@@ -62,5 +63,14 @@ func TestUnMarshal(t *testing.T) {
 	for _, v := range temp {
 		t.Log("v: ", string(v))
 	}
+}
 
+func TestUnmarshalUpdateRecordOfAdvertisement(t *testing.T) {
+	bytes := []byte{171, 205, 28, 130, 28, 35, 176, 121, 112, 169, 215, 212, 45, 230, 171, 164, 194, 241, 77, 28, 59, 89, 117, 20, 19, 135, 44, 52, 217, 92, 112, 21, 155, 218, 145, 254, 80, 7, 52, 160, 20, 64, 206, 213, 129, 255, 16, 204, 30, 50, 17, 233, 34, 68, 127, 107, 116, 220, 215, 182, 74, 140, 175, 49, 165, 251, 54, 215, 71, 232, 25, 205, 127, 240, 153, 17, 218, 93, 105, 168, 214, 182, 20, 97, 109, 128, 51, 18, 202, 179, 32, 223, 238, 248, 54, 56}
+	packet := &payload.PacketClient{}
+	err := json.Unmarshal(bytes, packet)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log(packet)
 }
