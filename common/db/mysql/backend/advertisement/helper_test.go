@@ -3,8 +3,7 @@ package advertisement
 import (
 	"backstage/diagnostic"
 	"backstage/global/mysql"
-	"fmt"
-	"github.com/spf13/cast"
+	"encoding/json"
 	"testing"
 )
 
@@ -16,27 +15,106 @@ func TestAutoMigrate(t *testing.T) {
 	}
 }
 
-func TestInsertModel(t *testing.T) {
-	n := 20
-	title := "title"
-	origin := "origin"
-	url := ""
+func TestInsertModel1(t *testing.T) {
 	diagnostic.SetupMySQL()
-	for i := 0; i < n; i++ {
-		temp, err := InsertModel(&Model{
-			Title:         fmt.Sprintf("%s%d", title, i+1),
-			PlaceOFOrigin: fmt.Sprintf("%s%d", origin, i+1),
-			Url:           fmt.Sprintf("%s%d", url, i+1),
-			SellingPrice:  200,
-			Visible:       1,
-			Status:        0,
-			Stock:         5,
-			ProductId:     cast.ToInt64(i + 1),
-		})
-		if err != nil {
-			t.Fatal(err)
-		}
-		t.Log(temp)
-	}
 
+	temp, err := InsertModel(&Model{
+		Name:          "春季牛奶",
+		Title:         "健康的乳",
+		PlaceOFOrigin: "内蒙古",
+		Url:           "牛奶外观图片网址",
+		SellingPrice:  200,
+		Visible:       1,
+		Status:        0,
+		Stock:         5,
+		ProductId:     1,
+		Description:   "关联商品名称",
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log(temp)
+}
+
+func TestInsertModel2(t *testing.T) {
+	diagnostic.SetupMySQL()
+
+	temp, err := InsertModel(&Model{
+		Name:          "夏季矿物水广告",
+		Title:         "健康的水",
+		PlaceOFOrigin: "四川",
+		Url:           "水瓶外观图片网址",
+		SellingPrice:  100,
+		Visible:       1,
+		Status:        0,
+		Stock:         5,
+		ProductId:     1,
+		Description:   "关联商品名称",
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log(temp)
+}
+
+func TestGetIdListInTable(t *testing.T) {
+	diagnostic.SetupMySQL()
+	idList, err := GetIdListInTable()
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("id list: ", idList)
+}
+
+func TestGetModelListByIdList(t *testing.T) {
+	idList := []int64{1}
+	diagnostic.SetupMySQL()
+	ml, err := GetModelListByIdList(idList)
+	if err != nil {
+		t.Fatal(err)
+	}
+	bytes, err := json.Marshal(ml)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("model list: ", string(bytes))
+}
+
+func TestUpdateFieldListById(t *testing.T) {
+	id := int64(1)
+	name := "夏季矿物水广告new"
+	title := "健康的水 new"
+	placeOfOrigin := "四川 new"
+	url := "水瓶外观图片网址 new"
+	sellingPrice := 800
+	status := 0
+	stock := 100
+	productId := int64(1)
+	description := "关联商品名称 new"
+	filedList := map[string]interface{}{
+		"name":            name,
+		"title":           title,
+		"place_of_origin": placeOfOrigin,
+		"url":             url,
+		"selling_price":   sellingPrice,
+		"status":          status,
+		"stock":           stock,
+		"product_id":      productId,
+		"description":     description,
+	}
+	diagnostic.SetupMySQL()
+	err := UpdateFieldListById(id, filedList)
+	if err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestUpdateVisibleByIdList(t *testing.T) {
+	idList := []int64{1, 2}
+	visible := 0
+	diagnostic.SetupMySQL()
+	err := UpdateVisibleByIdList(idList, visible)
+	if err != nil {
+		t.Fatal(err)
+	}
 }

@@ -9,7 +9,6 @@ import (
 	"backstage/global/log"
 	"backstage/global/rbac"
 	"context"
-	"encoding/json"
 	"fmt"
 	"github.com/spf13/cast"
 )
@@ -65,24 +64,16 @@ func InsertRecordOfAdvertisement(ctx context.Context, req *admin.InsertRecordOfA
 		return nil
 	}
 
-	points := []string{}
 	if len(req.SellingPoints) > 0 {
-		//fmt.Printf("t1: %T\n", req.SellingPoint)
-		//fmt.Println("req.SellingPoint: ", req.SellingPoint)
-		err = json.Unmarshal([]byte(req.SellingPoints), &points)
-		if err == nil {
-			for _, v := range points {
-				_, err := selling_point_of_advertisement.InsertModel(&selling_point_of_advertisement.Model{
-					SellingPoint: v,
-					ProductId:    m.Id,
-				})
-				if err != nil {
-					log.Error("InsertRecordOfAdvertisement.selling_point_of_advertisement.InsertModel failure, err: ", err.Error())
-					continue
-				}
+		for _, v := range req.SellingPoints {
+			_, err := selling_point_of_advertisement.InsertModel(&selling_point_of_advertisement.Model{
+				SellingPoint:    string(v),
+				AdvertisementId: m.Id,
+			})
+			if err != nil {
+				log.Error("InsertRecordOfAdvertisement.selling_point_of_advertisement.InsertModel failure, err: ", err.Error())
+				continue
 			}
-		} else {
-			log.Error("json.Unmarshal failure, err: ", err.Error())
 		}
 	}
 

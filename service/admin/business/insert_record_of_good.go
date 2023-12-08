@@ -45,7 +45,7 @@ func InsertRecordOfGood(ctx context.Context, req *admin.InsertRecordOfGoodReq, r
 		return nil
 	}
 
-	_, err := product.Insert(&product.Model{
+	_, err := product.InsertModel(&product.Model{
 		Name:        string(req.Name),
 		Vendor:      string(req.Vendor),
 		Status:      req.Status,

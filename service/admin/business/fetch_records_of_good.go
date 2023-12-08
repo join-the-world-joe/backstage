@@ -26,6 +26,7 @@ type RecordOfGood struct {
 }
 
 type OutputOfRecordsOfGood struct {
+	Behavior      int                     `json:"behavior"`
 	RecordsOfGood map[int64]*RecordOfGood `json:"records_of_good"`
 }
 

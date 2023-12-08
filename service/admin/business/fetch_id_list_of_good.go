@@ -14,6 +14,7 @@ import (
 )
 
 type OutputOfIdListOfGood struct {
+	Behavior     int     `json:"behavior"`
 	IdListOfGood []int64 `json:"id_list_of_good"`
 }
 
@@ -52,6 +53,7 @@ func FetchIdListOfGood(ctx context.Context, req *admin.FetchIdListOfGoodReq, rsp
 	}
 
 	output := &OutputOfIdListOfGood{
+		Behavior:     req.Behavior,
 		IdListOfGood: []int64{},
 	}
 

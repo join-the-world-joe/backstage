@@ -4,7 +4,6 @@ import (
 	"backstage/diagnostic"
 	"backstage/global/mysql"
 	"encoding/json"
-	"fmt"
 	"testing"
 )
 
@@ -17,36 +16,47 @@ func TestAutoMigrate(t *testing.T) {
 }
 
 func TestInsert(t *testing.T) {
-	n := 20
-	product := "product"
-	vendor := "vendor"
-	contact := "contact"
-	desc := "desc"
 
 	diagnostic.SetupMySQL()
 
-	for i := 0; i < n; i++ {
-
-		temp, err := Insert(&Model{
-			Name:        fmt.Sprintf("%s%d", product, i+1),
-			BuyingPrice: 100,
-			Visible:     1,
-			Status:      0,
-			Vendor:      fmt.Sprintf("%s%d", vendor, i+1),
-			Contact:     fmt.Sprintf("%s%d", contact, i+1),
-			Description: fmt.Sprintf("%s%d", desc, i+1),
-		})
-		if err != nil {
-			t.Fatal(err)
-		}
-
-		t.Log(temp)
+	_, err := InsertModel(&Model{
+		Name:        "蒙牛酸酸乳",
+		BuyingPrice: 100,
+		Visible:     1,
+		Status:      0, // 为0时, 采用数据库设定的默认值
+		Vendor:      "汕头市蒙牛奶业有限公司",
+		Contact:     "0756-88788371",
+		Description: "正规渠道、国产大牌子、大人小孩都爱",
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	_, err = InsertModel(&Model{
+		Name:        "恒大冰泉",
+		BuyingPrice: 100,
+		Visible:     1,
+		Status:      0,
+		Vendor:      "珠海市水之源有限公司",
+		Contact:     "0878-88788371",
+		Description: "二级代理、正归渠道、物流优势",
+	})
+	_, err = InsertModel(&Model{
+		Name:        "橡胶袋子",
+		BuyingPrice: 100,
+		Visible:     1,
+		Status:      0,
+		Vendor:      "天津市万国集团有限公司",
+		Contact:     "020-97718232",
+		Description: "一流服务、二流产品、进货便宜",
+	})
+	if err != nil {
+		t.Fatal(err)
 	}
 }
 
 func TestGetModelListByIdList(t *testing.T) {
 	diagnostic.SetupMySQL()
-	idList := []int64{3, 4, 5}
+	idList := []int64{1, 2, 3}
 	ml, err := GetModelListByIdList(idList)
 	if err != nil {
 		t.Fatal(err)
@@ -70,7 +80,7 @@ func TestGetIdListInTable(t *testing.T) {
 func TestUpdateVisibleById(t *testing.T) {
 	diagnostic.SetupMySQL()
 	id := int64(1)
-	visible := 1
+	visible := 0
 	err := UpdateVisibleById(id, visible)
 	if err != nil {
 		t.Fatal(err)
@@ -79,8 +89,8 @@ func TestUpdateVisibleById(t *testing.T) {
 
 func TestUpdateVisibleByIdList(t *testing.T) {
 	diagnostic.SetupMySQL()
-	idList := []int64{2, 3, 4}
-	visible := 1
+	idList := []int64{1, 2, 3}
+	visible := 0
 	err := UpdateVisibleByIdList(idList, visible)
 	if err != nil {
 		t.Fatal(err)
@@ -90,12 +100,12 @@ func TestUpdateVisibleByIdList(t *testing.T) {
 func TestUpdateFieldListById(t *testing.T) {
 	diagnostic.SetupMySQL()
 	id := int64(1)
-	name := "xxx"
-	buyingPrice := 1
-	status := 1
-	vendor := "vendor"
-	contact := "contact"
-	description := "description"
+	name := "蒙牛酸酸乳new"
+	buyingPrice := 80
+	status := 0
+	vendor := "汕头市蒙牛奶业有限公司"
+	contact := "0829-9982912332"
+	description := "正规渠道、国产大牌子、大人小孩都爱"
 	fieldList := map[string]interface{}{}
 
 	if len(name) > 0 {

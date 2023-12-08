@@ -6,7 +6,7 @@ import (
 	"fmt"
 )
 
-func Insert(model *Model) (*Model, error) {
+func InsertModel(model *Model) (*Model, error) {
 	temp, err := mysql.Insert(GetWhich(), GetDbName(), GetTableName(), model)
 	if err != nil {
 		return nil, err

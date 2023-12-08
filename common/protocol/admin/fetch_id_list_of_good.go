@@ -5,7 +5,6 @@ import "encoding/json"
 type FetchIdListOfGoodReq struct {
 	UserId      int64
 	Behavior    int    `json:"behavior"`
-	ProductId   int64  `json:"product_id"`
 	ProductName []byte `json:"product_name"`
 	CategoryId  int64  `json:"category_id"`
 }

@@ -15,13 +15,27 @@ func TestAutoMigrate(t *testing.T) {
 	}
 }
 
-func TestInsertModel(t *testing.T) {
-	productId := int64(3)
-	sellingPoint := "解渴3"
+func TestInsertModel1(t *testing.T) {
+	advertisementId := int64(1)
+	sellingPoint := "优质奶源"
 	diagnostic.SetupMySQL()
 	temp, err := InsertModel(&Model{
-		ProductId:    productId,
-		SellingPoint: sellingPoint,
+		AdvertisementId: advertisementId,
+		SellingPoint:    sellingPoint,
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log(temp)
+}
+
+func TestInsertModel(t *testing.T) {
+	advertisementId := int64(1)
+	sellingPoint := "含钙"
+	diagnostic.SetupMySQL()
+	temp, err := InsertModel(&Model{
+		AdvertisementId: advertisementId,
+		SellingPoint:    sellingPoint,
 	})
 	if err != nil {
 		t.Fatal(err)
@@ -38,21 +52,21 @@ func TestUpdateVisibleByIdList(t *testing.T) {
 	}
 }
 
-func TestUpdateVisibleByProductIdAndSellingPoint(t *testing.T) {
-	productId := int64(1)
+func TestUpdateVisibleByAdvertisementIdAndSellingPoint(t *testing.T) {
+	advertisementId := int64(1)
 	sellingPoint := "解渴"
 	visible := 0
 	diagnostic.SetupMySQL()
-	err := UpdateVisibleByProductIdAndSellingPoint(productId, sellingPoint, visible)
+	err := UpdateVisibleByAdvertisementIdAndSellingPoint(advertisementId, sellingPoint, visible)
 	if err != nil {
 		t.Fatal(err)
 	}
 }
 
-func TestGetModelListByProductId(t *testing.T) {
-	productId := int64(1)
+func TestGetModelListByAdvertisementId(t *testing.T) {
+	advertisementId := int64(1)
 	diagnostic.SetupMySQL()
-	ml, err := GetModelListByProductId(productId)
+	ml, err := GetModelListByAdvertisementId(advertisementId)
 	if err != nil {
 		t.Fatal(err)
 	}

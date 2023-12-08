@@ -5,7 +5,6 @@ import (
 	"backstage/plugin/crypto/rsa"
 	"backstage/utils/bcrypt"
 	"context"
-	"encoding/json"
 	"testing"
 )
 
@@ -71,7 +70,7 @@ func TestFetchIdListOfGood(t *testing.T) {
 
 func TestFetchRecordsOfGood(t *testing.T) {
 	userId := int64(1)
-	productIdList := []int64{8, 1}
+	productIdList := []int64{1, 2, 3}
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
 	req := &FetchRecordsOfGoodReq{
@@ -87,16 +86,18 @@ func TestFetchRecordsOfGood(t *testing.T) {
 }
 
 func TestInsertRecordOfGood(t *testing.T) {
-	name := []byte("某水")
-	vendor := []byte("某商家")
-	contact := []byte("某商家联系方式")
-	description := []byte("某水描述")
+	userId := int64(1)
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
+	name := []byte("蒙牛酸酸乳")
+	vendor := []byte("汕头市蒙牛奶业有限公司")
+	contact := []byte("0756-88788371")
+	description := []byte("正规渠道、国产大牌子、大人小孩都爱")
 	req := &InsertRecordOfGoodReq{
-		UserId:      1,
+		UserId:      userId,
 		Name:        name,
-		BuyingPrice: 1000,
+		BuyingPrice: 100,
+		Status:      0, // 为0时, 采用数据库设定的默认值
 		Vendor:      vendor,
 		Contact:     contact,
 		Description: description,
@@ -108,9 +109,9 @@ func TestInsertRecordOfGood(t *testing.T) {
 	}
 }
 
-func TestSoftDeleteRecordOfGood(t *testing.T) {
+func TestSoftDeleteRecordsOfGood(t *testing.T) {
 	userId := int64(1)
-	productIdList := []int64{9}
+	productIdList := []int64{1, 2, 3, 4}
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
 	req := &SoftDeleteRecordsOfGoodReq{
@@ -129,22 +130,22 @@ func TestUpdateRecordOfGood(t *testing.T) {
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
 	userId := int64(1)
-	productId := int64(9)
-	name := "product_name"
+	productId := int64(4)
+	name := []byte("product_name")
 	buyingPrice := 100
-	status := 0
-	vendor := "product_vendor"
-	contact := "product_contact"
-	description := "product_description"
+	status := 1
+	vendor := []byte("product_vendor")
+	contact := []byte("product_contact")
+	description := []byte("product_description")
 	req := &UpdateRecordOfGoodReq{
-		Name:        []byte(name),
+		Name:        name,
 		UserId:      userId,
 		Status:      status,
-		Vendor:      []byte(vendor),
-		Contact:     []byte(contact),
+		Vendor:      vendor,
+		Contact:     contact,
 		BuyingPrice: buyingPrice,
 		ProductId:   productId,
-		Description: []byte(description),
+		Description: description,
 	}
 	rsp := &UpdateRecordOfGoodRsp{}
 	err := UpdateRecordOfGood(context.Background(), req, rsp)
@@ -174,7 +175,7 @@ func TestFetchIdListOfAdvertisement(t *testing.T) {
 
 func TestFetchRecordsOfAdvertisement(t *testing.T) {
 	userId := int64(1)
-	idList := []int64{3}
+	idList := []int64{4}
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
 	req := &FetchRecordsOfAdvertisementReq{
@@ -191,30 +192,38 @@ func TestFetchRecordsOfAdvertisement(t *testing.T) {
 
 func TestInsertRecordOfAdvertisement(t *testing.T) {
 	userId := int64(1)
-	name := []byte("某水广告")
+	name := []byte("name")
+	title := []byte("title")
+	sellingPrice := 100
+	sellingPoints := [][]byte{[]byte("2"), []byte("大2")}
+	placeOfOrigin := []byte("地要工")
+	url := []byte("urlfd在")
+	stock := 10
 	productId := int64(1)
-	points := []string{"森林1", "大树1", "point3333"}
+	status := 1
+	description := []byte("描述")
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
 
-	sellingPoints, err := json.Marshal(&points)
-	if err != nil {
-		t.Fatal(err)
-	}
 	req := &InsertRecordOfAdvertisementReq{
-		UserId:       userId,
-		Name:         name,
-		ProductId:    productId,
-		SellingPoint: string(sellingPoints),
+		UserId:        userId,
+		Url:           url,
+		Name:          name,
+		Title:         title,
+		ProductId:     productId,
+		SellingPoints: sellingPoints,
+		PlaceOfOrigin: placeOfOrigin,
+		SellingPrice:  sellingPrice,
+		Stock:         stock,
+		Status:        status,
+		Description:   description,
 	}
 	rsp := &InsertRecordOfAdvertisementRsp{}
-	err = InsertRecordOfAdvertisement(context.Background(), req, rsp)
+	err := InsertRecordOfAdvertisement(context.Background(), req, rsp)
 	if err != nil {
 		t.Fatal(err)
 	}
 	t.Log("rsp.code: ", rsp.Code)
-	_ = req
-	t.Log("SellingPoint: ", sellingPoints)
 }
 
 func TestSoftDeleteRecordOfAdvertisement(t *testing.T) {
@@ -238,15 +247,30 @@ func TestUpdateRecordOfAdvertisement(t *testing.T) {
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
 	userId := int64(1)
-	productId := int64(21)
-	name := "product_name"
-	status := 0
+	id := int64(3)
+	name := []byte("name new")
+	title := []byte("title new")
+	sellingPrice := 100
+	sellingPoints := [][]byte{[]byte("11"), []byte("大小")}
+	placeOfOrigin := []byte("地要工22")
+	url := []byte("urlfd在111")
+	stock := 10
+	productId := int64(1)
+	status := 1
+	description := []byte("描述 new")
 	req := &UpdateRecordOfAdvertisementReq{
-		Name:   []byte(name),
-		UserId: userId,
-		Status: status,
-
-		ProductId: productId,
+		Id:            id,
+		Url:           url,
+		Stock:         stock,
+		Name:          name,
+		Title:         title,
+		UserId:        userId,
+		Status:        status,
+		SellingPrice:  sellingPrice,
+		SellingPoints: sellingPoints,
+		PlaceOfOrigin: placeOfOrigin,
+		Description:   description,
+		ProductId:     productId,
 	}
 	rsp := &UpdateRecordOfAdvertisementRsp{}
 	err := UpdateRecordOfAdvertisement(context.Background(), req, rsp)

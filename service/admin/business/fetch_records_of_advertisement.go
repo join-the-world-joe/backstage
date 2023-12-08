@@ -21,13 +21,14 @@ type RecordOfAdvertisement struct {
 	Status        int      `json:"status"`
 	SellingPrice  int      `json:"selling_price"`
 	PlaceOfOrigin string   `json:"place_of_origin"`
-	SellingPoints []string `json:"selling_points"`
+	SellingPoints [][]byte `json:"selling_points"`
 	Url           string   `json:"url"`
 	Stock         int      `json:"stock"`
 	ProductId     int64    `json:"product_id"`
 	BuyingPrice   int      `json:"buying_price"`
 	CreatedAt     string   `json:"created_at"`
 	UpdatedAt     string   `json:"updated_at"`
+	Description   string   `json:"description"`
 }
 
 type OutputOfRecordsOfAdvertisement struct {
@@ -78,14 +79,15 @@ func FetchRecordsOfAdvertisement(ctx context.Context, req *admin.FetchRecordsOfA
 		return nil
 	}
 	for _, m := range ml {
-		pml, err := selling_point_of_advertisement.GetModelListByProductId(m.Id)
+		pml, err := selling_point_of_advertisement.GetModelListByAdvertisementId(m.Id)
 		if err != nil {
-			log.Error("business.selling_point_of_advertisement.GetModelListByProductId failure, err: ", err.Error())
+			log.Error("business.selling_point_of_advertisement.GetModelListByAdvertisementId failure, err: ", err.Error())
 			continue
 		}
-		points := []string{}
+		points := [][]byte{}
 		for _, v := range pml {
-			points = append(points, v.SellingPoint)
+			//fmt.Println("id: ", m.Id, ", selling_point: ", v.SellingPoint)
+			points = append(points, []byte(v.SellingPoint))
 		}
 		output.RecordsOfAdvertisement[m.Id] = &RecordOfAdvertisement{
 			Id:            m.Id,
@@ -100,6 +102,7 @@ func FetchRecordsOfAdvertisement(ctx context.Context, req *admin.FetchRecordsOfA
 			ProductId:     m.ProductId,
 			CreatedAt:     m.CreatedAt.Format(timestamp.YYMDHMS),
 			UpdatedAt:     m.UpdatedAt.Format(timestamp.YYMDHMS),
+			Description:   m.Description,
 		}
 	}
 
