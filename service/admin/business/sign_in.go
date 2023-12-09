@@ -20,7 +20,7 @@ func SignIn(ctx context.Context, req *admin.SignInReq, rsp *admin.SignInRsp) err
 	if req.Behavior == 1 { // email
 		if len(req.Email) <= 0 {
 			log.ErrorF("SigIn failure(%v), err: %v", req.Email, "len(req.Email) <= 0")
-			rsp.Code = code.InvalidData
+			rsp.Code = code.NoData
 			return nil
 		}
 		usr, err := user.GetModelByEmail(req.Email)
@@ -68,7 +68,7 @@ func SignIn(ctx context.Context, req *admin.SignInReq, rsp *admin.SignInRsp) err
 		err := verification_code.Check(verification_code.SignIn, req.CountryCode, req.PhoneNumber, cast.ToString(req.VerificationCode))
 		if err != nil {
 			log.ErrorF("SigIn.verification_code.Check failure(+%v-%v), err: %v", req.CountryCode, req.PhoneNumber, err.Error())
-			rsp.Code = code.InvalidData
+			rsp.Code = code.AppDataExpired
 			return nil
 		}
 		// verification code is ok now
@@ -132,7 +132,7 @@ func SignIn(ctx context.Context, req *admin.SignInReq, rsp *admin.SignInRsp) err
 	} else if req.Behavior == 4 { // account
 		if len(req.Account) <= 0 {
 			log.ErrorF("SigIn failure(%v), err: %v", req.Account, "len(req.Account) <= 0")
-			rsp.Code = code.InvalidData
+			rsp.Code = code.NoData
 			return nil
 		}
 		bytes, err := crypto.RSADecrypt(req.Password)
