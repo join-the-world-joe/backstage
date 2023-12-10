@@ -18,15 +18,6 @@ rm * -rf
 cd -
 
 for e in ${filepath[@]}; do
-	p="../common/service/${e}/"
-	echo "Service Path: ${p}"
-	cd $p
-	rm nacos_cache -rf
-	rm nacos_log -rf
-	cd -
-done
-
-for e in ${filepath[@]}; do
 	p="../common/protocol/${e}/"
 	echo "Service Path: ${p}"
 	cd $p
