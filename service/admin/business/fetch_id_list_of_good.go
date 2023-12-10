@@ -4,6 +4,7 @@ import (
 	"backstage/common/code"
 	"backstage/common/db/mysql/backend/product"
 	"backstage/common/db/mysql/backend/user_role"
+	"backstage/common/major"
 	"backstage/common/protocol/admin"
 	"backstage/global/log"
 	"backstage/global/rbac"
@@ -19,6 +20,14 @@ type OutputOfIdListOfGood struct {
 }
 
 func FetchIdListOfGood(ctx context.Context, req *admin.FetchIdListOfGoodReq, rsp *admin.FetchIdListOfGoodRsp) error {
+	if !hasPermission(
+		cast.ToInt(major.Admin),
+		cast.ToInt(admin.FetchIdListOfGoodReq_),
+		req.UserId,
+	) {
+		rsp.Code = code.AccessDenied
+		return nil
+	}
 	if len(req.ProductName) <= 0 && req.CategoryId <= 0 && (req.Behavior != 1 && req.Behavior != 2) {
 		rsp.Code = code.InvalidData
 		return nil

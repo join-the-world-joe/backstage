@@ -1,8 +1,7 @@
 package admin
 
 type SoftDeleteUserRecordReq struct {
-	Id         int64   `json:"id"`
-	UserId     int64   `json:"user_id"`
+	UserId     int64
 	UserIdList []int64 `json:"user_id_list"`
 }
 

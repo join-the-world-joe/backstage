@@ -6,6 +6,7 @@ import (
 	"backstage/common/db/mysql/backend/selling_point_of_advertisement"
 	"backstage/common/db/mysql/backend/user_role"
 	"backstage/common/macro/timestamp"
+	"backstage/common/major"
 	"backstage/common/protocol/admin"
 	"backstage/global/log"
 	"backstage/global/rbac"
@@ -36,6 +37,14 @@ type OutputOfRecordsOfAdvertisement struct {
 }
 
 func FetchRecordsOfAdvertisement(ctx context.Context, req *admin.FetchRecordsOfAdvertisementReq, rsp *admin.FetchRecordsOfAdvertisementRsp) error {
+	if !hasPermission(
+		cast.ToInt(major.Admin),
+		cast.ToInt(admin.FetchRecordsOfAdvertisementReq_),
+		req.UserId,
+	) {
+		rsp.Code = code.AccessDenied
+		return nil
+	}
 	if len(req.AdvertisementIdList) <= 0 {
 		rsp.Code = code.InvalidData
 		return nil

@@ -21,11 +21,11 @@ func FetchADOfDealsOfToday(ctx context.Context, req *advertisement.FetchADOfDeal
 		return nil
 	}
 	idList := []int64{}
-	err = json.Unmarshal([]byte(model.ADIdList), &idList)
-	if err != nil {
-		rsp.Code = code.InternalError
-		return nil
-	}
+	//err = json.Unmarshal([]byte(model.ADIdList), &idList)
+	//if err != nil {
+	//	rsp.Code = code.InternalError
+	//	return nil
+	//}
 	output := &OutputOfADOfDealsOfToday{}
 	for _, v := range idList {
 		temp, err := advertisement2.GetModelById(v)
@@ -33,12 +33,12 @@ func FetchADOfDealsOfToday(ctx context.Context, req *advertisement.FetchADOfDeal
 			continue
 		}
 		output.DealsOfToday = append(output.DealsOfToday, &Item{
-			Title:         temp.Title,
-			Stock:         temp.Stock,
-			Price:         temp.SellingPrice,
-			ProductId:     temp.ProductId,
-			ImagePath:     temp.Url,
-			SellingPoint:  temp.SellingPoint,
+			Title: temp.Title,
+			Stock: temp.Stock,
+			//Price:     temp.SellingPrice,
+			ProductId: temp.ProductId,
+			ImagePath: temp.Url,
+			//SellingPoint:  temp.SellingPoint,
 			PlaceOfOrigin: temp.PlaceOFOrigin,
 		})
 	}

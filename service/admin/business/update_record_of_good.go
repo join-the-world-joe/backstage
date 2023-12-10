@@ -3,40 +3,26 @@ package business
 import (
 	"backstage/common/code"
 	"backstage/common/db/mysql/backend/product"
-	"backstage/common/db/mysql/backend/user_role"
+	"backstage/common/major"
 	"backstage/common/protocol/admin"
 	"backstage/global/log"
-	"backstage/global/rbac"
 	"context"
 	"github.com/spf13/cast"
 )
 
 func UpdateRecordOfGood(ctx context.Context, req *admin.UpdateRecordOfGoodReq, rsp *admin.UpdateRecordOfGoodRsp) error {
+	if !hasPermission(
+		cast.ToInt(major.Admin),
+		cast.ToInt(admin.InsertRecordOfAdvertisementReq_),
+		req.UserId,
+	) {
+		rsp.Code = code.AccessDenied
+		return nil
+	}
+
 	if req.UserId <= 0 || req.ProductId <= 0 {
 		log.Error("UpdateRecordOfGood failure, req.UserId <= 0 || req.Id <= 0")
 		rsp.Code = code.InternalError
-		return nil
-	}
-
-	roleList := user_role.GetRoleListByUserId(req.UserId)
-
-	if len(roleList) <= 0 {
-		log.Error("UpdateRecordOfGood failure, len(roleList) <= 0")
-		rsp.Code = code.InternalError
-		return nil
-	}
-
-	// check if role_list has permission
-	hasPermission := false
-	for _, v := range roleList {
-		if rbac.HasPermission(v, cast.ToInt(admin.UpdateRecordOfGoodReq_)) {
-			hasPermission = true
-			break
-		}
-	}
-
-	if !hasPermission {
-		rsp.Code = code.AccessDenied
 		return nil
 	}
 

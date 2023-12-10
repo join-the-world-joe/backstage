@@ -33,12 +33,12 @@ func FetchADOfBBQProducts(ctx context.Context, req *advertisement.FetchADOfBBQPr
 			continue
 		}
 		output.BBQProducts = append(output.BBQProducts, &Item{
-			Title:         temp.Title,
-			Stock:         temp.Stock,
-			Price:         temp.SellingPrice,
-			ProductId:     temp.ProductId,
-			ImagePath:     temp.Url,
-			SellingPoint:  temp.SellingPoint,
+			Title: temp.Title,
+			Stock: temp.Stock,
+			//Price:     temp.SellingPrice,
+			ProductId: temp.ProductId,
+			ImagePath: temp.Url,
+			//SellingPoint:  temp.SellingPoint,
 			PlaceOfOrigin: temp.PlaceOFOrigin,
 		})
 	}

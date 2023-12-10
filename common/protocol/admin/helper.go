@@ -139,3 +139,27 @@ func SoftDeleteRecordsOfAdvertisement(ctx context.Context, req *SoftDeleteRecord
 	}
 	return xClient.Call(ctx, "SoftDeleteRecordsOfAdvertisement", req, rsp)
 }
+
+func InsertRecordOfADOfCarousel(ctx context.Context, req *InsertRecordOfADOfCarouselReq, rsp *InsertRecordOfADOfCarouselRsp) error {
+	srv, err := global.SelectService(service.Admin)
+	if err != nil {
+		return err
+	}
+	xClient, err := rpc.GetXClient(service.Admin, srv.Id, srv.Ip, cast.ToString(srv.Port))
+	if err != nil {
+		return err
+	}
+	return xClient.Call(ctx, "InsertRecordOfADOfCarousel", req, rsp)
+}
+
+func RemoveOutdatedRecordsOfADOfCarousel(ctx context.Context, req *RemoveOutdatedRecordsOfADOfCarouselReq, rsp *RemoveOutdatedRecordsOfADOfCarouselRsp) error {
+	srv, err := global.SelectService(service.Admin)
+	if err != nil {
+		return err
+	}
+	xClient, err := rpc.GetXClient(service.Admin, srv.Id, srv.Ip, cast.ToString(srv.Port))
+	if err != nil {
+		return err
+	}
+	return xClient.Call(ctx, "RemoveOutdatedRecordsOfADOfCarousel", req, rsp)
+}

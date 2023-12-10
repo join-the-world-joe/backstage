@@ -24,13 +24,13 @@ type FieldListOutput struct {
 }
 
 func FetchFieldListOfCondition(ctx context.Context, req *admin.FetchFieldListOfConditionReq, rsp *admin.FetchFieldListOfConditionRsp) error {
-	if req.Id <= 0 {
-		log.Error("FetchFieldListOfCondition failure, req.Id <= 0")
+	if req.UserId <= 0 {
+		log.Error("FetchFieldListOfCondition failure, req.UserId <= 0")
 		rsp.Code = code.InternalError
 		return nil
 	}
 
-	roleList := user_role.GetRoleListByUserId(req.Id)
+	roleList := user_role.GetRoleListByUserId(req.UserId)
 
 	if len(roleList) <= 0 {
 		log.Error("FetchFieldListOfCondition failure, len(roleList) <= 0")

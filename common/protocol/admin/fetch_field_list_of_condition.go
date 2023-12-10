@@ -3,7 +3,7 @@ package admin
 import "encoding/json"
 
 type FetchFieldListOfConditionReq struct {
-	Id       int64  `json:"id"`
+	UserId   int64
 	Table    string `json:"table"`
 	Field    string `json:"field"` // the name of field
 	Behavior int    `json:"behavior"`

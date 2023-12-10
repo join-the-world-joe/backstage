@@ -48,6 +48,10 @@ func Dispatch(packet *payload.PacketInternal) {
 		softDeleteRecordsOfAdvertisement(packet)
 	case admin.UpdateRecordOfAdvertisementReq_:
 		updateRecordOfAdvertisement(packet)
+	case admin.InsertRecordOfADOfCarouselReq_:
+		insertRecordOfADOfCarousel(packet)
+	case admin.RemoveOutdatedRecordsOfADOfCarouselReq_:
+		removeOutdatedRecordsOfADOfCarousel(packet)
 	default:
 		log.ErrorF("unknown minor [%v]", packet.GetRequest().GetHeader().GetMinor())
 	}

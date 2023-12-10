@@ -22,7 +22,7 @@ func fetchFieldListOfCondition(packet *payload.PacketInternal) {
 		return
 	}
 
-	req.Id = packet.GetSession().GetUserId()
+	req.UserId = packet.GetSession().GetUserId()
 
 	err = business.FetchFieldListOfCondition(context.Background(), req, rsp)
 	if err != nil {

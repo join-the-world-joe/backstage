@@ -65,3 +65,11 @@ func (p *Async) SoftDeleteRecordsOfAdvertisement(ctx context.Context, req *admin
 func (p *Async) UpdateRecordOfAdvertisement(ctx context.Context, req *admin.UpdateRecordOfAdvertisementReq, rsp *admin.UpdateRecordOfAdvertisementRsp) error {
 	return business.UpdateRecordOfAdvertisement(ctx, req, rsp)
 }
+
+func (p *Async) InsertRecordOfADOfCarousel(ctx context.Context, req *admin.InsertRecordOfADOfCarouselReq, rsp *admin.InsertRecordOfADOfCarouselRsp) error {
+	return business.InsertRecordOfADOfCarousel(ctx, req, rsp)
+}
+
+func (p *Async) RemoveOutdatedRecordsOfADOfCarousel(ctx context.Context, req *admin.RemoveOutdatedRecordsOfADOfCarouselReq, rsp *admin.RemoveOutdatedRecordsOfADOfCarouselRsp) error {
+	return business.RemoveOutdatedRecordsOfADOfCarousel(ctx, req, rsp)
+}

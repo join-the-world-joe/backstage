@@ -4,10 +4,9 @@ import (
 	"backstage/common/code"
 	"backstage/common/db/mysql/backend/advertisement"
 	"backstage/common/db/mysql/backend/selling_point_of_advertisement"
-	"backstage/common/db/mysql/backend/user_role"
+	"backstage/common/major"
 	"backstage/common/protocol/admin"
 	"backstage/global/log"
-	"backstage/global/rbac"
 	"context"
 	"fmt"
 	"github.com/spf13/cast"
@@ -15,31 +14,18 @@ import (
 )
 
 func UpdateRecordOfAdvertisement(ctx context.Context, req *admin.UpdateRecordOfAdvertisementReq, rsp *admin.UpdateRecordOfAdvertisementRsp) error {
+	if !hasPermission(
+		cast.ToInt(major.Admin),
+		cast.ToInt(admin.InsertRecordOfAdvertisementReq_),
+		req.UserId,
+	) {
+		rsp.Code = code.AccessDenied
+		return nil
+	}
+
 	if req.UserId <= 0 || req.ProductId <= 0 {
 		log.Error("UpdateRecordOfAdvertisement failure, req.UserId <= 0 || req.Id <= 0")
 		rsp.Code = code.InternalError
-		return nil
-	}
-
-	roleList := user_role.GetRoleListByUserId(req.UserId)
-
-	if len(roleList) <= 0 {
-		log.Error("UpdateRecordOfAdvertisement failure, len(roleList) <= 0")
-		rsp.Code = code.InternalError
-		return nil
-	}
-
-	// check if role_list has permission
-	hasPermission := false
-	for _, v := range roleList {
-		if rbac.HasPermission(v, cast.ToInt(admin.UpdateRecordOfAdvertisementReq_)) {
-			hasPermission = true
-			break
-		}
-	}
-
-	if !hasPermission {
-		rsp.Code = code.AccessDenied
 		return nil
 	}
 

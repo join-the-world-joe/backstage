@@ -5,8 +5,12 @@ import (
 	"backstage/common/db/mysql/backend/version_of_ad_of_carousel"
 	"backstage/common/protocol/advertisement"
 	"context"
-	"github.com/spf13/cast"
+	"encoding/json"
 )
+
+type OutputOfVersionOfADOfCarousel struct {
+	VersionOfADOfCarousel int64 `json:"version_of_ad_of_carousel"`
+}
 
 func FetchVersionOfADOfCarousel(ctx context.Context, req *advertisement.FetchVersionOfADOfCarouselReq, rsp *advertisement.FetchVersionOfADOfCarouselRsp) error {
 	id, err := version_of_ad_of_carousel.GetMaxId()
@@ -14,7 +18,18 @@ func FetchVersionOfADOfCarousel(ctx context.Context, req *advertisement.FetchVer
 		rsp.Code = code.DatabaseFailure
 		return nil
 	}
+
+	output := &OutputOfVersionOfADOfCarousel{
+		VersionOfADOfCarousel: id,
+	}
+
+	bytes, err := json.Marshal(output)
+	if err != nil {
+		rsp.Code = code.InternalError
+		return nil
+	}
+
+	rsp.Body = bytes
 	rsp.Code = code.Success
-	rsp.Version = cast.ToInt(id)
 	return nil
 }

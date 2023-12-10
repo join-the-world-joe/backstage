@@ -18,21 +18,21 @@ func checkPermission(packet *payload.PacketInternal) {
 
 	err := json.Unmarshal(packet.GetRequest().GetBody(), req)
 	if err != nil {
-		log.Error("Dispatch.checkPermission.json.Unmarshal failure, err: ", err.Error())
+		log.Error("json.Unmarshal failure, err: ", err.Error())
 		return
 	}
 
-	req.Id = packet.GetSession().GetUserId()
+	req.UserId = packet.GetSession().GetUserId()
 
 	err = business.CheckPermission(context.Background(), req, rsp)
 	if err != nil {
-		log.Error("Dispatch.checkPermission.business.FetchFieldListOfCondition failure, err: ", err.Error())
+		log.Error("business.CheckPermission failure, err: ", err.Error())
 		return
 	}
 
 	bytes, err := json.Marshal(rsp)
 	if err != nil {
-		log.Error("Dispatch.checkPermission.json.Marshal failure, err: ", err.Error())
+		log.Error("json.Marshal failure, err: ", err.Error())
 		return
 	}
 
@@ -49,7 +49,7 @@ func checkPermission(packet *payload.PacketInternal) {
 		packet,
 	)
 	if err != nil {
-		log.Error("Dispatch.checkPermission.route.Downstream failure, err: ", err.Error())
+		log.Error("route.Downstream failure, err: ", err.Error())
 		return
 	}
 }

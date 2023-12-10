@@ -76,3 +76,17 @@ func TestGetModelListByAdvertisementId(t *testing.T) {
 	}
 	t.Log(string(bytes))
 }
+
+func TestGetModelListByAdvertisementIdList(t *testing.T) {
+	advertisementIdList := []int64{1, 2, 3}
+	diagnostic.SetupMySQL()
+	ml, err := GetModelListByAdvertisementIdList(advertisementIdList)
+	if err != nil {
+		t.Fatal(err)
+	}
+	bytes, err := json.Marshal(ml)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log(string(bytes))
+}

@@ -279,3 +279,34 @@ func TestUpdateRecordOfAdvertisement(t *testing.T) {
 	}
 	t.Log("rsp.Code: ", rsp.Code)
 }
+
+func TestInsertRecordOfADOfCarousel(t *testing.T) {
+	diagnostic.SetupLogger()
+	diagnostic.SetupRegistry()
+	userId := int64(1)
+	advertisementIdList := []int64{1, 2, 3}
+	req := &InsertRecordOfADOfCarouselReq{
+		UserId:              userId,
+		AdvertisementIdList: advertisementIdList,
+	}
+	rsp := &InsertRecordOfADOfCarouselRsp{}
+	err := InsertRecordOfADOfCarousel(context.Background(), req, rsp)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("rsp.Code: ", rsp.Code)
+}
+
+func TestRemoveOutdatedRecordsOfADOfCarousel(t *testing.T) {
+	diagnostic.SetupLogger()
+	diagnostic.SetupRegistry()
+	req := &RemoveOutdatedRecordsOfADOfCarouselReq{
+		UserId: 1,
+	}
+	rsp := &RemoveOutdatedRecordsOfADOfCarouselRsp{}
+	err := RemoveOutdatedRecordsOfADOfCarousel(context.Background(), req, rsp)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("Code: ", rsp.Code)
+}

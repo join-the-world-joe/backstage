@@ -12,34 +12,34 @@ import (
 	"encoding/json"
 )
 
-func softDeleteUserRecord(packet *payload.PacketInternal) {
-	req := &admin.SoftDeleteUserRecordReq{}
-	rsp := &admin.SoftDeleteUserRecordRsp{}
+func insertRecordOfADOfCarousel(packet *payload.PacketInternal) {
+	req := &admin.InsertRecordOfADOfCarouselReq{}
+	rsp := &admin.InsertRecordOfADOfCarouselRsp{}
 
 	err := json.Unmarshal(packet.GetRequest().GetBody(), req)
 	if err != nil {
-		log.Error("Dispatch.softDeleteUserRecord.json.Unmarshal failure, err: ", err.Error())
+		log.Error("json.Unmarshal fail, err: ", err.Error())
 		return
 	}
 
 	req.UserId = packet.GetSession().GetUserId()
 
-	err = business.SoftDeleteUserRecord(context.Background(), req, rsp)
+	err = business.InsertRecordOfADOfCarousel(context.Background(), req, rsp)
 	if err != nil {
-		log.Error("Dispatch.softDeleteUserRecord.business.SoftDeleteUserRecord failure, err: ", err.Error())
+		log.Error("business.InsertRecordOfADOfCarousel fail, err: ", err.Error())
 		return
 	}
 
 	bytes, err := json.Marshal(rsp)
 	if err != nil {
-		log.Error("Dispatch.softDeleteUserRecord.json.Marshal failure, err: ", err.Error())
+		log.Error("json.Marshal fail, err: ", err.Error())
 		return
 	}
 
 	packet.Response = &payload.PacketClient{
 		Header: &payload.Header{
 			Major: major.Admin,
-			Minor: admin.SoftDeleteUserRecordRsp_,
+			Minor: admin.InsertRecordOfADOfCarouselRsp_,
 		},
 		Body: bytes,
 	}
@@ -49,7 +49,7 @@ func softDeleteUserRecord(packet *payload.PacketInternal) {
 		packet,
 	)
 	if err != nil {
-		log.Error("Dispatch.softDeleteUserRecord.route.Downstream failure, err: ", err.Error())
+		log.Error("route.Downstream fail, err: ", err.Error())
 		return
 	}
 }

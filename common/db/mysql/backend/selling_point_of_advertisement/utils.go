@@ -21,13 +21,13 @@ func InsertModel(model *Model) (*Model, error) {
 	return model, nil
 }
 
-func GetModelListByAdvertisementId(advertisementId int64) ([]*Model, error) {
+func GetModelListByAdvertisementId(advertisementIdList int64) ([]*Model, error) {
 	modelList := []*Model{}
 	db, err := mysql.GetDB(GetWhich(), GetDbName())
 	if err != nil {
 		return nil, err
 	}
-	err = db.Table(GetTableName()).Where("advertisement_id = ? AND visible = 1", advertisementId).Find(&modelList).Error
+	err = db.Table(GetTableName()).Where("advertisement_id = ? AND visible = 1", advertisementIdList).Find(&modelList).Error
 	if err != nil {
 		return nil, err
 	}
@@ -48,4 +48,17 @@ func UpdateVisibleByAdvertisementIdAndSellingPoint(advertisementId int64, sellin
 		return err
 	}
 	return db.Table(GetTableName()).Where(fmt.Sprintf("advertisement_id = %v AND selling_point = '%v' AND visible = 1", advertisementId, sellingPoint)).Updates(map[string]interface{}{"visible": visible}).Error
+}
+
+func GetModelListByAdvertisementIdList(idList []int64) ([]*Model, error) {
+	modelList := []*Model{}
+	db, err := mysql.GetDB(GetWhich(), GetDbName())
+	if err != nil {
+		return nil, err
+	}
+	err = db.Table(GetTableName()).Where(fmt.Sprintf("advertisement_id in %s AND visible = 1", strings.WithinParenthesesInt64(idList))).Find(&modelList).Error
+	if err != nil {
+		return nil, err
+	}
+	return modelList, nil
 }

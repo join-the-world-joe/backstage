@@ -15,14 +15,14 @@ func TestAutoMigrate(t *testing.T) {
 	}
 }
 
-func TestInsert(t *testing.T) {
-	imagePathList := []string{"path7", "path8", "path9"}
-	bytes, err := json.Marshal(&imagePathList)
+func TestInsertModel(t *testing.T) {
+	idList := []int64{1, 2, 3}
+	bytes, err := json.Marshal(&idList)
 	if err != nil {
 		t.Fatal(err)
 	}
 	diagnostic.SetupMySQL()
-	temp, err := Insert(&Model{ImagePathList: string(bytes)})
+	temp, err := InsertModel(&Model{AdvertisementIdList: string(bytes)})
 	if err != nil {
 		t.Fatal(err)
 	}

@@ -12,34 +12,34 @@ import (
 	"encoding/json"
 )
 
-func fetchVersionOfADOfCarousel(packet *payload.PacketInternal) {
-	req := &advertisement.FetchVersionOfADOfCarouselReq{}
-	rsp := &advertisement.FetchVersionOfADOfCarouselRsp{}
+func fetchRecordsOfADOfCarousel(packet *payload.PacketInternal) {
+	req := &advertisement.FetchRecordsOfADOfCarouselReq{}
+	rsp := &advertisement.FetchRecordsOfADOfCarouselRsp{}
 
 	err := json.Unmarshal(packet.GetRequest().GetBody(), req)
 	if err != nil {
-		log.Error("Dispatch.fetchVersionOfADOfCarousel.json.Unmarshal failure, err: ", err.Error())
+		log.Error("Dispatch.fetchRecordsOfADOfCarousel.json.Unmarshal failure, err: ", err.Error())
 		return
 	}
 
 	req.UserId = packet.GetSession().GetUserId()
 
-	err = business.FetchVersionOfADOfCarousel(context.Background(), req, rsp)
+	err = business.FetchRecordsOfADOfCarousel(context.Background(), req, rsp)
 	if err != nil {
-		log.Error("Dispatch.fetchVersionOfADOfCarousel.business.FetchVersionOfADOfCarousel failure, err: ", err.Error())
+		log.Error("Dispatch.fetchRecordsOfADOfCarousel.business.FetchRecordsOfADOfCarousel failure, err: ", err.Error())
 		return
 	}
 
 	bytes, err := json.Marshal(rsp)
 	if err != nil {
-		log.Error("Dispatch.fetchVersionOfADOfCarousel.json.Marshal failure, err: ", err.Error())
+		log.Error("Dispatch.fetchRecordsOfADOfCarousel.json.Marshal failure, err: ", err.Error())
 		return
 	}
 
 	packet.Response = &payload.PacketClient{
 		Header: &payload.Header{
 			Major: major.Advertisement,
-			Minor: advertisement.FetchVersionOfADOfCarouselRsp_,
+			Minor: advertisement.FetchRecordsOfADOfCarouselRsp_,
 		},
 		Body: bytes,
 	}
@@ -49,7 +49,7 @@ func fetchVersionOfADOfCarousel(packet *payload.PacketInternal) {
 		packet,
 	)
 	if err != nil {
-		log.Error("Dispatch.fetchVersionOfADOfCarousel.route.Downstream failure, err: ", err.Error())
+		log.Error("Dispatch.fetchRecordsOfADOfCarousel.route.Downstream failure, err: ", err.Error())
 		return
 	}
 }

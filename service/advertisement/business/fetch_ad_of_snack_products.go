@@ -33,12 +33,12 @@ func FetchADOfSnackProducts(ctx context.Context, req *advertisement.FetchADOfSna
 			continue
 		}
 		output.SnackProducts = append(output.SnackProducts, &Item{
-			Title:         temp.Title,
-			Stock:         temp.Stock,
-			Price:         temp.SellingPrice,
-			ProductId:     temp.ProductId,
-			ImagePath:     temp.Url,
-			SellingPoint:  temp.SellingPoint,
+			Title: temp.Title,
+			Stock: temp.Stock,
+			//Price:     temp.SellingPrice,
+			ProductId: temp.ProductId,
+			ImagePath: temp.Url,
+			//SellingPoint:  temp.,
 			PlaceOfOrigin: temp.PlaceOFOrigin,
 		})
 	}

@@ -3,13 +3,12 @@ package business
 import (
 	"backstage/common/code"
 	"backstage/common/db/mgo/backend/track"
-	"backstage/common/db/mysql/backend/user_role"
 	timestamp2 "backstage/common/macro/timestamp"
+	"backstage/common/major"
 	"backstage/common/protocol/admin"
 	"backstage/global/config"
 	"backstage/global/log"
 	"backstage/global/mgo"
-	"backstage/global/rbac"
 	"backstage/utils/convert"
 	"backstage/utils/timestamp"
 	"context"
@@ -34,30 +33,11 @@ type TrackListOutput struct {
 }
 
 func FetchTrackListOfCondition(ctx context.Context, req *admin.FetchTrackListOfConditionReq, rsp *admin.FetchTrackListOfConditionRsp) error {
-	if req.UserId <= 0 {
-		log.Error("FetchTrackListOfCondition failure, req.Id <= 0")
-		rsp.Code = code.InternalError
-		return nil
-	}
-
-	roleList := user_role.GetRoleListByUserId(req.UserId)
-
-	if len(roleList) <= 0 {
-		log.Error("FetchTrackListOfCondition failure, len(roleList) <= 0")
-		rsp.Code = code.InternalError
-		return nil
-	}
-
-	// check if role_list has permission
-	hasPermission := false
-	for _, v := range roleList {
-		if rbac.HasPermission(v, cast.ToInt(admin.FetchTrackListOfConditionReq_)) {
-			hasPermission = true
-			break
-		}
-	}
-
-	if !hasPermission {
+	if !hasPermission(
+		cast.ToInt(major.Admin),
+		cast.ToInt(admin.FetchTrackListOfConditionReq_),
+		req.UserId,
+	) {
 		rsp.Code = code.AccessDenied
 		return nil
 	}

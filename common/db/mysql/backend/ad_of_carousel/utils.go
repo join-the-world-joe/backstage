@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func Insert(model *Model) (*Model, error) {
+func InsertModel(model *Model) (*Model, error) {
 	temp, err := mysql.Insert(GetWhich(), GetDbName(), GetTableName(), model)
 	if err != nil {
 		return nil, err
@@ -44,4 +44,12 @@ func GetLatestVersionModel() (*Model, error) {
 		return nil, err
 	}
 	return m, nil
+}
+
+func RemoveOutdatedRecordsOfAdCarousel() {
+	version, err := GetMaxId()
+	if err != nil {
+		return
+	}
+	mysql.Delete(GetWhich(), GetDbName(), sqlDeleteOutdatedRecords(version))
 }

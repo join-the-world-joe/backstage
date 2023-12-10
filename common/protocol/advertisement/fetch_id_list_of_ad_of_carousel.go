@@ -2,11 +2,11 @@ package advertisement
 
 import "encoding/json"
 
-type FetchVersionOfADOfCarouselReq struct {
+type FetchIdListOfADOfCarouselReq struct {
 	UserId int64
 }
 
-type FetchVersionOfADOfCarouselRsp struct {
+type FetchIdListOfADOfCarouselRsp struct {
 	Code int             `json:"code"`
 	Body json.RawMessage `json:"body"`
 }
