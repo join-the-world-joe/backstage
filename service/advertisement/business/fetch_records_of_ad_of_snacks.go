@@ -12,12 +12,12 @@ import (
 	"golang.org/x/exp/slices"
 )
 
-type OutputOfRecordsOfADOfCarousel struct {
-	RecordsOfADOfCarousel []*Item `json:"records_of_ad_of_carousel"`
+type OutputOfRecordsOfADOfSnacks struct {
+	RecordsOfADOfSnacks []*Item `json:"records_of_ad_of_snacks"`
 }
 
-func FetchRecordsOfADOfCarousel(ctx context.Context, req *advertisement.FetchRecordsOfADOfCarouselReq, rsp *advertisement.FetchRecordsOfADOfCarouselRsp) error {
-	output := &OutputOfRecordsOfADOfCarousel{}
+func FetchRecordsOfADOfSnacks(ctx context.Context, req *advertisement.FetchRecordsOfADOfSnacksReq, rsp *advertisement.FetchRecordsOfADOfSnacksRsp) error {
+	output := &OutputOfRecordsOfADOfSnacks{}
 
 	if len(req.AdvertisementIdList) > 0 {
 		aml, err := advertisement2.GetModelListByIdList(req.AdvertisementIdList)
@@ -50,7 +50,7 @@ func FetchRecordsOfADOfCarousel(ctx context.Context, req *advertisement.FetchRec
 					SellingPoints:     getSellingPointByAdvertisementId(temp.Id, spml),
 				}
 				itemHash[temp.ProductId] = append(itemHash[temp.ProductId], item)
-				output.RecordsOfADOfCarousel = append(output.RecordsOfADOfCarousel, item)
+				output.RecordsOfADOfSnacks = append(output.RecordsOfADOfSnacks, item)
 				if !slices.Contains(productIdList, temp.Id) {
 					productIdList = append(productIdList, temp.ProductId)
 				}

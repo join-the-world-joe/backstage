@@ -2,22 +2,22 @@ package business
 
 import (
 	"backstage/common/code"
-	"backstage/common/db/mysql/backend/ad_of_carousel"
+	"backstage/common/db/mysql/backend/ad_of_barbecue"
 	"backstage/common/protocol/advertisement"
 	"backstage/global/log"
 	"context"
 	"encoding/json"
 )
 
-type OutputOfIDListOfADOfCarousel struct {
-	VersionOfADOfCarousel int64   `json:"version_of_ad_of_carousel"`
-	IdListOfADOfCarousel  []int64 `json:"id_list_of_ad_of_carousel"`
+type OutputOfIDListOfADOfBarbecue struct {
+	VersionOfADOfBarbecue int64   `json:"version_of_ad_of_barbecue"`
+	IdListOfADOfBarbecue  []int64 `json:"id_list_of_ad_of_barbecue"`
 }
 
-func FetchIdListOfADOfCarousel(ctx context.Context, req *advertisement.FetchIdListOfADOfCarouselReq, rsp *advertisement.FetchIdListOfADOfCarouselRsp) error {
-	model, err := ad_of_carousel.GetLatestVersionModel()
+func FetchIdListOfADOfBarbecue(ctx context.Context, req *advertisement.FetchIdListOfADOfBarbecueReq, rsp *advertisement.FetchIdListOfADOfBarbecueRsp) error {
+	model, err := ad_of_barbecue.GetLatestVersionModel()
 	if err != nil {
-		log.Error("ad_of_carousel.GetLatestVersionModel failure, err: ", err)
+		log.Error("ad_of_hots.GetLatestVersionModel failure, err: ", err)
 		rsp.Code = code.DatabaseFailure
 		return nil
 	}
@@ -28,9 +28,9 @@ func FetchIdListOfADOfCarousel(ctx context.Context, req *advertisement.FetchIdLi
 		rsp.Code = code.InternalError
 		return nil
 	}
-	output := &OutputOfIDListOfADOfCarousel{
-		VersionOfADOfCarousel: model.Id,
-		IdListOfADOfCarousel:  idList,
+	output := &OutputOfIDListOfADOfBarbecue{
+		VersionOfADOfBarbecue: model.Id,
+		IdListOfADOfBarbecue:  idList,
 	}
 
 	bytes, err := json.Marshal(output)

@@ -12,9 +12,9 @@ import (
 	"encoding/json"
 )
 
-func fetchVersionOfADOfCarousel(packet *payload.PacketInternal) {
-	req := &advertisement.FetchVersionOfADOfCarouselReq{}
-	rsp := &advertisement.FetchVersionOfADOfCarouselRsp{}
+func fetchVersionOfADOfSnacks(packet *payload.PacketInternal) {
+	req := &advertisement.FetchVersionOfADOfSnacksReq{}
+	rsp := &advertisement.FetchVersionOfADOfSnacksRsp{}
 
 	err := json.Unmarshal(packet.GetRequest().GetBody(), req)
 	if err != nil {
@@ -24,9 +24,9 @@ func fetchVersionOfADOfCarousel(packet *payload.PacketInternal) {
 
 	req.UserId = packet.GetSession().GetUserId()
 
-	err = business.FetchVersionOfADOfCarousel(context.Background(), req, rsp)
+	err = business.FetchVersionOfADOfSnacks(context.Background(), req, rsp)
 	if err != nil {
-		log.Error("business.FetchVersionOfADOfCarousel failure, err: ", err.Error())
+		log.Error("business.FetchVersionOfADOfHots failure, err: ", err.Error())
 		return
 	}
 
@@ -39,7 +39,7 @@ func fetchVersionOfADOfCarousel(packet *payload.PacketInternal) {
 	packet.Response = &payload.PacketClient{
 		Header: &payload.Header{
 			Major: major.Advertisement,
-			Minor: advertisement.FetchVersionOfADOfCarouselRsp_,
+			Minor: advertisement.FetchVersionOfADOfSnacksRsp_,
 		},
 		Body: bytes,
 	}

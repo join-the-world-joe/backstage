@@ -18,7 +18,7 @@ func fetchIdListOfADOfCarousel(packet *payload.PacketInternal) {
 
 	err := json.Unmarshal(packet.GetRequest().GetBody(), req)
 	if err != nil {
-		log.Error("Dispatch.fetchIdListOfADOfCarousel.json.Unmarshal failure, err: ", err.Error())
+		log.Error("json.Unmarshal failure, err: ", err.Error())
 		return
 	}
 
@@ -26,13 +26,13 @@ func fetchIdListOfADOfCarousel(packet *payload.PacketInternal) {
 
 	err = business.FetchIdListOfADOfCarousel(context.Background(), req, rsp)
 	if err != nil {
-		log.Error("Dispatch.fetchIdListOfADOfCarousel.business.FetchIdListOfADOfCarousel failure, err: ", err.Error())
+		log.Error("business.FetchIdListOfADOfCarousel failure, err: ", err.Error())
 		return
 	}
 
 	bytes, err := json.Marshal(rsp)
 	if err != nil {
-		log.Error("Dispatch.fetchIdListOfADOfCarousel.json.Marshal failure, err: ", err.Error())
+		log.Error("json.Marshal failure, err: ", err.Error())
 		return
 	}
 
@@ -49,7 +49,7 @@ func fetchIdListOfADOfCarousel(packet *payload.PacketInternal) {
 		packet,
 	)
 	if err != nil {
-		log.Error("Dispatch.fetchIdListOfADOfCarousel.route.Downstream failure, err: ", err.Error())
+		log.Error("route.Downstream failure, err: ", err.Error())
 		return
 	}
 }

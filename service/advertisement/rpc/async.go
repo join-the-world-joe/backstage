@@ -31,6 +31,32 @@ func (p *Async) FetchRecordsOfADOfCarousel(ctx context.Context, req *advertiseme
 	return business.FetchRecordsOfADOfCarousel(ctx, req, rsp)
 }
 
+// Deals
+func (p *Async) FetchVersionOfADOfDeals(ctx context.Context, req *advertisement.FetchVersionOfADOfDealsReq, rsp *advertisement.FetchVersionOfADOfDealsRsp) error {
+	return business.FetchVersionOfADOfDeals(ctx, req, rsp)
+}
+
+func (p *Async) FetchIdListOfADOfDeals(ctx context.Context, req *advertisement.FetchIdListOfADOfDealsReq, rsp *advertisement.FetchIdListOfADOfDealsRsp) error {
+	return business.FetchIdListOfADOfDeals(ctx, req, rsp)
+}
+
+func (p *Async) FetchRecordsOfADOfDeals(ctx context.Context, req *advertisement.FetchRecordsOfADOfDealsReq, rsp *advertisement.FetchRecordsOfADOfDealsRsp) error {
+	return business.FetchRecordsOfADOfDeals(ctx, req, rsp)
+}
+
+// Deals
+func (p *Async) FetchVersionOfADOfHots(ctx context.Context, req *advertisement.FetchVersionOfADOfHotsReq, rsp *advertisement.FetchVersionOfADOfHotsRsp) error {
+	return business.FetchVersionOfADOfHots(ctx, req, rsp)
+}
+
+func (p *Async) FetchIdListOfADOfHots(ctx context.Context, req *advertisement.FetchIdListOfADOfHotsReq, rsp *advertisement.FetchIdListOfADOfHotsRsp) error {
+	return business.FetchIdListOfADOfHots(ctx, req, rsp)
+}
+
+func (p *Async) FetchRecordsOfADOfHots(ctx context.Context, req *advertisement.FetchRecordsOfADOfHotsReq, rsp *advertisement.FetchRecordsOfADOfHotsRsp) error {
+	return business.FetchRecordsOfADOfHots(ctx, req, rsp)
+}
+
 //func (p *Async) FetchADOfCarousel(ctx context.Context, req *advertisement.FetchADOfCarouselReq, rsp *advertisement.FetchADOfCarouselRsp) error {
 //	return business.FetchADOfCarousel(ctx, req, rsp)
 //}

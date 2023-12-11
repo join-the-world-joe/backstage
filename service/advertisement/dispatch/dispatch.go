@@ -14,6 +14,30 @@ func Dispatch(packet *payload.PacketInternal) {
 		fetchIdListOfADOfCarousel(packet)
 	case advertisement.FetchRecordsOfADOfCarouselReq_:
 		fetchRecordsOfADOfCarousel(packet)
+	case advertisement.FetchVersionOfADOfDealsReq_:
+		fetchVersionOfADOfDeals(packet)
+	case advertisement.FetchIdListOfADOfDealsReq_:
+		fetchIdListOfADOfDeals(packet)
+	case advertisement.FetchRecordsOfADOfDealsReq_:
+		fetchRecordsOfADOfDeals(packet)
+	case advertisement.FetchVersionOfADOfHotsReq_:
+		fetchVersionOfADOfHots(packet)
+	case advertisement.FetchIdListOfADOfHotsReq_:
+		fetchIdListOfADOfHots(packet)
+	case advertisement.FetchRecordsOfADOfHotsReq_:
+		fetchRecordsOfADOfHots(packet)
+	case advertisement.FetchVersionOfADOfBarbecueReq_:
+		fetchVersionOfADOfBarbecue(packet)
+	case advertisement.FetchIdListOfADOfBarbecueReq_:
+		fetchIdListOfADOfBarbecue(packet)
+	case advertisement.FetchRecordsOfADOfBarbecueReq_:
+		fetchRecordsOfADOfBarbecue(packet)
+	case advertisement.FetchVersionOfADOfSnacksReq_:
+		fetchVersionOfADOfSnacks(packet)
+	case advertisement.FetchIdListOfADOfSnacksReq_:
+		fetchIdListOfADOfSnacks(packet)
+	case advertisement.FetchRecordsOfADOfSnacksReq_:
+		fetchRecordsOfADOfSnacks(packet)
 	//case advertisement.FetchADOfCarouselReq_:
 	//	fetchADOfCarousel(packet)
 	//case advertisement.FetchVersionOfADOfCarouselReq_:
