@@ -310,3 +310,127 @@ func TestRemoveOutdatedRecordsOfADOfCarousel(t *testing.T) {
 	}
 	t.Log("Code: ", rsp.Code)
 }
+
+func TestInsertRecordOfADOfBarbecue(t *testing.T) {
+	diagnostic.SetupLogger()
+	diagnostic.SetupRegistry()
+	userId := int64(1)
+	advertisementIdList := []int64{1, 2, 3}
+	req := &InsertRecordOfADOfBarbecueReq{
+		UserId:              userId,
+		AdvertisementIdList: advertisementIdList,
+	}
+	rsp := &InsertRecordOfADOfBarbecueRsp{}
+	err := InsertRecordOfADOfBarbecue(context.Background(), req, rsp)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("rsp.Code: ", rsp.Code)
+}
+
+func TestRemoveOutdatedRecordsOfADOfBarbecue(t *testing.T) {
+	diagnostic.SetupLogger()
+	diagnostic.SetupRegistry()
+	req := &RemoveOutdatedRecordsOfADOfBarbecueReq{
+		UserId: 1,
+	}
+	rsp := &RemoveOutdatedRecordsOfADOfBarbecueRsp{}
+	err := RemoveOutdatedRecordsOfADOfBarbecue(context.Background(), req, rsp)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("Code: ", rsp.Code)
+}
+
+func TestInsertRecordOfADOfDeals(t *testing.T) {
+	diagnostic.SetupLogger()
+	diagnostic.SetupRegistry()
+	userId := int64(1)
+	advertisementIdList := []int64{1, 2, 3}
+	req := &InsertRecordOfADOfDealsReq{
+		UserId:              userId,
+		AdvertisementIdList: advertisementIdList,
+	}
+	rsp := &InsertRecordOfADOfDealsRsp{}
+	err := InsertRecordOfADOfDeals(context.Background(), req, rsp)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("rsp.Code: ", rsp.Code)
+}
+
+func TestRemoveOutdatedRecordsOfADOfDeals(t *testing.T) {
+	diagnostic.SetupLogger()
+	diagnostic.SetupRegistry()
+	req := &RemoveOutdatedRecordsOfADOfDealsReq{
+		UserId: 1,
+	}
+	rsp := &RemoveOutdatedRecordsOfADOfDealsRsp{}
+	err := RemoveOutdatedRecordsOfADOfDeals(context.Background(), req, rsp)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("Code: ", rsp.Code)
+}
+
+func TestInsertRecordOfADOfHots(t *testing.T) {
+	diagnostic.SetupLogger()
+	diagnostic.SetupRegistry()
+	userId := int64(1)
+	advertisementIdList := []int64{1, 2, 3}
+	req := &InsertRecordOfADOfHotsReq{
+		UserId:              userId,
+		AdvertisementIdList: advertisementIdList,
+	}
+	rsp := &InsertRecordOfADOfHotsRsp{}
+	err := InsertRecordOfADOfHots(context.Background(), req, rsp)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("rsp.Code: ", rsp.Code)
+}
+
+func TestRemoveOutdatedRecordsOfADOfHots(t *testing.T) {
+	diagnostic.SetupLogger()
+	diagnostic.SetupRegistry()
+	req := &RemoveOutdatedRecordsOfADOfHotsReq{
+		UserId: 1,
+	}
+	rsp := &RemoveOutdatedRecordsOfADOfHotsRsp{}
+	err := RemoveOutdatedRecordsOfADOfHots(context.Background(), req, rsp)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("Code: ", rsp.Code)
+}
+
+func TestInsertRecordOfADOfSnacks(t *testing.T) {
+	diagnostic.SetupLogger()
+	diagnostic.SetupRegistry()
+	userId := int64(1)
+	advertisementIdList := []int64{1, 2, 3}
+	req := &InsertRecordOfADOfSnacksReq{
+		UserId:              userId,
+		AdvertisementIdList: advertisementIdList,
+	}
+	rsp := &InsertRecordOfADOfSnacksRsp{}
+	err := InsertRecordOfADOfSnacks(context.Background(), req, rsp)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("rsp.Code: ", rsp.Code)
+}
+
+func TestRemoveOutdatedRecordsOfADOfSnacks(t *testing.T) {
+	diagnostic.SetupLogger()
+	diagnostic.SetupRegistry()
+	req := &RemoveOutdatedRecordsOfADOfSnacksReq{
+		UserId: 1,
+	}
+	rsp := &RemoveOutdatedRecordsOfADOfSnacksRsp{}
+	err := RemoveOutdatedRecordsOfADOfSnacks(context.Background(), req, rsp)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("Code: ", rsp.Code)
+}

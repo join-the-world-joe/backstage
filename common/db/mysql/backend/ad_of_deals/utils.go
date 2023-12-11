@@ -45,3 +45,7 @@ func GetModelByVersion(version int64) (*Model, error) {
 	}
 	return m, nil
 }
+
+func RemoveOutdatedRecordsOfADOfDeals(version int64) error {
+	return mysql.Delete(GetWhich(), GetDbName(), sqlDeleteOutdatedRecords(version))
+}

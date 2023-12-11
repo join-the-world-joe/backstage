@@ -52,6 +52,26 @@ func Dispatch(packet *payload.PacketInternal) {
 		insertRecordOfADOfCarousel(packet)
 	case admin.RemoveOutdatedRecordsOfADOfCarouselReq_:
 		removeOutdatedRecordsOfADOfCarousel(packet)
+
+	case admin.InsertRecordOfADOfDealsReq_:
+		insertRecordOfADOfDeals(packet)
+	case admin.RemoveOutdatedRecordsOfADOfDealsReq_:
+		removeOutdatedRecordsOfADOfDeals(packet)
+
+	case admin.InsertRecordOfADOfBarbecueReq_:
+		insertRecordOfADOfBarbecue(packet)
+	case admin.RemoveOutdatedRecordsOfADOfBarbecueReq_:
+		removeOutdatedRecordsOfADOfBarbecue(packet)
+
+	case admin.InsertRecordOfADOfHotsReq_:
+		insertRecordOfADOfCarousel(packet)
+	case admin.RemoveOutdatedRecordsOfADOfHotsReq_:
+		removeOutdatedRecordsOfADOfHots(packet)
+
+	case admin.InsertRecordOfADOfSnacksReq_:
+		insertRecordOfADOfSnacks(packet)
+	case admin.RemoveOutdatedRecordsOfADOfSnacksReq_:
+		removeOutdatedRecordsOfADOfSnacks(packet)
 	default:
 		log.ErrorF("unknown minor [%v]", packet.GetRequest().GetHeader().GetMinor())
 	}

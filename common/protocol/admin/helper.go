@@ -163,3 +163,99 @@ func RemoveOutdatedRecordsOfADOfCarousel(ctx context.Context, req *RemoveOutdate
 	}
 	return xClient.Call(ctx, "RemoveOutdatedRecordsOfADOfCarousel", req, rsp)
 }
+
+func InsertRecordOfADOfDeals(ctx context.Context, req *InsertRecordOfADOfDealsReq, rsp *InsertRecordOfADOfDealsRsp) error {
+	srv, err := global.SelectService(service.Admin)
+	if err != nil {
+		return err
+	}
+	xClient, err := rpc.GetXClient(service.Admin, srv.Id, srv.Ip, cast.ToString(srv.Port))
+	if err != nil {
+		return err
+	}
+	return xClient.Call(ctx, "InsertRecordOfADOfDeals", req, rsp)
+}
+
+func RemoveOutdatedRecordsOfADOfDeals(ctx context.Context, req *RemoveOutdatedRecordsOfADOfDealsReq, rsp *RemoveOutdatedRecordsOfADOfDealsRsp) error {
+	srv, err := global.SelectService(service.Admin)
+	if err != nil {
+		return err
+	}
+	xClient, err := rpc.GetXClient(service.Admin, srv.Id, srv.Ip, cast.ToString(srv.Port))
+	if err != nil {
+		return err
+	}
+	return xClient.Call(ctx, "RemoveOutdatedRecordsOfADOfDeals", req, rsp)
+}
+
+func InsertRecordOfADOfHots(ctx context.Context, req *InsertRecordOfADOfHotsReq, rsp *InsertRecordOfADOfHotsRsp) error {
+	srv, err := global.SelectService(service.Admin)
+	if err != nil {
+		return err
+	}
+	xClient, err := rpc.GetXClient(service.Admin, srv.Id, srv.Ip, cast.ToString(srv.Port))
+	if err != nil {
+		return err
+	}
+	return xClient.Call(ctx, "InsertRecordOfADOfHots", req, rsp)
+}
+
+func RemoveOutdatedRecordsOfADOfHots(ctx context.Context, req *RemoveOutdatedRecordsOfADOfHotsReq, rsp *RemoveOutdatedRecordsOfADOfHotsRsp) error {
+	srv, err := global.SelectService(service.Admin)
+	if err != nil {
+		return err
+	}
+	xClient, err := rpc.GetXClient(service.Admin, srv.Id, srv.Ip, cast.ToString(srv.Port))
+	if err != nil {
+		return err
+	}
+	return xClient.Call(ctx, "RemoveOutdatedRecordsOfADOfHots", req, rsp)
+}
+
+func InsertRecordOfADOfBarbecue(ctx context.Context, req *InsertRecordOfADOfBarbecueReq, rsp *InsertRecordOfADOfBarbecueRsp) error {
+	srv, err := global.SelectService(service.Admin)
+	if err != nil {
+		return err
+	}
+	xClient, err := rpc.GetXClient(service.Admin, srv.Id, srv.Ip, cast.ToString(srv.Port))
+	if err != nil {
+		return err
+	}
+	return xClient.Call(ctx, "InsertRecordOfADOfBarbecue", req, rsp)
+}
+
+func RemoveOutdatedRecordsOfADOfBarbecue(ctx context.Context, req *RemoveOutdatedRecordsOfADOfBarbecueReq, rsp *RemoveOutdatedRecordsOfADOfBarbecueRsp) error {
+	srv, err := global.SelectService(service.Admin)
+	if err != nil {
+		return err
+	}
+	xClient, err := rpc.GetXClient(service.Admin, srv.Id, srv.Ip, cast.ToString(srv.Port))
+	if err != nil {
+		return err
+	}
+	return xClient.Call(ctx, "RemoveOutdatedRecordsOfADOfBarbecue", req, rsp)
+}
+
+func InsertRecordOfADOfSnacks(ctx context.Context, req *InsertRecordOfADOfSnacksReq, rsp *InsertRecordOfADOfSnacksRsp) error {
+	srv, err := global.SelectService(service.Admin)
+	if err != nil {
+		return err
+	}
+	xClient, err := rpc.GetXClient(service.Admin, srv.Id, srv.Ip, cast.ToString(srv.Port))
+	if err != nil {
+		return err
+	}
+	return xClient.Call(ctx, "InsertRecordOfADOfSnacks", req, rsp)
+}
+
+func RemoveOutdatedRecordsOfADOfSnacks(ctx context.Context, req *RemoveOutdatedRecordsOfADOfSnacksReq, rsp *RemoveOutdatedRecordsOfADOfSnacksRsp) error {
+	srv, err := global.SelectService(service.Admin)
+	if err != nil {
+		return err
+	}
+	xClient, err := rpc.GetXClient(service.Admin, srv.Id, srv.Ip, cast.ToString(srv.Port))
+	if err != nil {
+		return err
+	}
+	return xClient.Call(ctx, "RemoveOutdatedRecordsOfADOfSnacks", req, rsp)
+}

@@ -2,8 +2,8 @@ package business
 
 import (
 	"backstage/common/code"
-	"backstage/common/db/mysql/backend/ad_of_carousel"
-	"backstage/common/db/mysql/backend/version_of_ad_of_carousel"
+	"backstage/common/db/mysql/backend/ad_of_deals"
+	"backstage/common/db/mysql/backend/version_of_ad_of_deals"
 	"backstage/common/major"
 	"backstage/common/protocol/admin"
 	"backstage/global/log"
@@ -12,19 +12,19 @@ import (
 	"github.com/spf13/cast"
 )
 
-func InsertRecordOfADOfCarousel(ctx context.Context, req *admin.InsertRecordOfADOfCarouselReq, rsp *admin.InsertRecordOfADOfCarouselRsp) error {
+func InsertRecordOfADOfDeals(ctx context.Context, req *admin.InsertRecordOfADOfDealsReq, rsp *admin.InsertRecordOfADOfDealsRsp) error {
 	if !hasPermission(
 		cast.ToInt(major.Admin),
-		cast.ToInt(admin.InsertRecordOfADOfCarouselReq_),
+		cast.ToInt(admin.InsertRecordOfADOfDealsReq_),
 		req.UserId,
 	) {
 		rsp.Code = code.AccessDenied
 		return nil
 	}
 
-	version, err := version_of_ad_of_carousel.InsertModel(&version_of_ad_of_carousel.Model{})
+	version, err := version_of_ad_of_deals.InsertModel(&version_of_ad_of_deals.Model{})
 	if err != nil {
-		log.Error("version_of_ad_of_carousel.InsertModel fail, err: ", err)
+		log.Error("version_of_ad_of_deals.InsertModel fail, err: ", err)
 		rsp.Code = code.DatabaseFailure
 		return nil
 	}
@@ -36,7 +36,7 @@ func InsertRecordOfADOfCarousel(ctx context.Context, req *admin.InsertRecordOfAD
 		return nil
 	}
 
-	_, err = ad_of_carousel.InsertModel(&ad_of_carousel.Model{
+	_, err = ad_of_deals.InsertModel(&ad_of_deals.Model{
 		Version:             version.Id,
 		AdvertisementIdList: string(bytes),
 		Description:         req.Description,

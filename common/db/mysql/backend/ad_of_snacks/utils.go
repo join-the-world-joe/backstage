@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func Insert(model *Model) (*Model, error) {
+func InsertModel(model *Model) (*Model, error) {
 	temp, err := mysql.Insert(GetWhich(), GetDbName(), GetTableName(), model)
 	if err != nil {
 		return nil, err
@@ -57,4 +57,8 @@ func GetModelByVersion(version int64) (*Model, error) {
 		return nil, err
 	}
 	return m, nil
+}
+
+func RemoveOutdatedRecordsOfADOfSnacks(version int64) error {
+	return mysql.Delete(GetWhich(), GetDbName(), sqlDeleteOutdatedRecords(version))
 }

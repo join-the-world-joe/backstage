@@ -2,7 +2,7 @@ package business
 
 import (
 	"backstage/common/code"
-	"backstage/common/db/mysql/backend/ad_of_carousel"
+	"backstage/common/db/mysql/backend/ad_of_barbecue"
 	"backstage/common/db/mysql/backend/version_of_ad_of_carousel"
 	"backstage/common/major"
 	"backstage/common/protocol/admin"
@@ -11,10 +11,10 @@ import (
 	"github.com/spf13/cast"
 )
 
-func RemoveOutdatedRecordsOfADOfCarousel(ctx context.Context, req *admin.RemoveOutdatedRecordsOfADOfCarouselReq, rsp *admin.RemoveOutdatedRecordsOfADOfCarouselRsp) error {
+func RemoveOutdatedRecordsOfADOfBarbecue(ctx context.Context, req *admin.RemoveOutdatedRecordsOfADOfBarbecueReq, rsp *admin.RemoveOutdatedRecordsOfADOfBarbecueRsp) error {
 	if !hasPermission(
 		cast.ToInt(major.Admin),
-		cast.ToInt(admin.RemoveOutdatedRecordsOfADOfCarouselReq_),
+		cast.ToInt(admin.RemoveOutdatedRecordsOfADOfBarbecueReq_),
 		req.UserId,
 	) {
 		rsp.Code = code.AccessDenied
@@ -28,7 +28,7 @@ func RemoveOutdatedRecordsOfADOfCarousel(ctx context.Context, req *admin.RemoveO
 		return nil
 	}
 
-	ad_of_carousel.RemoveOutdatedRecordsOfADOfCarousel(version)
+	ad_of_barbecue.RemoveOutdatedRecordsOfADOfBarbecue(version)
 
 	rsp.Code = code.Success
 	return nil

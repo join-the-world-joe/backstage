@@ -33,6 +33,6 @@ func GetModelByVersion(version int64) (*Model, error) {
 	return m, nil
 }
 
-func RemoveOutdatedRecordsOfAdCarousel(version int64) error {
+func RemoveOutdatedRecordsOfADOfCarousel(version int64) error {
 	return mysql.Delete(GetWhich(), GetDbName(), sqlDeleteOutdatedRecords(version))
 }

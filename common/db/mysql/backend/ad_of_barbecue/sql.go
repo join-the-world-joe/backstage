@@ -2,6 +2,10 @@ package ad_of_barbecue
 
 import "fmt"
 
+func sqlDeleteOutdatedRecords(version int64) string {
+	return fmt.Sprintf("DELETE FROM %s WHERE version < %v", GetTableName(), version)
+}
+
 func sqlMaxId() string {
 	return fmt.Sprintf("SELECT MAX(id) FROM %s ", GetTableName())
 }
