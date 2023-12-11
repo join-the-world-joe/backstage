@@ -22,7 +22,10 @@ func TestInsertModel(t *testing.T) {
 		t.Fatal(err)
 	}
 	diagnostic.SetupMySQL()
-	temp, err := InsertModel(&Model{AdvertisementIdList: string(bytes)})
+	temp, err := InsertModel(&Model{
+		Version:             1,
+		AdvertisementIdList: string(bytes)},
+	)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -30,7 +33,7 @@ func TestInsertModel(t *testing.T) {
 }
 
 func TestGetModelByVersion(t *testing.T) {
-	version := int64(3)
+	version := int64(1)
 	diagnostic.SetupMySQL()
 	model, err := GetModelByVersion(version)
 	if err != nil {

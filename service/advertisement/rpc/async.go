@@ -57,6 +57,32 @@ func (p *Async) FetchRecordsOfADOfHots(ctx context.Context, req *advertisement.F
 	return business.FetchRecordsOfADOfHots(ctx, req, rsp)
 }
 
+// Barbecue
+func (p *Async) FetchVersionOfADOfBarbecue(ctx context.Context, req *advertisement.FetchVersionOfADOfBarbecueReq, rsp *advertisement.FetchVersionOfADOfBarbecueRsp) error {
+	return business.FetchVersionOfADOfBarbecue(ctx, req, rsp)
+}
+
+func (p *Async) FetchIdListOfADOfBarbecue(ctx context.Context, req *advertisement.FetchIdListOfADOfBarbecueReq, rsp *advertisement.FetchIdListOfADOfBarbecueRsp) error {
+	return business.FetchIdListOfADOfBarbecue(ctx, req, rsp)
+}
+
+func (p *Async) FetchRecordsOfADOfBarbecue(ctx context.Context, req *advertisement.FetchRecordsOfADOfBarbecueReq, rsp *advertisement.FetchRecordsOfADOfBarbecueRsp) error {
+	return business.FetchRecordsOfADOfBarbecue(ctx, req, rsp)
+}
+
+// Snacks
+func (p *Async) FetchVersionOfADOfSnacks(ctx context.Context, req *advertisement.FetchVersionOfADOfSnacksReq, rsp *advertisement.FetchVersionOfADOfSnacksRsp) error {
+	return business.FetchVersionOfADOfSnacks(ctx, req, rsp)
+}
+
+func (p *Async) FetchIdListOfADOfSnacks(ctx context.Context, req *advertisement.FetchIdListOfADOfSnacksReq, rsp *advertisement.FetchIdListOfADOfSnacksRsp) error {
+	return business.FetchIdListOfADOfSnacks(ctx, req, rsp)
+}
+
+func (p *Async) FetchRecordsOfADOfSnacks(ctx context.Context, req *advertisement.FetchRecordsOfADOfSnacksReq, rsp *advertisement.FetchRecordsOfADOfSnacksRsp) error {
+	return business.FetchRecordsOfADOfSnacks(ctx, req, rsp)
+}
+
 //func (p *Async) FetchADOfCarousel(ctx context.Context, req *advertisement.FetchADOfCarouselReq, rsp *advertisement.FetchADOfCarouselRsp) error {
 //	return business.FetchADOfCarousel(ctx, req, rsp)
 //}

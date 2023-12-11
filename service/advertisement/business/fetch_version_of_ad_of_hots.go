@@ -2,7 +2,7 @@ package business
 
 import (
 	"backstage/common/code"
-	"backstage/common/db/mysql/backend/version_of_ad_of_snacks"
+	"backstage/common/db/mysql/backend/version_of_ad_of_hots"
 	"backstage/common/protocol/advertisement"
 	"context"
 	"encoding/json"
@@ -13,7 +13,7 @@ type OutputOfVersionOfADOfHots struct {
 }
 
 func FetchVersionOfADOfHots(ctx context.Context, req *advertisement.FetchVersionOfADOfHotsReq, rsp *advertisement.FetchVersionOfADOfHotsRsp) error {
-	id, err := version_of_ad_of_snacks.GetMaxId()
+	id, err := version_of_ad_of_hots.GetMaxId()
 	if err != nil {
 		rsp.Code = code.DatabaseFailure
 		return nil

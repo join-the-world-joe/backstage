@@ -9,7 +9,7 @@ func GetDbName() string {
 }
 
 func GetTableName() string {
-	return "ad_of_hot_deals"
+	return "ad_of_hots"
 }
 
 func GetTableNameList() []string {

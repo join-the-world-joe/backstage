@@ -25,7 +25,7 @@ func FetchIdListOfADOfDeals(ctx context.Context, req *advertisement.FetchIdListO
 
 	model, err := ad_of_deals.GetModelByVersion(version)
 	if err != nil {
-		log.Error("ad_of_deals.GetLatestVersionModel failure, err: ", err)
+		log.Error("ad_of_deals.GetModelByVersion failure, err: ", err)
 		rsp.Code = code.DatabaseFailure
 		return nil
 	}

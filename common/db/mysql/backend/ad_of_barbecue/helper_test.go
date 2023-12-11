@@ -16,13 +16,19 @@ func TestAutoMigrate(t *testing.T) {
 }
 
 func TestInsert(t *testing.T) {
-	idList := []int{4, 5, 3}
+	idList := []int{1, 2, 3}
 	bytes, err := json.Marshal(&idList)
 	if err != nil {
 		t.Fatal(err)
 	}
+	version := int64(1)
 	diagnostic.SetupMySQL()
-	temp, err := Insert(&Model{ADIdList: string(bytes)})
+	temp, err := InsertModel(
+		&Model{
+			Version:             version,
+			AdvertisementIdList: string(bytes),
+		},
+	)
 	if err != nil {
 		t.Fatal(err)
 	}
