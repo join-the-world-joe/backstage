@@ -3,7 +3,7 @@ package advertisement
 import "time"
 
 type Model struct {
-	Id            int64  `gorm:"column:id;type:bigint not null;primary_key;comment:用户ID" json:"id,string"`
+	Id            int64  `gorm:"column:id;type:bigint not null;primary_key;comment:广告ID" json:"id,string"`
 	Name          string `gorm:"column:name;type:varchar(80) not null;default:'';comment:广告名称" json:"name"`
 	Title         string `gorm:"column:title;type:varchar(50) not null;default:'';comment:销售标题" json:"title"`
 	PlaceOFOrigin string `gorm:"column:place_of_origin;type:varchar(50) not null;default:'';comment:产地" json:"place_of_origin"`
