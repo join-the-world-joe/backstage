@@ -33,13 +33,13 @@ func GetMaxId() (int64, error) {
 	return id, nil
 }
 
-func GetLatestVersionModel() (*Model, error) {
+func GetModelByVersion(version int64) (*Model, error) {
 	m := &Model{}
 	db, err := mysql.GetDB(GetWhich(), GetDbName())
 	if err != nil {
 		return nil, err
 	}
-	err = db.Raw(sqlSelectModelWithMaxId()).Scan(&m).Error
+	err = db.Raw(sqlSelectModelWithVersion(version)).Scan(&m).Error
 	if err != nil {
 		return nil, err
 	}

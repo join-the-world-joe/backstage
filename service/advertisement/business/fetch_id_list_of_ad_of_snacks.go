@@ -3,6 +3,7 @@ package business
 import (
 	"backstage/common/code"
 	"backstage/common/db/mysql/backend/ad_of_snacks"
+	"backstage/common/db/mysql/backend/version_of_ad_of_snacks"
 	"backstage/common/protocol/advertisement"
 	"backstage/global/log"
 	"context"
@@ -15,22 +16,34 @@ type OutputOfIDListOfADOfSnacks struct {
 }
 
 func FetchIdListOfADOfSnacks(ctx context.Context, req *advertisement.FetchIdListOfADOfSnacksReq, rsp *advertisement.FetchIdListOfADOfSnacksRsp) error {
-	model, err := ad_of_snacks.GetLatestVersionModel()
+	version, err := version_of_ad_of_snacks.GetMaxId()
 	if err != nil {
-		log.Error("ad_of_deals.GetLatestVersionModel failure, err: ", err)
+		log.Error("version_of_ad_of_snacks.GetMaxId failure, err: ", err)
 		rsp.Code = code.DatabaseFailure
 		return nil
 	}
-	idList := []int64{}
-	err = json.Unmarshal([]byte(model.AdvertisementIdList), &idList)
+
+	model, err := ad_of_snacks.GetModelByVersion(version)
 	if err != nil {
-		log.Error("json.Unmarshal failure, err: ", err)
-		rsp.Code = code.InternalError
+		log.Error("ad_of_snacks.GetModelByVersion failure, err: ", err)
+		rsp.Code = code.DatabaseFailure
 		return nil
 	}
-	output := &OutputOfIDListOfADOfHots{
-		VersionOfADOfHots: model.Id,
-		IdListOfADOfHots:  idList,
+
+	output := &OutputOfIDListOfADOfSnacks{
+		VersionOfADOfSnacks: model.Id,
+		IdListOfADOfSnacks:  []int64{},
+	}
+
+	if len(model.AdvertisementIdList) > 0 {
+		idList := []int64{}
+		err = json.Unmarshal([]byte(model.AdvertisementIdList), &idList)
+		if err != nil {
+			log.Error("json.Unmarshal failure, err: ", err)
+			rsp.Code = code.InternalError
+			return nil
+		}
+		output.IdListOfADOfSnacks = idList
 	}
 
 	bytes, err := json.Marshal(output)

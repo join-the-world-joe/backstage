@@ -29,18 +29,12 @@ func TestInsertModel(t *testing.T) {
 	t.Log(temp)
 }
 
-func TestGetMaxId(t *testing.T) {
+func TestGetModelByVersion(t *testing.T) {
+	version := int64(3)
 	diagnostic.SetupMySQL()
-	if id, err := GetMaxId(); err == nil {
-		t.Log("id: ", id)
-	}
-}
-
-func TestGetLatestVersionModel(t *testing.T) {
-	diagnostic.SetupMySQL()
-	if model, err := GetLatestVersionModel(); err == nil {
-		t.Log("model: ", model)
-	} else {
+	model, err := GetModelByVersion(version)
+	if err != nil {
 		t.Fatal(err)
 	}
+	t.Log("model: ", *model)
 }

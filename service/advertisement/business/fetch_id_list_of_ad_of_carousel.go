@@ -3,6 +3,7 @@ package business
 import (
 	"backstage/common/code"
 	"backstage/common/db/mysql/backend/ad_of_carousel"
+	"backstage/common/db/mysql/backend/version_of_ad_of_carousel"
 	"backstage/common/protocol/advertisement"
 	"backstage/global/log"
 	"context"
@@ -15,22 +16,33 @@ type OutputOfIDListOfADOfCarousel struct {
 }
 
 func FetchIdListOfADOfCarousel(ctx context.Context, req *advertisement.FetchIdListOfADOfCarouselReq, rsp *advertisement.FetchIdListOfADOfCarouselRsp) error {
-	model, err := ad_of_carousel.GetLatestVersionModel()
+	version, err := version_of_ad_of_carousel.GetMaxId()
 	if err != nil {
-		log.Error("ad_of_carousel.GetLatestVersionModel failure, err: ", err)
+		log.Error("version_of_ad_of_carousel.GetMaxId failure, err: ", err)
 		rsp.Code = code.DatabaseFailure
 		return nil
 	}
-	idList := []int64{}
-	err = json.Unmarshal([]byte(model.AdvertisementIdList), &idList)
+
+	model, err := ad_of_carousel.GetModelByVersion(version)
 	if err != nil {
-		log.Error("json.Unmarshal failure, err: ", err)
-		rsp.Code = code.InternalError
+		log.Error("ad_of_carousel.GetModelByVersion failure, err: ", err)
+		rsp.Code = code.DatabaseFailure
 		return nil
 	}
 	output := &OutputOfIDListOfADOfCarousel{
-		VersionOfADOfCarousel: model.Id,
-		IdListOfADOfCarousel:  idList,
+		VersionOfADOfCarousel: model.Version,
+		IdListOfADOfCarousel:  []int64{},
+	}
+
+	if len(model.AdvertisementIdList) > 0 {
+		idList := []int64{}
+		err = json.Unmarshal([]byte(model.AdvertisementIdList), &idList)
+		if err != nil {
+			log.Error("json.Unmarshal failure, err: ", err)
+			rsp.Code = code.InternalError
+			return nil
+		}
+		output.IdListOfADOfCarousel = idList
 	}
 
 	bytes, err := json.Marshal(output)

@@ -13,14 +13,14 @@ type OutputOfVersionOfADOfCarousel struct {
 }
 
 func FetchVersionOfADOfCarousel(ctx context.Context, req *advertisement.FetchVersionOfADOfCarouselReq, rsp *advertisement.FetchVersionOfADOfCarouselRsp) error {
-	id, err := version_of_ad_of_carousel.GetMaxId()
+	version, err := version_of_ad_of_carousel.GetMaxId()
 	if err != nil {
 		rsp.Code = code.DatabaseFailure
 		return nil
 	}
 
 	output := &OutputOfVersionOfADOfCarousel{
-		VersionOfADOfCarousel: id,
+		VersionOfADOfCarousel: version,
 	}
 
 	bytes, err := json.Marshal(output)

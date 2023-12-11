@@ -20,36 +20,19 @@ func InsertModel(model *Model) (*Model, error) {
 	return model, nil
 }
 
-func GetMaxId() (int64, error) {
-	var id int64
-	rows, err := mysql.Query(GetWhich(), GetDbName(), sqlMaxId())
-	if err != nil {
-		return 0, err
-	}
-	defer rows.Close()
-	for rows.Next() {
-		rows.Scan(&id)
-	}
-	return id, nil
-}
-
-func GetLatestVersionModel() (*Model, error) {
+func GetModelByVersion(version int64) (*Model, error) {
 	m := &Model{}
 	db, err := mysql.GetDB(GetWhich(), GetDbName())
 	if err != nil {
 		return nil, err
 	}
-	err = db.Raw(sqlSelectModelWithMaxId()).Scan(&m).Error
+	err = db.Raw(sqlSelectModelWithVersion(version)).Scan(&m).Error
 	if err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func RemoveOutdatedRecordsOfAdCarousel() {
-	version, err := GetMaxId()
-	if err != nil {
-		return
-	}
-	mysql.Delete(GetWhich(), GetDbName(), sqlDeleteOutdatedRecords(version))
+func RemoveOutdatedRecordsOfAdCarousel(version int64) error {
+	return mysql.Delete(GetWhich(), GetDbName(), sqlDeleteOutdatedRecords(version))
 }

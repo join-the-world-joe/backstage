@@ -9,3 +9,7 @@ func sqlMaxId() string {
 func sqlSelectModelWithMaxId() string {
 	return fmt.Sprintf("SELECT id, advertisement_id_list, created_at,description FROM %v WHERE id = (SELECT MAX(id) FROM %v)", GetTableName(), GetTableName())
 }
+
+func sqlSelectModelWithVersion(version int64) string {
+	return fmt.Sprintf("SELECT * FROM %s WHERE version = %v", GetTableName(), version)
+}
