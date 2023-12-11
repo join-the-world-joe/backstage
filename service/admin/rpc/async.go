@@ -73,3 +73,35 @@ func (p *Async) InsertRecordOfADOfCarousel(ctx context.Context, req *admin.Inser
 func (p *Async) RemoveOutdatedRecordsOfADOfCarousel(ctx context.Context, req *admin.RemoveOutdatedRecordsOfADOfCarouselReq, rsp *admin.RemoveOutdatedRecordsOfADOfCarouselRsp) error {
 	return business.RemoveOutdatedRecordsOfADOfCarousel(ctx, req, rsp)
 }
+
+func (p *Async) InsertRecordOfADOfBarbecue(ctx context.Context, req *admin.InsertRecordOfADOfBarbecueReq, rsp *admin.InsertRecordOfADOfBarbecueRsp) error {
+	return business.InsertRecordOfADOfBarbecue(ctx, req, rsp)
+}
+
+func (p *Async) RemoveOutdatedRecordsOfADOfBarbecue(ctx context.Context, req *admin.RemoveOutdatedRecordsOfADOfBarbecueReq, rsp *admin.RemoveOutdatedRecordsOfADOfBarbecueRsp) error {
+	return business.RemoveOutdatedRecordsOfADOfBarbecue(ctx, req, rsp)
+}
+
+func (p *Async) InsertRecordOfADOfDeals(ctx context.Context, req *admin.InsertRecordOfADOfDealsReq, rsp *admin.InsertRecordOfADOfDealsRsp) error {
+	return business.InsertRecordOfADOfDeals(ctx, req, rsp)
+}
+
+func (p *Async) RemoveOutdatedRecordsOfADOfDeals(ctx context.Context, req *admin.RemoveOutdatedRecordsOfADOfDealsReq, rsp *admin.RemoveOutdatedRecordsOfADOfDealsRsp) error {
+	return business.RemoveOutdatedRecordsOfADOfDeals(ctx, req, rsp)
+}
+
+func (p *Async) InsertRecordOfADOfHots(ctx context.Context, req *admin.InsertRecordOfADOfHotsReq, rsp *admin.InsertRecordOfADOfHotsRsp) error {
+	return business.InsertRecordOfADOfHots(ctx, req, rsp)
+}
+
+func (p *Async) RemoveOutdatedRecordsOfADOfHots(ctx context.Context, req *admin.RemoveOutdatedRecordsOfADOfHotsReq, rsp *admin.RemoveOutdatedRecordsOfADOfHotsRsp) error {
+	return business.RemoveOutdatedRecordsOfADOfHots(ctx, req, rsp)
+}
+
+func (p *Async) InsertRecordOfADOfSnacks(ctx context.Context, req *admin.InsertRecordOfADOfSnacksReq, rsp *admin.InsertRecordOfADOfSnacksRsp) error {
+	return business.InsertRecordOfADOfSnacks(ctx, req, rsp)
+}
+
+func (p *Async) RemoveOutdatedRecordsOfADOfSnacks(ctx context.Context, req *admin.RemoveOutdatedRecordsOfADOfSnacksReq, rsp *admin.RemoveOutdatedRecordsOfADOfSnacksRsp) error {
+	return business.RemoveOutdatedRecordsOfADOfSnacks(ctx, req, rsp)
+}

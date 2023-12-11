@@ -3,7 +3,7 @@ package business
 import (
 	"backstage/common/code"
 	"backstage/common/db/mysql/backend/ad_of_barbecue"
-	"backstage/common/db/mysql/backend/version_of_ad_of_carousel"
+	"backstage/common/db/mysql/backend/version_of_ad_of_barbecue"
 	"backstage/common/major"
 	"backstage/common/protocol/admin"
 	"backstage/global/log"
@@ -21,7 +21,7 @@ func RemoveOutdatedRecordsOfADOfBarbecue(ctx context.Context, req *admin.RemoveO
 		return nil
 	}
 
-	version, err := version_of_ad_of_carousel.GetMaxId()
+	version, err := version_of_ad_of_barbecue.GetMaxId()
 	if err != nil {
 		log.Error(" version_of_ad_of_carousel.GetMaxId failure, err: ", err)
 		rsp.Code = code.DatabaseFailure
