@@ -42,7 +42,7 @@ func FetchRecordsOfADOfDeals(ctx context.Context, req *advertisement.FetchRecord
 					Stock:             temp.Stock,
 					SellingPrice:      temp.SellingPrice,
 					ProductId:         temp.ProductId,
-					ImagePath:         temp.Url,
+					Image:             temp.Image,
 					PlaceOfOrigin:     temp.PlaceOFOrigin,
 					Description:       temp.Description,
 					AdvertisementId:   temp.Id,

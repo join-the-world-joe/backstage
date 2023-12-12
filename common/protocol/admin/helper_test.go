@@ -197,7 +197,7 @@ func TestInsertRecordOfAdvertisement(t *testing.T) {
 	sellingPrice := 100
 	sellingPoints := [][]byte{[]byte("2"), []byte("大2")}
 	placeOfOrigin := []byte("地要工")
-	url := []byte("urlfd在")
+	image := []byte("urlfd在")
 	stock := 10
 	productId := int64(1)
 	status := 1
@@ -207,7 +207,7 @@ func TestInsertRecordOfAdvertisement(t *testing.T) {
 
 	req := &InsertRecordOfAdvertisementReq{
 		UserId:        userId,
-		Url:           url,
+		Image:         image,
 		Name:          name,
 		Title:         title,
 		ProductId:     productId,

@@ -39,7 +39,6 @@ func InsertRecordOfADOfCarousel(ctx context.Context, req *admin.InsertRecordOfAD
 	_, err = ad_of_carousel.InsertModel(&ad_of_carousel.Model{
 		Version:             version.Id,
 		AdvertisementIdList: string(bytes),
-		Description:         req.Description,
 	})
 	if err != nil {
 		rsp.Code = code.DatabaseFailure

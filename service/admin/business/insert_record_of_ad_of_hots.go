@@ -39,7 +39,6 @@ func InsertRecordOfADOfHots(ctx context.Context, req *admin.InsertRecordOfADOfHo
 	_, err = ad_of_hots.InsertModel(&ad_of_hots.Model{
 		Version:             version.Id,
 		AdvertisementIdList: string(bytes),
-		Description:         req.Description,
 	})
 	if err != nil {
 		rsp.Code = code.DatabaseFailure

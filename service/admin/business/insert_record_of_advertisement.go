@@ -28,7 +28,7 @@ func InsertRecordOfAdvertisement(ctx context.Context, req *admin.InsertRecordOfA
 	}
 
 	m, err := advertisement.InsertModel(&advertisement.Model{
-		Url:           string(req.Url),
+		Image:         string(req.Image),
 		Title:         string(req.Title),
 		Name:          string(req.Name),
 		PlaceOFOrigin: string(req.PlaceOfOrigin),

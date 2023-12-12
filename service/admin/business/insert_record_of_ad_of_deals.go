@@ -39,7 +39,6 @@ func InsertRecordOfADOfDeals(ctx context.Context, req *admin.InsertRecordOfADOfD
 	_, err = ad_of_deals.InsertModel(&ad_of_deals.Model{
 		Version:             version.Id,
 		AdvertisementIdList: string(bytes),
-		Description:         req.Description,
 	})
 	if err != nil {
 		rsp.Code = code.DatabaseFailure

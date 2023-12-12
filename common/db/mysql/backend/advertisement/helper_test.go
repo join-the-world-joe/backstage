@@ -22,7 +22,7 @@ func TestInsertModel1(t *testing.T) {
 		Name:          "春季牛奶",
 		Title:         "健康的乳",
 		PlaceOFOrigin: "内蒙古",
-		Url:           "牛奶外观图片网址",
+		Image:         "牛奶外观图片网址",
 		SellingPrice:  200,
 		Visible:       1,
 		Status:        0,
@@ -43,13 +43,34 @@ func TestInsertModel2(t *testing.T) {
 		Name:          "夏季矿物水广告",
 		Title:         "健康的水",
 		PlaceOFOrigin: "四川",
-		Url:           "水瓶外观图片网址",
+		Image:         "水瓶外观图片网址",
 		SellingPrice:  100,
 		Visible:       1,
 		Status:        0,
 		Stock:         5,
 		ProductId:     1,
 		Description:   "关联商品名称",
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log(temp)
+}
+
+func TestInsertModel3(t *testing.T) {
+	diagnostic.SetupMySQL()
+
+	temp, err := InsertModel(&Model{
+		Name:          "太阳灯",
+		Title:         "自然光、无紫外线、无辐射",
+		PlaceOFOrigin: "吸杂",
+		Image:         "水瓶外观图片网址2",
+		SellingPrice:  300,
+		Visible:       1,
+		Status:        0,
+		Stock:         5,
+		ProductId:     1,
+		Description:   "关联商品名称3",
 	})
 	if err != nil {
 		t.Fatal(err)

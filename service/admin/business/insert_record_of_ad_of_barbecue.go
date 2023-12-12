@@ -39,7 +39,6 @@ func InsertRecordOfADOfBarbecue(ctx context.Context, req *admin.InsertRecordOfAD
 	_, err = ad_of_barbecue.InsertModel(&ad_of_barbecue.Model{
 		Version:             version.Id,
 		AdvertisementIdList: string(bytes),
-		Description:         req.Description,
 	})
 	if err != nil {
 		rsp.Code = code.DatabaseFailure

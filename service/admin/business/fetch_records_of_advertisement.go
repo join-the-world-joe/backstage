@@ -23,7 +23,7 @@ type RecordOfAdvertisement struct {
 	SellingPrice  int      `json:"selling_price"`
 	PlaceOfOrigin string   `json:"place_of_origin"`
 	SellingPoints [][]byte `json:"selling_points"`
-	Url           string   `json:"url"`
+	Image         string   `json:"image"`
 	Stock         int      `json:"stock"`
 	ProductId     int64    `json:"product_id"`
 	BuyingPrice   int      `json:"buying_price"`
@@ -106,7 +106,7 @@ func FetchRecordsOfAdvertisement(ctx context.Context, req *admin.FetchRecordsOfA
 			SellingPrice:  m.SellingPrice,
 			PlaceOfOrigin: m.PlaceOFOrigin,
 			SellingPoints: points,
-			Url:           m.Url,
+			Image:         m.Image,
 			Stock:         m.Stock,
 			ProductId:     m.ProductId,
 			CreatedAt:     m.CreatedAt.Format(timestamp.YYMDHMS),

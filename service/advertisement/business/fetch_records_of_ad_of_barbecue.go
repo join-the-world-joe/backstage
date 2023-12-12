@@ -42,7 +42,7 @@ func FetchRecordsOfADOfBarbecue(ctx context.Context, req *advertisement.FetchRec
 					Stock:             temp.Stock,
 					SellingPrice:      temp.SellingPrice,
 					ProductId:         temp.ProductId,
-					ImagePath:         temp.Url,
+					Image:             temp.Image,
 					PlaceOfOrigin:     temp.PlaceOFOrigin,
 					Description:       temp.Description,
 					AdvertisementId:   temp.Id,

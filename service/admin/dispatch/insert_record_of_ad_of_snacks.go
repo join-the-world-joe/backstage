@@ -39,7 +39,7 @@ func insertRecordOfADOfSnacks(packet *payload.PacketInternal) {
 	packet.Response = &payload.PacketClient{
 		Header: &payload.Header{
 			Major: major.Admin,
-			Minor: admin.InsertRecordOfADOfCarouselRsp_,
+			Minor: admin.InsertRecordOfADOfSnacksRsp_,
 		},
 		Body: bytes,
 	}

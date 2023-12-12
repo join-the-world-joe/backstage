@@ -39,7 +39,7 @@ func insertRecordOfADOfDeals(packet *payload.PacketInternal) {
 	packet.Response = &payload.PacketClient{
 		Header: &payload.Header{
 			Major: major.Admin,
-			Minor: admin.InsertRecordOfADOfCarouselRsp_,
+			Minor: admin.InsertRecordOfADOfDealsRsp_,
 		},
 		Body: bytes,
 	}
