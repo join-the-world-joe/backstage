@@ -1,26 +1,27 @@
 package aliyun_oss
 
 import (
+	"backstage/common/macro/oss"
+	"backstage/diagnostic"
+	"backstage/global/config"
 	"encoding/json"
 	"testing"
 )
 
-var id = ""
-var secret = ""
-var endpoint = ""
 var bkt = ""
 
 func TestListObject(t *testing.T) {
+	diagnostic.SetupOSS()
 	aliyunOss, err := NewOSS(
-		WithAccessKeyId(id),
-		WithAccessKeySecret(secret),
-		WithEndpoint(endpoint),
+		WithAccessKeyId(config.OSSConf().OSS["Aliyun"].ID),
+		WithAccessKeySecret(config.OSSConf().OSS["Aliyun"].Secret),
+		WithEndpoint(config.OSSConf().OSS["Aliyun"].Endpoint),
 	)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	objs, err := aliyunOss.ListObject(bkt)
+	objs, err := aliyunOss.ListObject(oss.AdvertisementImageBucket)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -33,53 +34,56 @@ func TestListObject(t *testing.T) {
 }
 
 func TestPutObject(t *testing.T) {
-	objectFileName := "3/6.jpg"
+	objectFileName := "6.jpg"
 	nativeFileName := "D:\\Projects\\github\\express\\asset\\image\\6.jpg"
+	diagnostic.SetupOSS()
 	aliyunOss, err := NewOSS(
-		WithAccessKeyId(id),
-		WithAccessKeySecret(secret),
-		WithEndpoint(endpoint),
+		WithAccessKeyId(config.OSSConf().OSS["Aliyun"].ID),
+		WithAccessKeySecret(config.OSSConf().OSS["Aliyun"].Secret),
+		WithEndpoint(config.OSSConf().OSS["Aliyun"].Endpoint),
 	)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	err = aliyunOss.Put(nativeFileName, bkt, objectFileName)
+	err = aliyunOss.Put(nativeFileName, oss.AdvertisementImageBucket, objectFileName)
 	if err != nil {
 		t.Fatal(err)
 	}
 }
 
 func TestGetObject(t *testing.T) {
-	objectFileName := "3/2.jpg"
-	nativeFileName := "D:\\Projects\\github\\express\\asset\\image\\2.jpg"
+	objectFileName := "6.jpg"
+	nativeFileName := "D:\\Projects\\github\\express\\asset\\image\\6.bak.1.jpg"
+	diagnostic.SetupOSS()
 	aliyunOss, err := NewOSS(
-		WithAccessKeyId(id),
-		WithAccessKeySecret(secret),
-		WithEndpoint(endpoint),
+		WithAccessKeyId(config.OSSConf().OSS["Aliyun"].ID),
+		WithAccessKeySecret(config.OSSConf().OSS["Aliyun"].Secret),
+		WithEndpoint(config.OSSConf().OSS["Aliyun"].Endpoint),
 	)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	err = aliyunOss.Get(nativeFileName, bkt, objectFileName)
+	err = aliyunOss.Get(nativeFileName, oss.AdvertisementImageBucket, objectFileName)
 	if err != nil {
 		t.Fatal(err)
 	}
 }
 
 func TestDeleteObject(t *testing.T) {
-	objectFileName := "3/6.jpg"
+	objectFileName := "3.jpg"
+	diagnostic.SetupOSS()
 	aliyunOss, err := NewOSS(
-		WithAccessKeyId(id),
-		WithAccessKeySecret(secret),
-		WithEndpoint(endpoint),
+		WithAccessKeyId(config.OSSConf().OSS["Aliyun"].ID),
+		WithAccessKeySecret(config.OSSConf().OSS["Aliyun"].Secret),
+		WithEndpoint(config.OSSConf().OSS["Aliyun"].Endpoint),
 	)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	err = aliyunOss.Delete(bkt, objectFileName)
+	err = aliyunOss.Delete(oss.AdvertisementImageBucket, objectFileName)
 	if err != nil {
 		t.Fatal(err)
 	}
