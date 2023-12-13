@@ -92,15 +92,12 @@ func TestInsertRecordOfGood(t *testing.T) {
 	name := []byte("蒙牛酸酸乳")
 	vendor := []byte("汕头市蒙牛奶业有限公司")
 	contact := []byte("0756-88788371")
-	description := []byte("正规渠道、国产大牌子、大人小孩都爱")
 	req := &InsertRecordOfGoodReq{
 		UserId:      userId,
 		Name:        name,
 		BuyingPrice: 100,
-		Status:      0, // 为0时, 采用数据库设定的默认值
 		Vendor:      vendor,
 		Contact:     contact,
-		Description: description,
 	}
 	rsp := &InsertRecordOfGoodRsp{}
 	err := InsertRecordOfGood(context.Background(), req, rsp)
@@ -133,19 +130,15 @@ func TestUpdateRecordOfGood(t *testing.T) {
 	productId := int64(4)
 	name := []byte("product_name")
 	buyingPrice := 100
-	status := 1
 	vendor := []byte("product_vendor")
 	contact := []byte("product_contact")
-	description := []byte("product_description")
 	req := &UpdateRecordOfGoodReq{
 		Name:        name,
 		UserId:      userId,
-		Status:      status,
 		Vendor:      vendor,
 		Contact:     contact,
 		BuyingPrice: buyingPrice,
 		ProductId:   productId,
-		Description: description,
 	}
 	rsp := &UpdateRecordOfGoodRsp{}
 	err := UpdateRecordOfGood(context.Background(), req, rsp)
@@ -200,8 +193,6 @@ func TestInsertRecordOfAdvertisement(t *testing.T) {
 	image := []byte("urlfd在")
 	stock := 10
 	productId := int64(1)
-	status := 1
-	description := []byte("描述")
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
 
@@ -215,8 +206,6 @@ func TestInsertRecordOfAdvertisement(t *testing.T) {
 		PlaceOfOrigin: placeOfOrigin,
 		SellingPrice:  sellingPrice,
 		Stock:         stock,
-		Status:        status,
-		Description:   description,
 	}
 	rsp := &InsertRecordOfAdvertisementRsp{}
 	err := InsertRecordOfAdvertisement(context.Background(), req, rsp)
@@ -253,14 +242,13 @@ func TestUpdateRecordOfAdvertisement(t *testing.T) {
 	sellingPrice := 100
 	sellingPoints := [][]byte{[]byte("11"), []byte("大小")}
 	placeOfOrigin := []byte("地要工22")
-	url := []byte("urlfd在111")
+	image := []byte("urlfd在111")
 	stock := 10
 	productId := int64(1)
 	status := 1
-	description := []byte("描述 new")
 	req := &UpdateRecordOfAdvertisementReq{
 		Id:            id,
-		Url:           url,
+		Image:         image,
 		Stock:         stock,
 		Name:          name,
 		Title:         title,
@@ -269,7 +257,6 @@ func TestUpdateRecordOfAdvertisement(t *testing.T) {
 		SellingPrice:  sellingPrice,
 		SellingPoints: sellingPoints,
 		PlaceOfOrigin: placeOfOrigin,
-		Description:   description,
 		ProductId:     productId,
 	}
 	rsp := &UpdateRecordOfAdvertisementRsp{}

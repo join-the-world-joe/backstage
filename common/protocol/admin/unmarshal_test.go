@@ -74,3 +74,15 @@ func TestUnmarshalUpdateRecordOfAdvertisement(t *testing.T) {
 	}
 	t.Log(packet)
 }
+
+func TestUnmarshalThumnail(t *testing.T) {
+	//bytes := []byte{102, 100, 115, 97, 102, 49, 49}
+	bytes := []byte{102, 100, 115, 97, 102}
+	thumbnail := []byte{}
+
+	err := json.Unmarshal(bytes, &thumbnail)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log(string(thumbnail))
+}

@@ -23,12 +23,11 @@ func TestInsertModel1(t *testing.T) {
 		Title:         "健康的乳",
 		PlaceOFOrigin: "内蒙古",
 		Image:         "牛奶外观图片网址",
+		Thumbnail:     "缩略图1",
 		SellingPrice:  200,
 		Visible:       1,
-		Status:        0,
 		Stock:         5,
 		ProductId:     1,
-		Description:   "关联商品名称",
 	})
 	if err != nil {
 		t.Fatal(err)
@@ -44,12 +43,11 @@ func TestInsertModel2(t *testing.T) {
 		Title:         "健康的水",
 		PlaceOFOrigin: "四川",
 		Image:         "水瓶外观图片网址",
+		Thumbnail:     "缩略图2",
 		SellingPrice:  100,
 		Visible:       1,
-		Status:        0,
 		Stock:         5,
 		ProductId:     1,
-		Description:   "关联商品名称",
 	})
 	if err != nil {
 		t.Fatal(err)
@@ -65,12 +63,11 @@ func TestInsertModel3(t *testing.T) {
 		Title:         "自然光、无紫外线、无辐射",
 		PlaceOFOrigin: "吸杂",
 		Image:         "水瓶外观图片网址2",
+		Thumbnail:     "缩略图3",
 		SellingPrice:  300,
 		Visible:       1,
-		Status:        0,
 		Stock:         5,
 		ProductId:     1,
-		Description:   "关联商品名称3",
 	})
 	if err != nil {
 		t.Fatal(err)

@@ -104,3 +104,18 @@ func GetModelListByName(name string) ([]*Model, error) {
 	}
 	return modelList, nil
 }
+
+func GetIDListByIDList(idList []int64) ([]int64, error) {
+	outputIdList := []int64{}
+	var id int64
+	rows, err := mysql.Query(GetWhich(), GetDbName(), sqlSelectIdListByIDList(idList))
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	for rows.Next() {
+		rows.Scan(&id)
+		outputIdList = append(outputIdList, id)
+	}
+	return outputIdList, nil
+}

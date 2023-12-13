@@ -17,10 +17,8 @@ import (
 type RecordOfGood struct {
 	Id          int64  `json:"id"`
 	Name        string `json:"name"`
-	Status      int    `json:"status"`
 	Vendor      string `json:"vendor"`
 	Contact     string `json:"contact"`
-	Description string `json:"description"`
 	BuyingPrice int    `json:"buying_price"`
 	CreatedAt   string `json:"created_at"`
 	UpdatedAt   string `json:"updated_at"`
@@ -86,11 +84,9 @@ func FetchRecordsOfGood(ctx context.Context, req *admin.FetchRecordsOfGoodReq, r
 		output.RecordsOfGood[m.Id] = &RecordOfGood{
 			Id:          m.Id,
 			Name:        m.Name,
-			Status:      m.Status,
 			Vendor:      m.Vendor,
 			Contact:     m.Contact,
 			BuyingPrice: m.BuyingPrice,
-			Description: m.Description,
 			CreatedAt:   m.CreatedAt.Format(timestamp.YYMDHMS),
 			UpdatedAt:   m.UpdatedAt.Format(timestamp.YYMDHMS),
 		}

@@ -9,10 +9,10 @@ type UpdateRecordOfAdvertisementReq struct {
 	SellingPrice  int      `json:"selling_price"`
 	PlaceOfOrigin []byte   `json:"place_of_origin"`
 	SellingPoints [][]byte `json:"selling_points"`
-	Url           []byte   `json:"url"`
+	Image         []byte   `json:"image"`
+	Thumbnail     []byte   `json:"thumbnail"`
 	Status        int      `json:"status"`
 	Stock         int      `json:"stock"`
-	Description   []byte   `json:"description"`
 }
 
 type UpdateRecordOfAdvertisementRsp struct {

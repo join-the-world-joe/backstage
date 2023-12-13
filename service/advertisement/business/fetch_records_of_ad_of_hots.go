@@ -44,7 +44,6 @@ func FetchRecordsOfADOfHots(ctx context.Context, req *advertisement.FetchRecords
 					ProductId:         temp.ProductId,
 					Image:             temp.Image,
 					PlaceOfOrigin:     temp.PlaceOFOrigin,
-					Description:       temp.Description,
 					AdvertisementId:   temp.Id,
 					AdvertisementName: temp.Name,
 					SellingPoints:     getSellingPointByAdvertisementId(temp.Id, spml),

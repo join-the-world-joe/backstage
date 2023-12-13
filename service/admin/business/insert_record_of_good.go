@@ -27,10 +27,8 @@ func InsertRecordOfGood(ctx context.Context, req *admin.InsertRecordOfGoodReq, r
 	_, err := product.InsertModel(&product.Model{
 		Name:        string(req.Name),
 		Vendor:      string(req.Vendor),
-		Status:      req.Status,
 		Contact:     string(req.Contact),
 		BuyingPrice: req.BuyingPrice,
-		Description: string(req.Description),
 	})
 	if err != nil {
 		rsp.Code = code.DatabaseFailure

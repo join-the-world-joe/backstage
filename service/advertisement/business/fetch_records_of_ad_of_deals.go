@@ -44,14 +44,13 @@ func FetchRecordsOfADOfDeals(ctx context.Context, req *advertisement.FetchRecord
 					ProductId:         temp.ProductId,
 					Image:             temp.Image,
 					PlaceOfOrigin:     temp.PlaceOFOrigin,
-					Description:       temp.Description,
 					AdvertisementId:   temp.Id,
 					AdvertisementName: temp.Name,
 					SellingPoints:     getSellingPointByAdvertisementId(temp.Id, spml),
 				}
 				itemHash[temp.ProductId] = append(itemHash[temp.ProductId], item)
 				output.RecordsOfADOfDeals = append(output.RecordsOfADOfDeals, item)
-				if !slices.Contains(productIdList, temp.Id) {
+				if !slices.Contains(productIdList, temp.ProductId) {
 					productIdList = append(productIdList, temp.ProductId)
 				}
 			}

@@ -31,8 +31,12 @@ func UpdateRecordOfAdvertisement(ctx context.Context, req *admin.UpdateRecordOfA
 
 	fieldList := map[string]interface{}{}
 
-	if len(req.Url) > 0 {
-		fieldList["url"] = string(req.Url)
+	if len(req.Image) > 0 {
+		fieldList["image"] = string(req.Image)
+	}
+
+	if len(req.Thumbnail) > 0 {
+		fieldList["thumbnail"] = string(req.Thumbnail)
 	}
 
 	if len(req.Name) > 0 {
@@ -57,12 +61,6 @@ func UpdateRecordOfAdvertisement(ctx context.Context, req *admin.UpdateRecordOfA
 
 	if len(req.PlaceOfOrigin) > 0 {
 		fieldList["place_of_origin"] = string(req.PlaceOfOrigin)
-	}
-
-	fieldList["status"] = req.Status
-
-	if len(req.Description) > 0 {
-		fieldList["description"] = string(req.Description)
 	}
 
 	err := advertisement.UpdateFieldListById(req.Id, fieldList)

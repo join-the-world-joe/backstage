@@ -3,6 +3,7 @@ package business
 import (
 	"backstage/common/code"
 	"backstage/common/db/mysql/backend/ad_of_deals"
+	advertisement2 "backstage/common/db/mysql/backend/advertisement"
 	"backstage/common/db/mysql/backend/version_of_ad_of_deals"
 	"backstage/common/protocol/advertisement"
 	"backstage/global/log"
@@ -41,6 +42,14 @@ func FetchIdListOfADOfDeals(ctx context.Context, req *advertisement.FetchIdListO
 		if err != nil {
 			log.Error("json.Unmarshal failure, err: ", err)
 			rsp.Code = code.InternalError
+			return nil
+		}
+		//output.IdListOfADOfDeals = idList
+
+		idList, err = advertisement2.GetIDListByIDList(idList)
+		if err != nil {
+			log.Error("advertisement2.GetIDListByIDList failure, err: ", err)
+			rsp.Code = code.DatabaseFailure
 			return nil
 		}
 		output.IdListOfADOfDeals = idList

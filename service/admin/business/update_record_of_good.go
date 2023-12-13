@@ -36,18 +36,12 @@ func UpdateRecordOfGood(ctx context.Context, req *admin.UpdateRecordOfGoodReq, r
 		fieldList["buying_price"] = req.BuyingPrice
 	}
 
-	fieldList["status"] = req.Status
-
 	if len(req.Vendor) > 0 {
 		fieldList["vendor"] = string(req.Vendor)
 	}
 
 	if len(req.Contact) > 0 {
 		fieldList["contact"] = string(req.Contact)
-	}
-
-	if len(req.Description) > 0 {
-		fieldList["description"] = string(req.Description)
 	}
 
 	err := product.UpdateFieldListById(req.ProductId, fieldList)
