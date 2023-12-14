@@ -64,7 +64,9 @@ func TestFetchVersionOfADOfDeals(t *testing.T) {
 func TestFetchIdListOfADOfDeals(t *testing.T) {
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
-	req := &FetchIdListOfADOfDealsReq{}
+	req := &FetchIdListOfADOfDealsReq{
+		Behavior: 0,
+	}
 	rsp := &FetchIdListOfADOfDealsRsp{}
 	err := FetchIdListOfADOfDeals(context.Background(), req, rsp)
 	if err != nil {

@@ -3,6 +3,7 @@ package business
 type Item struct {
 	Title             string   `json:"title"`
 	Stock             int      `json:"stock"`
+	Status            int      `json:"status"`
 	SellingPrice      int      `json:"selling_price"`
 	ProductId         int64    `json:"product_id"`
 	ProductName       string   `json:"product_name"`

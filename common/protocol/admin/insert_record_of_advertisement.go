@@ -10,6 +10,7 @@ type InsertRecordOfAdvertisementReq struct {
 	Image         []byte   `json:"Image"`
 	Thumbnail     []byte   `json:"thumbnail"`
 	Stock         int      `json:"stock"`
+	Status        int      `json:"status"`
 	ProductId     int64    `json:"product_id"`
 	CreatedAt     string   `json:"created_at"`
 	UpdatedAt     string   `json:"updated_at"`

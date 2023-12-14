@@ -34,6 +34,7 @@ func InsertRecordOfAdvertisement(ctx context.Context, req *admin.InsertRecordOfA
 		PlaceOFOrigin: string(req.PlaceOfOrigin),
 		SellingPrice:  req.SellingPrice,
 		Stock:         req.Stock,
+		Status:        req.Status,
 		ProductId:     req.ProductId,
 		Thumbnail:     string(req.Thumbnail),
 	})

@@ -3,7 +3,8 @@ package advertisement
 import "encoding/json"
 
 type FetchIdListOfADOfDealsReq struct {
-	UserId int64
+	Behavior int `json:"behavior"` // 0 - with status, for client side; 1 - without status for backend
+	UserId   int64
 }
 
 type FetchIdListOfADOfDealsRsp struct {

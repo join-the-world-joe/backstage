@@ -20,14 +20,14 @@ func FetchRecordsOfADOfDeals(ctx context.Context, req *advertisement.FetchRecord
 	output := &OutputOfRecordsOfADOfDeals{}
 
 	if len(req.AdvertisementIdList) > 0 {
-		aml, err := advertisement2.GetModelListByIdList(req.AdvertisementIdList)
+		advertisementModelList, err := advertisement2.GetModelListByIdList(req.AdvertisementIdList)
 		if err != nil {
 			log.Error("advertisement2.GetModelListByIdList failure, err: ", err)
 			rsp.Code = code.DatabaseFailure
 			return nil
 		}
 
-		if len(aml) > 0 {
+		if len(advertisementModelList) > 0 {
 			spml, err := selling_point_of_advertisement.GetModelListByAdvertisementIdList(req.AdvertisementIdList)
 			if err != nil {
 				log.Error("selling_point_of_advertisement.GetModelListByAdvertisementIdList failure, err: ", err)
@@ -36,22 +36,23 @@ func FetchRecordsOfADOfDeals(ctx context.Context, req *advertisement.FetchRecord
 			}
 			itemHash := map[int64][]*Item{} // key: product_id
 			productIdList := []int64{}
-			for _, temp := range aml {
+			for _, ad := range advertisementModelList {
 				item := &Item{
-					Title:             temp.Title,
-					Stock:             temp.Stock,
-					SellingPrice:      temp.SellingPrice,
-					ProductId:         temp.ProductId,
-					Image:             temp.Image,
-					PlaceOfOrigin:     temp.PlaceOFOrigin,
-					AdvertisementId:   temp.Id,
-					AdvertisementName: temp.Name,
-					SellingPoints:     getSellingPointByAdvertisementId(temp.Id, spml),
+					Title:             ad.Title,
+					Stock:             ad.Stock,
+					Status:            ad.Status,
+					SellingPrice:      ad.SellingPrice,
+					ProductId:         ad.ProductId,
+					Image:             ad.Image,
+					PlaceOfOrigin:     ad.PlaceOFOrigin,
+					AdvertisementId:   ad.Id,
+					AdvertisementName: ad.Name,
+					SellingPoints:     getSellingPointByAdvertisementId(ad.Id, spml),
 				}
-				itemHash[temp.ProductId] = append(itemHash[temp.ProductId], item)
+				itemHash[ad.ProductId] = append(itemHash[ad.ProductId], item)
 				output.RecordsOfADOfDeals = append(output.RecordsOfADOfDeals, item)
-				if !slices.Contains(productIdList, temp.ProductId) {
-					productIdList = append(productIdList, temp.ProductId)
+				if !slices.Contains(productIdList, ad.ProductId) {
+					productIdList = append(productIdList, ad.ProductId)
 				}
 			}
 			pml, err := product.GetModelListByIdList(productIdList)

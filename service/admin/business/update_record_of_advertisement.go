@@ -55,6 +55,8 @@ func UpdateRecordOfAdvertisement(ctx context.Context, req *admin.UpdateRecordOfA
 		fieldList["product_id"] = req.ProductId
 	}
 
+	fieldList["status"] = req.Status
+
 	if req.SellingPrice > 0 {
 		fieldList["selling_price"] = req.SellingPrice
 	}

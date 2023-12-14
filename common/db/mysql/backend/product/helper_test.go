@@ -23,10 +23,8 @@ func TestInsert(t *testing.T) {
 		Name:        "蒙牛酸酸乳",
 		BuyingPrice: 100,
 		Visible:     1,
-		Status:      0, // 为0时, 采用数据库设定的默认值
 		Vendor:      "汕头市蒙牛奶业有限公司",
 		Contact:     "0756-88788371",
-		Description: "正规渠道、国产大牌子、大人小孩都爱",
 	})
 	if err != nil {
 		t.Fatal(err)
@@ -35,19 +33,15 @@ func TestInsert(t *testing.T) {
 		Name:        "恒大冰泉",
 		BuyingPrice: 100,
 		Visible:     1,
-		Status:      0,
 		Vendor:      "珠海市水之源有限公司",
 		Contact:     "0878-88788371",
-		Description: "二级代理、正归渠道、物流优势",
 	})
 	_, err = InsertModel(&Model{
 		Name:        "橡胶袋子",
 		BuyingPrice: 100,
 		Visible:     1,
-		Status:      0,
 		Vendor:      "天津市万国集团有限公司",
 		Contact:     "020-97718232",
-		Description: "一流服务、二流产品、进货便宜",
 	})
 	if err != nil {
 		t.Fatal(err)

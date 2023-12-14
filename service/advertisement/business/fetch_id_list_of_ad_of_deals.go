@@ -46,12 +46,22 @@ func FetchIdListOfADOfDeals(ctx context.Context, req *advertisement.FetchIdListO
 		}
 		//output.IdListOfADOfDeals = idList
 
-		idList, err = advertisement2.GetIDListByIDList(idList)
-		if err != nil {
-			log.Error("advertisement2.GetIDListByIDList failure, err: ", err)
-			rsp.Code = code.DatabaseFailure
-			return nil
+		if req.Behavior > 0 {
+			idList, err = advertisement2.GetIDListByIDListWithoutStatus(idList)
+			if err != nil {
+				log.Error("advertisement2.GetIDListByIDListWithoutStatus failure, err: ", err)
+				rsp.Code = code.DatabaseFailure
+				return nil
+			}
+		} else {
+			idList, err = advertisement2.GetIDListByIDListWithStatus(idList)
+			if err != nil {
+				log.Error("advertisement2.GetIDListByIDListWithStatus failure, err: ", err)
+				rsp.Code = code.DatabaseFailure
+				return nil
+			}
 		}
+
 		output.IdListOfADOfDeals = idList
 	}
 

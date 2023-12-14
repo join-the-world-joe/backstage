@@ -25,6 +25,7 @@ type RecordOfAdvertisement struct {
 	Thumbnail     string   `json:"thumbnail"`
 	Image         string   `json:"image"`
 	Stock         int      `json:"stock"`
+	Status        int      `json:"status"`
 	ProductId     int64    `json:"product_id"`
 	BuyingPrice   int      `json:"buying_price"`
 	CreatedAt     string   `json:"created_at"`
@@ -107,6 +108,7 @@ func FetchRecordsOfAdvertisement(ctx context.Context, req *admin.FetchRecordsOfA
 			Image:         m.Image,
 			Thumbnail:     m.Thumbnail,
 			Stock:         m.Stock,
+			Status:        m.Status,
 			ProductId:     m.ProductId,
 			CreatedAt:     m.CreatedAt.Format(timestamp.YYMDHMS),
 			UpdatedAt:     m.UpdatedAt.Format(timestamp.YYMDHMS),
