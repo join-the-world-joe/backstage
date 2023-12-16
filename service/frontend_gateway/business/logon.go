@@ -78,6 +78,8 @@ func Logon(c *gin.Context, conn *websocket.Conn) (*payload.Session, error) {
 			} else {
 				log.Error("Logon._Login failure, err: ", err)
 			}
+		} else if ma == major.Account && mi == account.RegisterReq_ {
+			register(req, conn)
 		} else if ma == major.SMS && mi == sms.SendVerificationCodeReq_ {
 			sendSMS(req, conn)
 		} else if ma == major.FrontendGateway && mi == frontend_gateway.FetchRateLimitingConfigReq_ {
@@ -252,6 +254,50 @@ func _Login(req *payload.PacketClient, conn *websocket.Conn) (*payload.Session, 
 	session.SetUserId(businessRsp.UserId)
 
 	return session, nil
+}
+
+func register(req *payload.PacketClient, conn *websocket.Conn) {
+	businessReq := &account.RegisterReq{}
+	err := json.Unmarshal(req.GetBody(), businessReq)
+	if err != nil {
+		log.ErrorF("register.json.Unmarshal failure, err: %v",
+			err.Error(),
+		)
+		return
+	}
+	businessRsp := &account.RegisterRsp{}
+	err = account.Register(context.Background(), businessReq, businessRsp)
+	if err != nil {
+		log.ErrorF("account.Register failure, err: %v",
+			err.Error(),
+		)
+		return
+	}
+	bytes, err := json.Marshal(businessRsp)
+	if err != nil {
+		if err != nil {
+			log.ErrorF("register.json.Marshal failure, err: %v",
+				err.Error(),
+			)
+			return
+		}
+	}
+
+	if err = _Downstream(
+		&payload.PacketClient{
+			Header: &payload.Header{
+				Major: major.Account,
+				Minor: account.RegisterRsp_,
+			},
+			Body: bytes,
+		},
+		conn,
+	); err != nil {
+		log.ErrorF("register._Downstream failure, err: %v",
+			err.Error(),
+		)
+		return
+	}
 }
 
 func fetchRateLimitingConfig(req *payload.PacketClient, conn *websocket.Conn) {

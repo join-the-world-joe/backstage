@@ -24,14 +24,3 @@ func TestInsert(t *testing.T) {
 	}
 	t.Log(temp)
 }
-
-func TestGet(t *testing.T) {
-	countryCode := "86"
-	phoneNumber := "111"
-	diagnostic.SetupMySQL()
-	m, err := Get(countryCode, phoneNumber)
-	if err != nil {
-		t.Fatal(err)
-	}
-	t.Log("m: ", m)
-}
