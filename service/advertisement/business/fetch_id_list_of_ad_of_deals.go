@@ -44,8 +44,6 @@ func FetchIdListOfADOfDeals(ctx context.Context, req *advertisement.FetchIdListO
 			rsp.Code = code.InternalError
 			return nil
 		}
-		//output.IdListOfADOfDeals = idList
-
 		if req.Behavior > 0 {
 			idList, err = advertisement2.GetIDListByIDListWithoutStatus(idList)
 			if err != nil {
@@ -61,7 +59,6 @@ func FetchIdListOfADOfDeals(ctx context.Context, req *advertisement.FetchIdListO
 				return nil
 			}
 		}
-
 		output.IdListOfADOfDeals = idList
 	}
 

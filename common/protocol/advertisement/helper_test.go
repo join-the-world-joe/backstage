@@ -22,7 +22,10 @@ func TestFetchVersionOfADOfCarousel(t *testing.T) {
 func TestFetchIdListOfADOfCarousel(t *testing.T) {
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
-	req := &FetchIdListOfADOfCarouselReq{}
+	userId := int64(1)
+	req := &FetchIdListOfADOfCarouselReq{
+		UserId: userId,
+	}
 	rsp := &FetchIdListOfADOfCarouselRsp{}
 	err := FetchIdListOfADOfCarousel(context.Background(), req, rsp)
 	if err != nil {

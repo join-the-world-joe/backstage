@@ -6,11 +6,18 @@ import (
 	"backstage/common/db/mysql/server/user"
 	"backstage/common/protocol/account"
 	"backstage/global/log"
+	"backstage/validator"
 	"context"
 	"github.com/google/uuid"
 )
 
 func Register(ctx context.Context, req *account.RegisterReq, rsp *account.RegisterRsp) error {
+	// check if mobile valid
+	ok := validator.IsMobileValid(req.CountryCode, req.PhoneNumber)
+	if !ok {
+		rsp.Code = code.InvalidDataType
+		return nil
+	}
 	// check if sms verification valid
 	err := verification_code.Check(verification_code.Register, req.CountryCode, req.PhoneNumber, req.VerificationCode)
 	if err != nil {

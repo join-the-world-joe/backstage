@@ -106,7 +106,6 @@ func FetchRecordsOfAdvertisement(ctx context.Context, req *admin.FetchRecordsOfA
 			PlaceOfOrigin: m.PlaceOFOrigin,
 			SellingPoints: points,
 			Image:         m.Image,
-			Thumbnail:     m.Thumbnail,
 			Stock:         m.Stock,
 			Status:        m.Status,
 			ProductId:     m.ProductId,

@@ -36,7 +36,6 @@ func InsertRecordOfAdvertisement(ctx context.Context, req *admin.InsertRecordOfA
 		Stock:         req.Stock,
 		Status:        req.Status,
 		ProductId:     req.ProductId,
-		Thumbnail:     string(req.Thumbnail),
 	})
 	if err != nil {
 		rsp.Code = code.DatabaseFailure

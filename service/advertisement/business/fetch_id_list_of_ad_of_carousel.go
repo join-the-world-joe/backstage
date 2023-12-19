@@ -3,6 +3,7 @@ package business
 import (
 	"backstage/common/code"
 	"backstage/common/db/mysql/backend/ad_of_carousel"
+	advertisement2 "backstage/common/db/mysql/backend/advertisement"
 	"backstage/common/db/mysql/backend/version_of_ad_of_carousel"
 	"backstage/common/protocol/advertisement"
 	"backstage/global/log"
@@ -41,6 +42,21 @@ func FetchIdListOfADOfCarousel(ctx context.Context, req *advertisement.FetchIdLi
 			log.Error("json.Unmarshal failure, err: ", err)
 			rsp.Code = code.InternalError
 			return nil
+		}
+		if req.Behavior > 0 {
+			idList, err = advertisement2.GetIDListByIDListWithoutStatus(idList)
+			if err != nil {
+				log.Error("advertisement2.GetIDListByIDListWithoutStatus failure, err: ", err)
+				rsp.Code = code.DatabaseFailure
+				return nil
+			}
+		} else {
+			idList, err = advertisement2.GetIDListByIDListWithStatus(idList)
+			if err != nil {
+				log.Error("advertisement2.GetIDListByIDListWithStatus failure, err: ", err)
+				rsp.Code = code.DatabaseFailure
+				return nil
+			}
 		}
 		output.IdListOfADOfCarousel = idList
 	}

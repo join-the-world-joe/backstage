@@ -37,7 +37,7 @@ func (p *_crypto) Name() string {
 func (p *_crypto) Encrypt(secret []byte) (cipherText []byte, err error) {
 	defer func() {
 		if p := recover(); p != nil {
-			err = fmt.Errorf("painc, secret: %v", secret)
+			err = fmt.Errorf("panic, secret: %v", secret)
 			if e, ok := p.(error); ok {
 				err = e
 			}
@@ -49,7 +49,7 @@ func (p *_crypto) Encrypt(secret []byte) (cipherText []byte, err error) {
 func (p *_crypto) Decrypt(cipherText []byte) (plainText []byte, err error) {
 	defer func() {
 		if p := recover(); p != nil {
-			err = fmt.Errorf("painc, cipherText: %v", cipherText)
+			err = fmt.Errorf("panic, cipherText: %v", cipherText)
 			if e, ok := p.(error); ok {
 				err = e
 			}

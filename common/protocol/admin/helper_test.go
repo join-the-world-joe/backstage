@@ -271,7 +271,7 @@ func TestInsertRecordOfADOfCarousel(t *testing.T) {
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
 	userId := int64(1)
-	advertisementIdList := []int64{1, 2, 3}
+	advertisementIdList := []int64{1, 2, 3, 4, 5, 6}
 	req := &InsertRecordOfADOfCarouselReq{
 		UserId:              userId,
 		AdvertisementIdList: advertisementIdList,

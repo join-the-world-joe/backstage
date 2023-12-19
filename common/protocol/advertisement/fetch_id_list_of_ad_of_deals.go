@@ -3,7 +3,7 @@ package advertisement
 import "encoding/json"
 
 type FetchIdListOfADOfDealsReq struct {
-	Behavior int `json:"behavior"` // 0 - with status, for client side; 1 - without status for backend
+	Behavior int `json:"behavior"` // 0 - with status concern(ignore zero status records), for client side; 1 - without status concern for backend
 	UserId   int64
 }
 

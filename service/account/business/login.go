@@ -9,6 +9,7 @@ import (
 	"backstage/global/crypto"
 	"backstage/global/log"
 	google_authentictor "backstage/utils/google_authenticator"
+	"backstage/validator"
 	"context"
 	"encoding/json"
 	"github.com/spf13/cast"
@@ -17,6 +18,12 @@ import (
 
 func Login(ctx context.Context, req *account.LoginReq, rsp *account.LoginRsp) error {
 	if req.Behavior == 2 { // mobile
+		// check if mobile valid
+		ok := validator.IsMobileValid(req.CountryCode, req.PhoneNumber)
+		if !ok {
+			rsp.Code = code.InvalidDataType
+			return nil
+		}
 		// check if verification code valid
 		err := verification_code.Check(verification_code.Login, req.CountryCode, req.PhoneNumber, cast.ToString(req.VerificationCode))
 		if err != nil {

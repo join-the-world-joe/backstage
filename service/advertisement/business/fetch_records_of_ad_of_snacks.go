@@ -46,6 +46,7 @@ func FetchRecordsOfADOfSnacks(ctx context.Context, req *advertisement.FetchRecor
 					PlaceOfOrigin:     temp.PlaceOFOrigin,
 					AdvertisementId:   temp.Id,
 					AdvertisementName: temp.Name,
+					Status:            temp.Status,
 					SellingPoints:     getSellingPointByAdvertisementId(temp.Id, spml),
 				}
 				itemHash[temp.ProductId] = append(itemHash[temp.ProductId], item)
