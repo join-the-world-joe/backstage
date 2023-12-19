@@ -1,4 +1,4 @@
-package version_of_ad_of_hots
+package version_of_ad_of_camping
 
 import "time"
 

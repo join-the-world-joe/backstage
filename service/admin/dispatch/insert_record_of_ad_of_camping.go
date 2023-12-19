@@ -12,9 +12,9 @@ import (
 	"encoding/json"
 )
 
-func insertRecordOfADOfHots(packet *payload.PacketInternal) {
-	req := &admin.InsertRecordOfADOfHotsReq{}
-	rsp := &admin.InsertRecordOfADOfHotsRsp{}
+func insertRecordOfADOfCamping(packet *payload.PacketInternal) {
+	req := &admin.InsertRecordOfADOfCampingReq{}
+	rsp := &admin.InsertRecordOfADOfCampingRsp{}
 
 	err := json.Unmarshal(packet.GetRequest().GetBody(), req)
 	if err != nil {
@@ -24,9 +24,9 @@ func insertRecordOfADOfHots(packet *payload.PacketInternal) {
 
 	req.UserId = packet.GetSession().GetUserId()
 
-	err = business.InsertRecordOfADOfHots(context.Background(), req, rsp)
+	err = business.InsertRecordOfADOfCamping(context.Background(), req, rsp)
 	if err != nil {
-		log.Error("business.InsertRecordOfADOfHots fail, err: ", err.Error())
+		log.Error("business.InsertRecordOfADOfCamping fail, err: ", err.Error())
 		return
 	}
 
@@ -39,7 +39,7 @@ func insertRecordOfADOfHots(packet *payload.PacketInternal) {
 	packet.Response = &payload.PacketClient{
 		Header: &payload.Header{
 			Major: major.Admin,
-			Minor: admin.InsertRecordOfADOfHotsRsp_,
+			Minor: admin.InsertRecordOfADOfCampingRsp_,
 		},
 		Body: bytes,
 	}

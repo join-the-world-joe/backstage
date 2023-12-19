@@ -45,16 +45,16 @@ func (p *Async) FetchRecordsOfADOfDeals(ctx context.Context, req *advertisement.
 }
 
 // Deals
-func (p *Async) FetchVersionOfADOfHots(ctx context.Context, req *advertisement.FetchVersionOfADOfHotsReq, rsp *advertisement.FetchVersionOfADOfHotsRsp) error {
-	return business.FetchVersionOfADOfHots(ctx, req, rsp)
+func (p *Async) FetchVersionOfADOfCamping(ctx context.Context, req *advertisement.FetchVersionOfADOfCampingReq, rsp *advertisement.FetchVersionOfADOfCampingRsp) error {
+	return business.FetchVersionOfADOfCamping(ctx, req, rsp)
 }
 
-func (p *Async) FetchIdListOfADOfHots(ctx context.Context, req *advertisement.FetchIdListOfADOfHotsReq, rsp *advertisement.FetchIdListOfADOfHotsRsp) error {
-	return business.FetchIdListOfADOfHots(ctx, req, rsp)
+func (p *Async) FetchIdListOfADOfCamping(ctx context.Context, req *advertisement.FetchIdListOfADOfCampingReq, rsp *advertisement.FetchIdListOfADOfCampingRsp) error {
+	return business.FetchIdListOfADOfCamping(ctx, req, rsp)
 }
 
-func (p *Async) FetchRecordsOfADOfHots(ctx context.Context, req *advertisement.FetchRecordsOfADOfHotsReq, rsp *advertisement.FetchRecordsOfADOfHotsRsp) error {
-	return business.FetchRecordsOfADOfHots(ctx, req, rsp)
+func (p *Async) FetchRecordsOfADOfCamping(ctx context.Context, req *advertisement.FetchRecordsOfADOfCampingReq, rsp *advertisement.FetchRecordsOfADOfCampingRsp) error {
+	return business.FetchRecordsOfADOfCamping(ctx, req, rsp)
 }
 
 // Barbecue
@@ -82,41 +82,3 @@ func (p *Async) FetchIdListOfADOfSnacks(ctx context.Context, req *advertisement.
 func (p *Async) FetchRecordsOfADOfSnacks(ctx context.Context, req *advertisement.FetchRecordsOfADOfSnacksReq, rsp *advertisement.FetchRecordsOfADOfSnacksRsp) error {
 	return business.FetchRecordsOfADOfSnacks(ctx, req, rsp)
 }
-
-//func (p *Async) FetchADOfCarousel(ctx context.Context, req *advertisement.FetchADOfCarouselReq, rsp *advertisement.FetchADOfCarouselRsp) error {
-//	return business.FetchADOfCarousel(ctx, req, rsp)
-//}
-//
-
-//
-//func (p *Async) FetchADOfDealsOfToday(ctx context.Context, req *advertisement.FetchADOfDealsOfTodayReq, rsp *advertisement.FetchADOfDealsOfTodayRsp) error {
-//	return business.FetchADOfDealsOfToday(ctx, req, rsp)
-//}
-//
-//func (p *Async) FetchVersionOfADOfDealsOfToday(ctx context.Context, req *advertisement.FetchVersionOfADOfDealsOfTodayReq, rsp *advertisement.FetchVersionOfADOfDealsOfTodayRsp) error {
-//	return business.FetchVersionOfADOfDealsOfToday(ctx, req, rsp)
-//}
-//
-//func (p *Async) FetchADOfHotDeals(ctx context.Context, req *advertisement.FetchADOfHotDealsReq, rsp *advertisement.FetchADOfHotDealsRsp) error {
-//	return business.FetchADOfHotDeals(ctx, req, rsp)
-//}
-//
-//func (p *Async) FetchVersionOfADOfHotDeals(ctx context.Context, req *advertisement.FetchVersionOfADOfHotDealsReq, rsp *advertisement.FetchVersionOfADOfHotDealsRsp) error {
-//	return business.FetchVersionOfADOfHotDeals(ctx, req, rsp)
-//}
-//
-//func (p *Async) FetchADOfBBQProducts(ctx context.Context, req *advertisement.FetchADOfBBQProductsReq, rsp *advertisement.FetchADOfBBQProductsRsp) error {
-//	return business.FetchADOfBBQProducts(ctx, req, rsp)
-//}
-//
-//func (p *Async) FetchVersionOfADOfBBQProducts(ctx context.Context, req *advertisement.FetchVersionOfADOfBBQProductsReq, rsp *advertisement.FetchVersionOfADOfBBQProductsRsp) error {
-//	return business.FetchVersionOfADOfBBQProducts(ctx, req, rsp)
-//}
-//
-//func (p *Async) FetchADOfSnackProducts(ctx context.Context, req *advertisement.FetchADOfSnackProductsReq, rsp *advertisement.FetchADOfSnackProductsRsp) error {
-//	return business.FetchADOfSnackProducts(ctx, req, rsp)
-//}
-//
-//func (p *Async) FetchVersionOfADOfSnackProducts(ctx context.Context, req *advertisement.FetchVersionOfADOfSnackProductsReq, rsp *advertisement.FetchVersionOfADOfSnackProductsRsp) error {
-//	return business.FetchVersionOfADOfSnackProducts(ctx, req, rsp)
-//}

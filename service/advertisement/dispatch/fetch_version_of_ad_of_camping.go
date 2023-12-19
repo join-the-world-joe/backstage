@@ -12,9 +12,9 @@ import (
 	"encoding/json"
 )
 
-func fetchRecordsOfADOfHots(packet *payload.PacketInternal) {
-	req := &advertisement.FetchRecordsOfADOfHotsReq{}
-	rsp := &advertisement.FetchRecordsOfADOfHotsRsp{}
+func fetchVersionOfADOfCamping(packet *payload.PacketInternal) {
+	req := &advertisement.FetchVersionOfADOfCampingReq{}
+	rsp := &advertisement.FetchVersionOfADOfCampingRsp{}
 
 	err := json.Unmarshal(packet.GetRequest().GetBody(), req)
 	if err != nil {
@@ -24,9 +24,9 @@ func fetchRecordsOfADOfHots(packet *payload.PacketInternal) {
 
 	req.UserId = packet.GetSession().GetUserId()
 
-	err = business.FetchRecordsOfADOfHots(context.Background(), req, rsp)
+	err = business.FetchVersionOfADOfCamping(context.Background(), req, rsp)
 	if err != nil {
-		log.Error("business.FetchRecordsOfADOfDeals failure, err: ", err.Error())
+		log.Error("business.FetchVersionOfADOfCamping failure, err: ", err.Error())
 		return
 	}
 
@@ -39,7 +39,7 @@ func fetchRecordsOfADOfHots(packet *payload.PacketInternal) {
 	packet.Response = &payload.PacketClient{
 		Header: &payload.Header{
 			Major: major.Advertisement,
-			Minor: advertisement.FetchRecordsOfADOfHotsRsp_,
+			Minor: advertisement.FetchVersionOfADOfCampingRsp_,
 		},
 		Body: bytes,
 	}

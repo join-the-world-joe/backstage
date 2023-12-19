@@ -1,4 +1,4 @@
-package ad_of_hots
+package ad_of_camping
 
 func GetWhich() string {
 	return "test"
@@ -9,7 +9,7 @@ func GetDbName() string {
 }
 
 func GetTableName() string {
-	return "ad_of_hots"
+	return "ad_of_camping"
 }
 
 func GetTableNameList() []string {

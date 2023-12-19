@@ -12,9 +12,9 @@ import (
 	"encoding/json"
 )
 
-func removeOutdatedRecordsOfADOfHots(packet *payload.PacketInternal) {
-	req := &admin.RemoveOutdatedRecordsOfADOfHotsReq{}
-	rsp := &admin.RemoveOutdatedRecordsOfADOfHotsRsp{}
+func removeOutdatedRecordsOfADOfCamping(packet *payload.PacketInternal) {
+	req := &admin.RemoveOutdatedRecordsOfADOfCampingReq{}
+	rsp := &admin.RemoveOutdatedRecordsOfADOfCampingRsp{}
 
 	err := json.Unmarshal(packet.GetRequest().GetBody(), req)
 	if err != nil {
@@ -24,9 +24,9 @@ func removeOutdatedRecordsOfADOfHots(packet *payload.PacketInternal) {
 
 	req.UserId = packet.GetSession().GetUserId()
 
-	err = business.RemoveOutdatedRecordsOfADOfHots(context.Background(), req, rsp)
+	err = business.RemoveOutdatedRecordsOfADOfCamping(context.Background(), req, rsp)
 	if err != nil {
-		log.Error("business.RemoveOutdatedRecordsOfADOfHots failure, err: ", err.Error())
+		log.Error("business.RemoveOutdatedRecordsOfADOfCamping failure, err: ", err.Error())
 		return
 	}
 
@@ -39,7 +39,7 @@ func removeOutdatedRecordsOfADOfHots(packet *payload.PacketInternal) {
 	packet.Response = &payload.PacketClient{
 		Header: &payload.Header{
 			Major: major.Admin,
-			Minor: admin.RemoveOutdatedRecordsOfADOfHotsRsp_,
+			Minor: admin.RemoveOutdatedRecordsOfADOfCampingRsp_,
 		},
 		Body: bytes,
 	}

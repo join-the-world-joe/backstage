@@ -1,4 +1,4 @@
-package version_of_ad_of_hots
+package version_of_ad_of_camping
 
 import (
 	"backstage/global/mysql"
@@ -12,10 +12,10 @@ func InsertModel(model *Model) (*Model, error) {
 	}
 	model, ok := temp.(*Model)
 	if !ok {
-		return nil, fmt.Errorf("version_of_ad_of_hot_deals.insert failure, convert to Model fail")
+		return nil, fmt.Errorf("version_of_ad_of_camping.insert failure, convert to Model fail")
 	}
 	if model.Id == 0 {
-		return nil, fmt.Errorf("version_of_ad_of_hot_deals.insert failure, model.Id == 0")
+		return nil, fmt.Errorf("version_of_ad_of_camping.insert failure, model.Id == 0")
 	}
 	return model, nil
 }

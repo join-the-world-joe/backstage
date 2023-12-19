@@ -1,4 +1,4 @@
-package ad_of_hots
+package ad_of_camping
 
 import "fmt"
 

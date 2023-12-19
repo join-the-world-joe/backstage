@@ -90,12 +90,12 @@ func (p *Async) RemoveOutdatedRecordsOfADOfDeals(ctx context.Context, req *admin
 	return business.RemoveOutdatedRecordsOfADOfDeals(ctx, req, rsp)
 }
 
-func (p *Async) InsertRecordOfADOfHots(ctx context.Context, req *admin.InsertRecordOfADOfHotsReq, rsp *admin.InsertRecordOfADOfHotsRsp) error {
-	return business.InsertRecordOfADOfHots(ctx, req, rsp)
+func (p *Async) InsertRecordOfADOfCamping(ctx context.Context, req *admin.InsertRecordOfADOfCampingReq, rsp *admin.InsertRecordOfADOfCampingRsp) error {
+	return business.InsertRecordOfADOfCamping(ctx, req, rsp)
 }
 
-func (p *Async) RemoveOutdatedRecordsOfADOfHots(ctx context.Context, req *admin.RemoveOutdatedRecordsOfADOfHotsReq, rsp *admin.RemoveOutdatedRecordsOfADOfHotsRsp) error {
-	return business.RemoveOutdatedRecordsOfADOfHots(ctx, req, rsp)
+func (p *Async) RemoveOutdatedRecordsOfADOfCamping(ctx context.Context, req *admin.RemoveOutdatedRecordsOfADOfCampingReq, rsp *admin.RemoveOutdatedRecordsOfADOfCampingRsp) error {
+	return business.RemoveOutdatedRecordsOfADOfCamping(ctx, req, rsp)
 }
 
 func (p *Async) InsertRecordOfADOfSnacks(ctx context.Context, req *admin.InsertRecordOfADOfSnacksReq, rsp *admin.InsertRecordOfADOfSnacksRsp) error {

@@ -63,10 +63,10 @@ func Dispatch(packet *payload.PacketInternal) {
 	case admin.RemoveOutdatedRecordsOfADOfBarbecueReq_:
 		removeOutdatedRecordsOfADOfBarbecue(packet)
 
-	case admin.InsertRecordOfADOfHotsReq_:
-		insertRecordOfADOfCarousel(packet)
-	case admin.RemoveOutdatedRecordsOfADOfHotsReq_:
-		removeOutdatedRecordsOfADOfHots(packet)
+	case admin.InsertRecordOfADOfCampingReq_:
+		insertRecordOfADOfCamping(packet)
+	case admin.RemoveOutdatedRecordsOfADOfCampingReq_:
+		removeOutdatedRecordsOfADOfCamping(packet)
 
 	case admin.InsertRecordOfADOfSnacksReq_:
 		insertRecordOfADOfSnacks(packet)

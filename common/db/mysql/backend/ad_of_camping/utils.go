@@ -1,4 +1,4 @@
-package ad_of_hots
+package ad_of_camping
 
 import (
 	"backstage/global/mysql"
@@ -59,6 +59,6 @@ func GetModelByVersion(version int64) (*Model, error) {
 	return m, nil
 }
 
-func RemoveOutdatedRecordsOfADOfHots(version int64) error {
+func RemoveOutdatedRecordsOfADOfCamping(version int64) error {
 	return mysql.Delete(GetWhich(), GetDbName(), sqlDeleteOutdatedRecords(version))
 }

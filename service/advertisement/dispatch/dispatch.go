@@ -20,12 +20,12 @@ func Dispatch(packet *payload.PacketInternal) {
 		fetchIdListOfADOfDeals(packet)
 	case advertisement.FetchRecordsOfADOfDealsReq_:
 		fetchRecordsOfADOfDeals(packet)
-	case advertisement.FetchVersionOfADOfHotsReq_:
-		fetchVersionOfADOfHots(packet)
-	case advertisement.FetchIdListOfADOfHotsReq_:
-		fetchIdListOfADOfHots(packet)
-	case advertisement.FetchRecordsOfADOfHotsReq_:
-		fetchRecordsOfADOfHots(packet)
+	case advertisement.FetchVersionOfADOfCampingReq_:
+		fetchVersionOfADOfCamping(packet)
+	case advertisement.FetchIdListOfADOfCampingReq_:
+		fetchIdListOfADOfCamping(packet)
+	case advertisement.FetchRecordsOfADOfCampingReq_:
+		fetchRecordsOfADOfCamping(packet)
 	case advertisement.FetchVersionOfADOfBarbecueReq_:
 		fetchVersionOfADOfBarbecue(packet)
 	case advertisement.FetchIdListOfADOfBarbecueReq_:

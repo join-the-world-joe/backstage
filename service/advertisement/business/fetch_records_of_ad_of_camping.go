@@ -12,12 +12,12 @@ import (
 	"golang.org/x/exp/slices"
 )
 
-type OutputOfRecordsOfADOfHots struct {
-	RecordsOfADOfHots []*Item `json:"records_of_ad_of_hots"`
+type OutputOfRecordsOfADOfCamping struct {
+	RecordsOfADOfCamping []*Item `json:"records_of_ad_of_camping"`
 }
 
-func FetchRecordsOfADOfHots(ctx context.Context, req *advertisement.FetchRecordsOfADOfHotsReq, rsp *advertisement.FetchRecordsOfADOfHotsRsp) error {
-	output := &OutputOfRecordsOfADOfHots{}
+func FetchRecordsOfADOfCamping(ctx context.Context, req *advertisement.FetchRecordsOfADOfCampingReq, rsp *advertisement.FetchRecordsOfADOfCampingRsp) error {
+	output := &OutputOfRecordsOfADOfCamping{}
 
 	if len(req.AdvertisementIdList) > 0 {
 		aml, err := advertisement2.GetModelListByIdList(req.AdvertisementIdList)
@@ -50,7 +50,7 @@ func FetchRecordsOfADOfHots(ctx context.Context, req *advertisement.FetchRecords
 					SellingPoints:     getSellingPointByAdvertisementId(temp.Id, spml),
 				}
 				itemHash[temp.ProductId] = append(itemHash[temp.ProductId], item)
-				output.RecordsOfADOfHots = append(output.RecordsOfADOfHots, item)
+				output.RecordsOfADOfCamping = append(output.RecordsOfADOfCamping, item)
 				if !slices.Contains(productIdList, temp.Id) {
 					productIdList = append(productIdList, temp.ProductId)
 				}

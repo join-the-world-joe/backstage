@@ -360,31 +360,31 @@ func TestRemoveOutdatedRecordsOfADOfDeals(t *testing.T) {
 	t.Log("Code: ", rsp.Code)
 }
 
-func TestInsertRecordOfADOfHots(t *testing.T) {
+func TestInsertRecordOfADOfCamping(t *testing.T) {
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
 	userId := int64(1)
 	advertisementIdList := []int64{1, 2, 3}
-	req := &InsertRecordOfADOfHotsReq{
+	req := &InsertRecordOfADOfCampingReq{
 		UserId:              userId,
 		AdvertisementIdList: advertisementIdList,
 	}
-	rsp := &InsertRecordOfADOfHotsRsp{}
-	err := InsertRecordOfADOfHots(context.Background(), req, rsp)
+	rsp := &InsertRecordOfADOfCampingRsp{}
+	err := InsertRecordOfADOfCamping(context.Background(), req, rsp)
 	if err != nil {
 		t.Fatal(err)
 	}
 	t.Log("rsp.Code: ", rsp.Code)
 }
 
-func TestRemoveOutdatedRecordsOfADOfHots(t *testing.T) {
+func TestRemoveOutdatedRecordsOfADOfCamping(t *testing.T) {
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
-	req := &RemoveOutdatedRecordsOfADOfHotsReq{
+	req := &RemoveOutdatedRecordsOfADOfCampingReq{
 		UserId: 1,
 	}
-	rsp := &RemoveOutdatedRecordsOfADOfHotsRsp{}
-	err := RemoveOutdatedRecordsOfADOfHots(context.Background(), req, rsp)
+	rsp := &RemoveOutdatedRecordsOfADOfCampingRsp{}
+	err := RemoveOutdatedRecordsOfADOfCamping(context.Background(), req, rsp)
 	if err != nil {
 		t.Fatal(err)
 	}

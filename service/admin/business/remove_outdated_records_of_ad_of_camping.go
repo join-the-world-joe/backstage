@@ -1,0 +1,35 @@
+package business
+
+import (
+	"backstage/common/code"
+	"backstage/common/db/mysql/backend/ad_of_camping"
+	"backstage/common/db/mysql/backend/version_of_ad_of_camping"
+	"backstage/common/major"
+	"backstage/common/protocol/admin"
+	"backstage/global/log"
+	"context"
+	"github.com/spf13/cast"
+)
+
+func RemoveOutdatedRecordsOfADOfCamping(ctx context.Context, req *admin.RemoveOutdatedRecordsOfADOfCampingReq, rsp *admin.RemoveOutdatedRecordsOfADOfCampingRsp) error {
+	if !hasPermission(
+		cast.ToInt(major.Admin),
+		cast.ToInt(admin.RemoveOutdatedRecordsOfADOfCampingReq_),
+		req.UserId,
+	) {
+		rsp.Code = code.AccessDenied
+		return nil
+	}
+
+	version, err := version_of_ad_of_camping.GetMaxId()
+	if err != nil {
+		log.Error(" version_of_ad_of_camping.GetMaxId failure, err: ", err)
+		rsp.Code = code.DatabaseFailure
+		return nil
+	}
+
+	ad_of_camping.RemoveOutdatedRecordsOfADOfCamping(version)
+
+	rsp.Code = code.Success
+	return nil
+}

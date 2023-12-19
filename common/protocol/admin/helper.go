@@ -188,7 +188,7 @@ func RemoveOutdatedRecordsOfADOfDeals(ctx context.Context, req *RemoveOutdatedRe
 	return xClient.Call(ctx, "RemoveOutdatedRecordsOfADOfDeals", req, rsp)
 }
 
-func InsertRecordOfADOfHots(ctx context.Context, req *InsertRecordOfADOfHotsReq, rsp *InsertRecordOfADOfHotsRsp) error {
+func InsertRecordOfADOfCamping(ctx context.Context, req *InsertRecordOfADOfCampingReq, rsp *InsertRecordOfADOfCampingRsp) error {
 	srv, err := global.SelectService(service.Admin)
 	if err != nil {
 		return err
@@ -197,10 +197,10 @@ func InsertRecordOfADOfHots(ctx context.Context, req *InsertRecordOfADOfHotsReq,
 	if err != nil {
 		return err
 	}
-	return xClient.Call(ctx, "InsertRecordOfADOfHots", req, rsp)
+	return xClient.Call(ctx, "InsertRecordOfADOfCamping", req, rsp)
 }
 
-func RemoveOutdatedRecordsOfADOfHots(ctx context.Context, req *RemoveOutdatedRecordsOfADOfHotsReq, rsp *RemoveOutdatedRecordsOfADOfHotsRsp) error {
+func RemoveOutdatedRecordsOfADOfCamping(ctx context.Context, req *RemoveOutdatedRecordsOfADOfCampingReq, rsp *RemoveOutdatedRecordsOfADOfCampingRsp) error {
 	srv, err := global.SelectService(service.Admin)
 	if err != nil {
 		return err
@@ -209,7 +209,7 @@ func RemoveOutdatedRecordsOfADOfHots(ctx context.Context, req *RemoveOutdatedRec
 	if err != nil {
 		return err
 	}
-	return xClient.Call(ctx, "RemoveOutdatedRecordsOfADOfHots", req, rsp)
+	return xClient.Call(ctx, "RemoveOutdatedRecordsOfADOfCamping", req, rsp)
 }
 
 func InsertRecordOfADOfBarbecue(ctx context.Context, req *InsertRecordOfADOfBarbecueReq, rsp *InsertRecordOfADOfBarbecueRsp) error {

@@ -83,7 +83,7 @@ func FetchRecordsOfADOfDeals(ctx context.Context, req *FetchRecordsOfADOfDealsRe
 }
 
 // Hots
-func FetchVersionOfADOfHots(ctx context.Context, req *FetchVersionOfADOfHotsReq, rsp *FetchVersionOfADOfHotsRsp) error {
+func FetchVersionOfADOfCamping(ctx context.Context, req *FetchVersionOfADOfCampingReq, rsp *FetchVersionOfADOfCampingRsp) error {
 	srv, err := global.SelectService(service.Advertisement)
 	if err != nil {
 		return err
@@ -92,10 +92,10 @@ func FetchVersionOfADOfHots(ctx context.Context, req *FetchVersionOfADOfHotsReq,
 	if err != nil {
 		return err
 	}
-	return xClient.Call(ctx, "FetchVersionOfADOfHots", req, rsp)
+	return xClient.Call(ctx, "FetchVersionOfADOfCamping", req, rsp)
 }
 
-func FetchIdListOfADOfHots(ctx context.Context, req *FetchIdListOfADOfHotsReq, rsp *FetchIdListOfADOfHotsRsp) error {
+func FetchIdListOfADOfCamping(ctx context.Context, req *FetchIdListOfADOfCampingReq, rsp *FetchIdListOfADOfCampingRsp) error {
 	srv, err := global.SelectService(service.Advertisement)
 	if err != nil {
 		return err
@@ -104,10 +104,10 @@ func FetchIdListOfADOfHots(ctx context.Context, req *FetchIdListOfADOfHotsReq, r
 	if err != nil {
 		return err
 	}
-	return xClient.Call(ctx, "FetchIdListOfADOfHots", req, rsp)
+	return xClient.Call(ctx, "FetchIdListOfADOfCamping", req, rsp)
 }
 
-func FetchRecordsOfADOfHots(ctx context.Context, req *FetchRecordsOfADOfHotsReq, rsp *FetchRecordsOfADOfHotsRsp) error {
+func FetchRecordsOfADOfCamping(ctx context.Context, req *FetchRecordsOfADOfCampingReq, rsp *FetchRecordsOfADOfCampingRsp) error {
 	srv, err := global.SelectService(service.Advertisement)
 	if err != nil {
 		return err
@@ -116,7 +116,7 @@ func FetchRecordsOfADOfHots(ctx context.Context, req *FetchRecordsOfADOfHotsReq,
 	if err != nil {
 		return err
 	}
-	return xClient.Call(ctx, "FetchRecordsOfADOfHots", req, rsp)
+	return xClient.Call(ctx, "FetchRecordsOfADOfCamping", req, rsp)
 }
 
 // Barbecue

@@ -95,12 +95,12 @@ func TestFetchRecordsOfADOfDeals(t *testing.T) {
 	t.Log("body: ", string(rsp.Body))
 }
 
-func TestFetchVersionOfADOfHots(t *testing.T) {
+func TestFetchVersionOfADOfCamping(t *testing.T) {
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
-	req := &FetchVersionOfADOfHotsReq{}
-	rsp := &FetchVersionOfADOfHotsRsp{}
-	err := FetchVersionOfADOfHots(context.Background(), req, rsp)
+	req := &FetchVersionOfADOfCampingReq{}
+	rsp := &FetchVersionOfADOfCampingRsp{}
+	err := FetchVersionOfADOfCamping(context.Background(), req, rsp)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -108,12 +108,12 @@ func TestFetchVersionOfADOfHots(t *testing.T) {
 	t.Log("body: ", string(rsp.Body))
 }
 
-func TestFetchIdListOfADOfHots(t *testing.T) {
+func TestFetchIdListOfADOfCamping(t *testing.T) {
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
-	req := &FetchIdListOfADOfHotsReq{}
-	rsp := &FetchIdListOfADOfHotsRsp{}
-	err := FetchIdListOfADOfHots(context.Background(), req, rsp)
+	req := &FetchIdListOfADOfCampingReq{}
+	rsp := &FetchIdListOfADOfCampingRsp{}
+	err := FetchIdListOfADOfCamping(context.Background(), req, rsp)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -121,15 +121,15 @@ func TestFetchIdListOfADOfHots(t *testing.T) {
 	t.Log("body: ", string(rsp.Body))
 }
 
-func TestFetchRecordsOfADOfHots(t *testing.T) {
+func TestFetchRecordsOfADOfCamping(t *testing.T) {
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
 	advertisementIdList := []int64{1, 2, 3}
-	req := &FetchRecordsOfADOfHotsReq{
+	req := &FetchRecordsOfADOfCampingReq{
 		AdvertisementIdList: advertisementIdList,
 	}
-	rsp := &FetchRecordsOfADOfHotsRsp{}
-	err := FetchRecordsOfADOfHots(context.Background(), req, rsp)
+	rsp := &FetchRecordsOfADOfCampingRsp{}
+	err := FetchRecordsOfADOfCamping(context.Background(), req, rsp)
 	if err != nil {
 		t.Fatal(err)
 	}
