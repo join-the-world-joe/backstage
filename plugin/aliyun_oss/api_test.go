@@ -1,0 +1,64 @@
+package aliyun_oss
+
+import (
+	"crypto/hmac"
+	"crypto/sha1"
+	"encoding/base64"
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"net/http"
+	"os"
+	"testing"
+	"time"
+)
+
+func TestSignImage(t *testing.T) {
+	bucket := ""
+	endpoint := ""
+	objectFile := "5.jpg"
+	id := ""
+	secret := ""
+	contentType := "image/png"
+	date := time.Now().UTC().Format(http.TimeFormat)
+	plainText := "PUT\n\n" + contentType + "\n" + date + "\n" + "/" + bucket + "/" + objectFile
+
+	key := []byte(secret)
+	mac := hmac.New(sha1.New, key)
+	mac.Write([]byte(plainText))
+	// Base64编码。
+	signature := base64.StdEncoding.EncodeToString(mac.Sum(nil))
+
+	url := "http://" + bucket + "." + endpoint + "/" + objectFile
+
+	file, err := os.Open("D:\\Projects\\github\\mini_program\\asset\\image\\5.jpg")
+	if err != nil {
+		t.Fatal(err)
+	}
+	//payload := strings.NewReader("{go:test}")
+
+	req, _ := http.NewRequest("PUT", url, file)
+
+	req.Header.Add("Content-Type", contentType)
+	req.Header.Add("Authorization", "OSS "+id+":"+signature)
+	req.Header.Add("Date", date)
+
+	t.Log(req.Header)
+
+	bytes, err := json.Marshal(&req.Header)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	t.Log("headers: ", string(bytes))
+
+	t.Log(url)
+
+	res, _ := http.DefaultClient.Do(req)
+	//
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+}

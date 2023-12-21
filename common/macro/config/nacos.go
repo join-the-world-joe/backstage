@@ -10,6 +10,7 @@ const (
 	NotifierGroup  = "Notifier"
 	SMSGroup       = "SMS"
 	SecurityGroup  = "Security"
+	OSSGroup       = "OSS"
 )
 
 const (

@@ -8,4 +8,5 @@ const (
 	SMS             = "SMS"
 	Admin           = "Admin"
 	Advertisement   = "Advertisement"
+	OSS             = "OSS"
 )

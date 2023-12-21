@@ -10,7 +10,6 @@ func Cors() gin.HandlerFunc {
 		c.Writer.Header().Set(cors.AccessControlAllowOrigin, "*")
 		c.Writer.Header().Set(cors.AccessControlAllowMethods, "POST, GET, OPTIONS, PUT, DELETE")
 		c.Writer.Header().Set(cors.AccessControlAllowHeaders, "Accept, Content-Type, Content-Length, Accept-Encoding,Authorization")
-
 		if c.Request.Method == "OPTIONS" {
 			c.Writer.WriteHeader(200)
 			return

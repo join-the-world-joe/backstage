@@ -28,4 +28,8 @@ cd service/advertisement/cmd
 go build main.go
 ./main.exe -id="1" -version="1.0" -host="172.20.10.6" -rpc_port=11012 -nacos_host="119.23.224.221" -nacos_namespace_id="test" -nacos_group="Service"
 
+oss
+cd service/oss/cmd
+go build main.go
+./main.exe -id="1" -version="1.0" -host="172.20.10.6" -rpc_port=11015 -nacos_host="119.23.224.221" -nacos_namespace_id="test" -nacos_group="Service"
 
