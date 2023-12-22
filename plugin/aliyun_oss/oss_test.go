@@ -90,7 +90,7 @@ func TestDeleteObject(t *testing.T) {
 }
 
 func TestIsObjectExist(t *testing.T) {
-	objectFileName := "1/3.jpg"
+	objectFileName := "39/2.jpg"
 	diagnostic.SetupOSS()
 	aliyunOss, err := NewOSS(
 		WithAccessKeyId(config.OSSConf().OSS[oss.AliYun].ID),

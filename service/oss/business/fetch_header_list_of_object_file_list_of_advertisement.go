@@ -12,7 +12,6 @@ import (
 	"crypto/sha1"
 	"encoding/base64"
 	"encoding/json"
-	"fmt"
 	"github.com/spf13/cast"
 	"mime"
 	"net/http"
@@ -57,7 +56,7 @@ func FetchHeaderListOfObjectFileListOfAdvertisement(ctx context.Context, req *os
 		AdvertisementId: req.AdvertisementId,
 		RequestHeader:   map[string]*ObjectFileRequestHeader{},
 		Host:            bucket + "." + endpoint,
-		CommonPath:      "https://" + bucket + "." + endpoint + "/" + fmt.Sprintf(oss2.FormatOfPathOfObjectFileOfAdvertisement, req.AdvertisementId),
+		CommonPath:      "https://" + bucket + "." + endpoint + "/", // add object file to tail
 	}
 
 	for _, v := range req.NameListOfFile {
