@@ -8,9 +8,14 @@ import (
 	"backstage/common/protocol/admin"
 	"backstage/global/log"
 	"context"
+	"encoding/json"
 	"fmt"
 	"github.com/spf13/cast"
 )
+
+type OutputOfRecordOfAdvertisement struct {
+	AdvertisementId int64 `json:"advertisement_id"`
+}
 
 func InsertRecordOfAdvertisement(ctx context.Context, req *admin.InsertRecordOfAdvertisementReq, rsp *admin.InsertRecordOfAdvertisementRsp) error {
 	if !hasPermission(
@@ -56,6 +61,17 @@ func InsertRecordOfAdvertisement(ctx context.Context, req *admin.InsertRecordOfA
 		}
 	}
 
+	output := &OutputOfRecordOfAdvertisement{
+		AdvertisementId: m.Id,
+	}
+
+	bytes, err := json.Marshal(output)
+	if err != nil {
+		rsp.Code = code.InternalError
+		return nil
+	}
+
+	rsp.Body = bytes
 	rsp.Code = code.Success
 	return nil
 }

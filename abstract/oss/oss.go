@@ -7,6 +7,7 @@ type Object struct {
 
 type OSS interface {
 	ListObject(string) ([]*Object, error)
+	IsObjectExist(bucket, objectFile string) (bool, error)
 	Get(native string, bucket string, objectFile string) error
 	Put(native string, bucket string, objectFile string) error // native, bucket, destination
 	Delete(bucket, objectFile string) error

@@ -9,4 +9,5 @@ const (
 	Admin           = "5"
 	Inform          = "6" // not an actual service, only act as a mark
 	Advertisement   = "7"
+	OSS             = "8"
 )

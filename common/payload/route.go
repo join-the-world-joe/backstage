@@ -19,6 +19,8 @@ func GetUpstreamServiceName(packet *PacketInternal) string {
 		return service.Admin
 	case major.Advertisement:
 		return service.Advertisement
+	case major.OSS:
+		return service.OSS
 	default:
 		return "Unknown"
 	}

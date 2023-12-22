@@ -96,7 +96,7 @@ func main() {
 		oss.WithConfig(config.ComponentGroup, config.RedisDataId),
 		oss.WithConfig(config.ComponentGroup, config.MongoDBDataId),
 		oss.WithConfig(config.NotifierGroup, service2.OSS),
-		oss.WithConfig(config.OSSGroup, config.TemplateDataId),
+		oss.WithConfig(config.OSSGroup, config.AliYunDataId),
 		oss.WithConfig(config.SecurityGroup, config.GracefulShutdownDataId),
 		oss.WithNotifyBufferSize(service2.DefaultNotifyBufferSize),
 		oss.WithForwardChannelBufferSize(service2.DefaultForwardChannelBufferSize),

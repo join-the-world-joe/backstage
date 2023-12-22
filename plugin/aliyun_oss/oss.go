@@ -104,3 +104,15 @@ func (p *_oss) Delete(bkt, objectFile string) error {
 	}
 	return nil
 }
+
+func (p *_oss) IsObjectExist(bkt, objectFile string) (bool, error) {
+	bucket, err := p.client.Bucket(bkt)
+	if err != nil {
+		return false, err
+	}
+	b, err := bucket.IsObjectExist(objectFile)
+	if err != nil {
+		return false, err
+	}
+	return b, nil
+}

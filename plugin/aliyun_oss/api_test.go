@@ -1,6 +1,9 @@
 package aliyun_oss
 
 import (
+	oss2 "backstage/common/macro/oss"
+	"backstage/diagnostic"
+	"backstage/global/config"
 	"crypto/hmac"
 	"crypto/sha1"
 	"encoding/base64"
@@ -13,15 +16,17 @@ import (
 	"time"
 )
 
-func TestSignImage(t *testing.T) {
-	bucket := ""
-	endpoint := ""
+func TestPutImage(t *testing.T) {
+	diagnostic.SetupOSS()
+	id := config.OSSConf().OSS[oss2.AliYun].ID
+	secret := []byte(config.OSSConf().OSS[oss2.AliYun].Secret)
+	bucket := oss2.AdvertisementImageBucket
+	endpoint := config.OSSConf().OSS[oss2.AliYun].Endpoint
 	objectFile := "5.jpg"
-	id := ""
-	secret := ""
 	contentType := "image/png"
 	date := time.Now().UTC().Format(http.TimeFormat)
-	plainText := "PUT\n\n" + contentType + "\n" + date + "\n" + "/" + bucket + "/" + objectFile
+	//plainText := "PUT\n\n" + contentType + "\n" + date + "\n" + "/" + bucket + "/" + objectFile
+	plainText := "PUT\n\n" + contentType + "\n" + date + "\n" + "x-oss-date:" + date + "\n" + "/" + bucket + "/" + objectFile
 
 	key := []byte(secret)
 	mac := hmac.New(sha1.New, key)
@@ -29,7 +34,7 @@ func TestSignImage(t *testing.T) {
 	// Base64编码。
 	signature := base64.StdEncoding.EncodeToString(mac.Sum(nil))
 
-	url := "http://" + bucket + "." + endpoint + "/" + objectFile
+	url := "https://" + bucket + "." + endpoint + "/" + objectFile
 
 	file, err := os.Open("D:\\Projects\\github\\mini_program\\asset\\image\\5.jpg")
 	if err != nil {
@@ -39,9 +44,10 @@ func TestSignImage(t *testing.T) {
 
 	req, _ := http.NewRequest("PUT", url, file)
 
-	req.Header.Add("Content-Type", contentType)
 	req.Header.Add("Authorization", "OSS "+id+":"+signature)
+	req.Header.Add("Content-Type", contentType)
 	req.Header.Add("Date", date)
+	req.Header.Add("x-oss-date", date)
 
 	t.Log(req.Header)
 

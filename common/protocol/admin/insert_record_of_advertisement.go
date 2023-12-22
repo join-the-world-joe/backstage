@@ -1,5 +1,7 @@
 package admin
 
+import "encoding/json"
+
 type InsertRecordOfAdvertisementReq struct {
 	UserId        int64
 	Name          []byte   `json:"name"`
@@ -17,5 +19,6 @@ type InsertRecordOfAdvertisementReq struct {
 }
 
 type InsertRecordOfAdvertisementRsp struct {
-	Code int `json:"code"`
+	Code int             `json:"code"`
+	Body json.RawMessage `json:"body"`
 }

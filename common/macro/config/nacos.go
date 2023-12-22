@@ -25,4 +25,5 @@ const (
 	TemplateDataId         = "Template"
 	GracefulShutdownDataId = "GracefulShutdown"
 	RateLimitingDataId     = "RateLimiting"
+	AliYunDataId           = "AliYun"
 )

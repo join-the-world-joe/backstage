@@ -7,7 +7,7 @@ import (
 )
 
 var oss_conf = `
-[OSS.Aliyun]
+[OSS.AliYun]
 	ID = ""
 	Secret = ""
 	Endpoint = ""
