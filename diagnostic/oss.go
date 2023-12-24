@@ -10,7 +10,7 @@ var oss_conf = `
 [OSS.AliYun]
 	ID = ""
 	Secret = ""
-	Endpoint = ""
+	Endpoint = "oss-cn-shenzhen.aliyuncs.com"
 `
 
 func SetupOSS() {

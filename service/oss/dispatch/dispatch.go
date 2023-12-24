@@ -14,6 +14,8 @@ func Dispatch(packet *payload.PacketInternal) {
 		fetchHeaderListOfObjectFileListOfAdvertisement(packet)
 	case oss.VerifyObjectFileListOfAdvertisementReq_:
 		verifyObjectFileListOfAdvertisement(packet)
+	case oss.RemoveListOfObjectFileReq_:
+		removeListOfObjectFile(packet)
 	default:
 		log.ErrorF("unknown minor [%v]", packet.GetRequest().GetHeader().GetMinor())
 	}

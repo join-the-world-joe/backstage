@@ -25,3 +25,7 @@ func (p *Async) FetchHeaderListOfObjectFileListOfAdvertisement(ctx context.Conte
 func (p *Async) VerifyObjectFileListOfAdvertisement(ctx context.Context, req *oss.VerifyObjectFileListOfAdvertisementReq, rsp *oss.VerifyObjectFileListOfAdvertisementRsp) error {
 	return business.VerifyObjectFileListOfAdvertisement(ctx, req, rsp)
 }
+
+func (p *Async) RemoveListOfObjectFile(ctx context.Context, req *oss.RemoveListOfObjectFileReq, rsp *oss.RemoveListOfObjectFileRsp) error {
+	return business.RemoveListOfObjectFile(ctx, req, rsp)
+}

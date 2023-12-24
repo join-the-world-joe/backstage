@@ -59,3 +59,25 @@ func TestVerifyObjectFileListOfAdvertisement(t *testing.T) {
 	t.Log("code: ", rsp.Code)
 	t.Log("body: ", string(rsp.Body))
 }
+
+func TestRemoveListOfObjectFile(t *testing.T) {
+	diagnostic.SetupLogger()
+	diagnostic.SetupRegistry()
+
+	userId := int64(1)
+	listOfObjectFile := []string{
+		"48/0.png",
+		"48/3.png",
+	}
+	req := &RemoveListOfObjectFileReq{
+		UserId:           userId,
+		ListOfObjectFile: listOfObjectFile,
+	}
+	rsp := &RemoveListOfObjectFileRsp{}
+	err := RemoveListOfObjectFile(context.Background(), req, rsp)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("code: ", rsp.Code)
+	t.Log("body: ", string(rsp.Body))
+}
