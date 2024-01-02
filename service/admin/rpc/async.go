@@ -34,7 +34,7 @@ func (p *Async) SoftDeleteRecordOfProduct(ctx context.Context, req *admin.SoftDe
 	return business.SoftDeleteRecordsOfProduct(ctx, req, rsp)
 }
 
-func (p *Async) UpdateRecordOfGood(ctx context.Context, req *admin.UpdateRecordOfProductReq, rsp *admin.UpdateRecordOfProductRsp) error {
+func (p *Async) UpdateRecordOfProduct(ctx context.Context, req *admin.UpdateRecordOfProductReq, rsp *admin.UpdateRecordOfProductRsp) error {
 	return business.UpdateRecordOfProduct(ctx, req, rsp)
 }
 

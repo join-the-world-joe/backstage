@@ -194,11 +194,11 @@ func FetchRecordsOfADOfSnacks(ctx context.Context, req *FetchRecordsOfADOfSnacks
 }
 
 func FetchIdListOfAdvertisement(ctx context.Context, req *FetchIdListOfAdvertisementReq, rsp *FetchIdListOfAdvertisementRsp) error {
-	srv, err := global.SelectService(service.Admin)
+	srv, err := global.SelectService(service.Advertisement)
 	if err != nil {
 		return err
 	}
-	xClient, err := rpc.GetXClient(service.Admin, srv.Id, srv.Ip, cast.ToString(srv.Port))
+	xClient, err := rpc.GetXClient(service.Advertisement, srv.Id, srv.Ip, cast.ToString(srv.Port))
 	if err != nil {
 		return err
 	}
@@ -206,11 +206,11 @@ func FetchIdListOfAdvertisement(ctx context.Context, req *FetchIdListOfAdvertise
 }
 
 func FetchRecordsOfAdvertisement(ctx context.Context, req *FetchRecordsOfAdvertisementReq, rsp *FetchRecordsOfAdvertisementRsp) error {
-	srv, err := global.SelectService(service.Admin)
+	srv, err := global.SelectService(service.Advertisement)
 	if err != nil {
 		return err
 	}
-	xClient, err := rpc.GetXClient(service.Admin, srv.Id, srv.Ip, cast.ToString(srv.Port))
+	xClient, err := rpc.GetXClient(service.Advertisement, srv.Id, srv.Ip, cast.ToString(srv.Port))
 	if err != nil {
 		return err
 	}

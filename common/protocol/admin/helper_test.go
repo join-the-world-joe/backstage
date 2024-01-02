@@ -72,7 +72,7 @@ func TestInsertRecordOfGood(t *testing.T) {
 
 func TestSoftDeleteRecordsOfGood(t *testing.T) {
 	userId := int64(1)
-	productIdList := []int64{1, 2, 3, 4}
+	productIdList := []int64{1, 2}
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
 	req := &SoftDeleteRecordsOfProductReq{
@@ -91,7 +91,7 @@ func TestUpdateRecordOfGood(t *testing.T) {
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
 	userId := int64(1)
-	productId := int64(4)
+	productId := int64(1)
 	name := []byte("product_name")
 	buyingPrice := 100
 	vendor := []byte("product_vendor")
@@ -143,7 +143,7 @@ func TestInsertRecordOfAdvertisement(t *testing.T) {
 
 func TestSoftDeleteRecordOfAdvertisement(t *testing.T) {
 	userId := int64(1)
-	advertisementIdList := []int64{21}
+	advertisementIdList := []int64{2}
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
 	req := &SoftDeleteRecordsOfAdvertisementReq{
@@ -162,19 +162,23 @@ func TestUpdateRecordOfAdvertisement(t *testing.T) {
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
 	userId := int64(1)
-	id := int64(3)
+	id := int64(2)
 	name := []byte("name new")
 	title := []byte("title new")
 	sellingPrice := 100
 	sellingPoints := [][]byte{[]byte("11"), []byte("大小")}
 	placeOfOrigin := []byte("地要工22")
-	image := []byte("urlfd在111")
 	stock := 10
 	productId := int64(1)
 	status := 1
 	req := &UpdateRecordOfAdvertisementReq{
 		Id:            id,
-		Image:         image,
+		CoverImage:    []byte("cover"),
+		FirstImage:    []byte("first"),
+		SecondImage:   []byte("second"),
+		ThirdImage:    []byte("third"),
+		FourthImage:   []byte("fourth"),
+		FifthImage:    []byte("fifth"),
 		Stock:         stock,
 		Name:          name,
 		Title:         title,

@@ -18,3 +18,6 @@ Enable = true
 
 [RPCServer.OSS]
 Enable = true
+
+[RPCServer.Product]
+Enable = true

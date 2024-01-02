@@ -31,12 +31,28 @@ func UpdateRecordOfAdvertisement(ctx context.Context, req *admin.UpdateRecordOfA
 
 	fieldList := map[string]interface{}{}
 
-	if len(req.Image) > 0 {
-		fieldList["image"] = string(req.Image)
+	if len(req.CoverImage) > 0 {
+		fieldList["cover_image"] = string(req.CoverImage)
 	}
 
-	if len(req.Thumbnail) > 0 {
-		fieldList["thumbnail"] = string(req.Thumbnail)
+	if len(req.FirstImage) > 0 {
+		fieldList["first_image"] = string(req.FirstImage)
+	}
+
+	if len(req.SecondImage) > 0 {
+		fieldList["second_image"] = string(req.SecondImage)
+	}
+
+	if len(req.ThirdImage) > 0 {
+		fieldList["third_image"] = string(req.ThirdImage)
+	}
+
+	if len(req.FourthImage) > 0 {
+		fieldList["fourth_image"] = string(req.FourthImage)
+	}
+
+	if len(req.FifthImage) > 0 {
+		fieldList["fifth_image"] = string(req.FifthImage)
 	}
 
 	if len(req.Name) > 0 {

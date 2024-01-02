@@ -3,7 +3,6 @@ package advertisement
 import "encoding/json"
 
 type FetchRecordsOfAdvertisementReq struct {
-	UserId              int64
 	AdvertisementIdList []int64 `json:"advertisement_id_list"`
 }
 

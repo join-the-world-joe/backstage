@@ -92,6 +92,16 @@
 	Item.Permission.Description = "The management of permissions"
 	Item.Field.Description = "The management of fields"
 	Item.Track.Description = "The management of tracks"
+[Menu.Data]
+	Item.Product.Description = "The description of Product menu"
+	Item.Advertisement.Description = "The description of Advertisement menu"
+[Menu.Wechat]
+	Item.Category.Description = "The description of Category menu"
+	Item.Deals.Description = "The description of Deals menu"
+	Item.Camping.Description = "The description of Camping menu"
+	Item.Carousel.Description = "The description of Carousel menu"
+	Item.Snack.Description = "The description of Snack menu"
+	Item.Barbecue.Description = "The description of Barbecue menu"
 
 [Table.user]
 	Field.id.Description = "the description of id of user"

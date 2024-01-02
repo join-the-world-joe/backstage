@@ -224,12 +224,10 @@ func TestFetchRecordsOfADOfSnacks(t *testing.T) {
 func TestFetchIdListOfAdvertisement(t *testing.T) {
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
-	userId := int64(1)
-	name := []byte("title1")
-	behavior := 1
+	name := []byte("春季牛奶")
+	behavior := 2
 	req := &FetchIdListOfAdvertisementReq{
 		Behavior:          behavior,
-		UserId:            userId,
 		AdvertisementName: name,
 	}
 	rsp := &FetchIdListOfAdvertisementRsp{}
@@ -241,12 +239,10 @@ func TestFetchIdListOfAdvertisement(t *testing.T) {
 }
 
 func TestFetchRecordsOfAdvertisement(t *testing.T) {
-	userId := int64(1)
-	idList := []int64{4}
+	idList := []int64{1}
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
 	req := &FetchRecordsOfAdvertisementReq{
-		UserId:              userId,
 		AdvertisementIdList: idList,
 	}
 	rsp := &FetchRecordsOfAdvertisementRsp{}

@@ -18,21 +18,19 @@ func fetchRecordsOfAdvertisement(packet *payload.PacketInternal) {
 
 	err := json.Unmarshal(packet.GetRequest().GetBody(), req)
 	if err != nil {
-		log.Error("Dispatch.fetchRecordsOfAdvertisement.json.Unmarshal failure, err: ", err.Error())
+		log.Error("json.Unmarshal failure, err: ", err.Error())
 		return
 	}
 
-	req.UserId = packet.GetSession().GetUserId()
-
 	err = business.FetchRecordsOfAdvertisement(context.Background(), req, rsp)
 	if err != nil {
-		log.Error("Dispatch.fetchRecordsOfAdvertisement.business.FetchRecordsOfAdvertisement failure, err: ", err.Error())
+		log.Error("business.FetchRecordsOfAdvertisement failure, err: ", err.Error())
 		return
 	}
 
 	bytes, err := json.Marshal(rsp)
 	if err != nil {
-		log.Error("Dispatch.fetchRecordsOfAdvertisement.json.Marshal failure, err: ", err.Error())
+		log.Error("json.Marshal failure, err: ", err.Error())
 		return
 	}
 
@@ -49,7 +47,7 @@ func fetchRecordsOfAdvertisement(packet *payload.PacketInternal) {
 		packet,
 	)
 	if err != nil {
-		log.Error("Dispatch.fetchRecordsOfAdvertisement.route.Downstream failure, err: ", err.Error())
+		log.Error("route.Downstream failure, err: ", err.Error())
 		return
 	}
 }
