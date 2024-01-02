@@ -12,34 +12,34 @@ import (
 	"encoding/json"
 )
 
-func updateRecordOfGood(packet *payload.PacketInternal) {
-	req := &admin.UpdateRecordOfGoodReq{}
-	rsp := &admin.UpdateRecordOfGoodRsp{}
+func softDeleteRecordsOfProduct(packet *payload.PacketInternal) {
+	req := &admin.SoftDeleteRecordsOfProductReq{}
+	rsp := &admin.SoftDeleteRecordsOfProductRsp{}
 
 	err := json.Unmarshal(packet.GetRequest().GetBody(), req)
 	if err != nil {
-		log.Error("Dispatch.updateRecordOfGood.json.Unmarshal failure, err: ", err.Error())
+		log.Error("json.Unmarshal failure, err: ", err.Error())
 		return
 	}
 
 	req.UserId = packet.GetSession().GetUserId()
 
-	err = business.UpdateRecordOfGood(context.Background(), req, rsp)
+	err = business.SoftDeleteRecordsOfProduct(context.Background(), req, rsp)
 	if err != nil {
-		log.Error("Dispatch.updateRecordOfGood.business.UpdateRecordOfGood failure, err: ", err.Error())
+		log.Error("business.SoftDeleteRecordsOfGood failure, err: ", err.Error())
 		return
 	}
 
 	bytes, err := json.Marshal(rsp)
 	if err != nil {
-		log.Error("Dispatch.updateRecordOfGood.json.Marshal failure, err: ", err.Error())
+		log.Error("json.Marshal failure, err: ", err.Error())
 		return
 	}
 
 	packet.Response = &payload.PacketClient{
 		Header: &payload.Header{
 			Major: major.Admin,
-			Minor: admin.UpdateRecordOfGoodRsp_,
+			Minor: admin.SoftDeleteRecordsOfProductRsp_,
 		},
 		Body: bytes,
 	}
@@ -49,7 +49,7 @@ func updateRecordOfGood(packet *payload.PacketInternal) {
 		packet,
 	)
 	if err != nil {
-		log.Error("Dispatch.updateRecordOfGood.route.Downstream failure, err: ", err.Error())
+		log.Error("Dispatch.softDeleteRecordsOfGood.route.Downstream failure, err: ", err.Error())
 		return
 	}
 }

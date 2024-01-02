@@ -28,20 +28,6 @@ func Dispatch(packet *payload.PacketInternal) {
 		fetchTrackListOfCondition(packet)
 	case admin.CheckPermissionReq_:
 		checkPermission(packet)
-	case admin.FetchIdListOfGoodReq_:
-		fetchIdListOfGood(packet)
-	case admin.FetchRecordsOfGoodReq_:
-		fetchRecordsOfGood(packet)
-	case admin.InsertRecordOfGoodReq_:
-		insertRecordOfGood(packet)
-	case admin.SoftDeleteRecordsOfGoodReq_:
-		softDeleteRecordsOfGood(packet)
-	case admin.UpdateRecordOfGoodReq_:
-		updateRecordOfGood(packet)
-	case admin.FetchIdListOfAdvertisementReq_:
-		fetchIdListOfAdvertisement(packet)
-	case admin.FetchRecordsOfAdvertisementReq_:
-		fetchRecordsOfAdvertisement(packet)
 	case admin.InsertRecordOfAdvertisementReq_:
 		insertRecordOfAdvertisement(packet)
 	case admin.SoftDeleteRecordsOfAdvertisementReq_:
@@ -52,26 +38,28 @@ func Dispatch(packet *payload.PacketInternal) {
 		insertRecordOfADOfCarousel(packet)
 	case admin.RemoveOutdatedRecordsOfADOfCarouselReq_:
 		removeOutdatedRecordsOfADOfCarousel(packet)
-
 	case admin.InsertRecordOfADOfDealsReq_:
 		insertRecordOfADOfDeals(packet)
 	case admin.RemoveOutdatedRecordsOfADOfDealsReq_:
 		removeOutdatedRecordsOfADOfDeals(packet)
-
 	case admin.InsertRecordOfADOfBarbecueReq_:
 		insertRecordOfADOfBarbecue(packet)
 	case admin.RemoveOutdatedRecordsOfADOfBarbecueReq_:
 		removeOutdatedRecordsOfADOfBarbecue(packet)
-
 	case admin.InsertRecordOfADOfCampingReq_:
 		insertRecordOfADOfCamping(packet)
 	case admin.RemoveOutdatedRecordsOfADOfCampingReq_:
 		removeOutdatedRecordsOfADOfCamping(packet)
-
 	case admin.InsertRecordOfADOfSnacksReq_:
 		insertRecordOfADOfSnacks(packet)
 	case admin.RemoveOutdatedRecordsOfADOfSnacksReq_:
 		removeOutdatedRecordsOfADOfSnacks(packet)
+	case admin.InsertRecordOfProductReq_:
+		insertRecordOfProduct(packet)
+	case admin.SoftDeleteRecordsOfProductReq_:
+		softDeleteRecordsOfProduct(packet)
+	case admin.UpdateRecordOfProductReq_:
+		updateRecordOfProduct(packet)
 	default:
 		log.ErrorF("unknown minor [%v]", packet.GetRequest().GetHeader().GetMinor())
 	}

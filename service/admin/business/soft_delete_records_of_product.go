@@ -11,10 +11,10 @@ import (
 	"github.com/spf13/cast"
 )
 
-func SoftDeleteRecordsOfGood(ctx context.Context, req *admin.SoftDeleteRecordsOfGoodReq, rsp *admin.SoftDeleteRecordsOfGoodRsp) error {
+func SoftDeleteRecordsOfProduct(ctx context.Context, req *admin.SoftDeleteRecordsOfProductReq, rsp *admin.SoftDeleteRecordsOfProductRsp) error {
 	if !hasPermission(
 		cast.ToInt(major.Admin),
-		cast.ToInt(admin.SoftDeleteRecordsOfGoodReq_),
+		cast.ToInt(admin.SoftDeleteRecordsOfProductReq_),
 		req.UserId,
 	) {
 		rsp.Code = code.AccessDenied

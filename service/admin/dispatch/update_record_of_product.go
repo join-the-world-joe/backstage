@@ -12,34 +12,34 @@ import (
 	"encoding/json"
 )
 
-func fetchRecordsOfGood(packet *payload.PacketInternal) {
-	req := &admin.FetchRecordsOfGoodReq{}
-	rsp := &admin.FetchRecordsOfGoodRsp{}
+func updateRecordOfProduct(packet *payload.PacketInternal) {
+	req := &admin.UpdateRecordOfProductReq{}
+	rsp := &admin.UpdateRecordOfProductRsp{}
 
 	err := json.Unmarshal(packet.GetRequest().GetBody(), req)
 	if err != nil {
-		log.Error("Dispatch.fetchRecordsOfGood.json.Unmarshal failure, err: ", err.Error())
+		log.Error("json.Unmarshal failure, err: ", err.Error())
 		return
 	}
 
 	req.UserId = packet.GetSession().GetUserId()
 
-	err = business.FetchRecordsOfGood(context.Background(), req, rsp)
+	err = business.UpdateRecordOfProduct(context.Background(), req, rsp)
 	if err != nil {
-		log.Error("Dispatch.fetchRecordsOfGood.business.FetchRecordsOfGood failure, err: ", err.Error())
+		log.Error("business.UpdateRecordOfGood failure, err: ", err.Error())
 		return
 	}
 
 	bytes, err := json.Marshal(rsp)
 	if err != nil {
-		log.Error("Dispatch.fetchRecordsOfGood.json.Marshal failure, err: ", err.Error())
+		log.Error("json.Marshal failure, err: ", err.Error())
 		return
 	}
 
 	packet.Response = &payload.PacketClient{
 		Header: &payload.Header{
 			Major: major.Admin,
-			Minor: admin.FetchRecordsOfGoodRsp_,
+			Minor: admin.UpdateRecordOfProductRsp_,
 		},
 		Body: bytes,
 	}
@@ -49,7 +49,7 @@ func fetchRecordsOfGood(packet *payload.PacketInternal) {
 		packet,
 	)
 	if err != nil {
-		log.Error("Dispatch.fetchRecordsOfGood.route.Downstream failure, err: ", err.Error())
+		log.Error("route.Downstream failure, err: ", err.Error())
 		return
 	}
 }

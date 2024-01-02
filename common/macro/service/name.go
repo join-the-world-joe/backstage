@@ -9,4 +9,5 @@ const (
 	Admin           = "Admin"
 	Advertisement   = "Advertisement"
 	OSS             = "OSS"
+	Product         = "Product"
 )

@@ -36,23 +36,28 @@ func FetchRecordsOfADOfCarousel(ctx context.Context, req *advertisement.FetchRec
 			}
 			itemHash := map[int64][]*Item{} // key: product_id
 			productIdList := []int64{}
-			for _, temp := range aml {
+			for _, ad := range aml {
 				item := &Item{
-					Title:             temp.Title,
-					Stock:             temp.Stock,
-					SellingPrice:      temp.SellingPrice,
-					ProductId:         temp.ProductId,
-					Image:             temp.Image,
-					PlaceOfOrigin:     temp.PlaceOFOrigin,
-					AdvertisementId:   temp.Id,
-					AdvertisementName: temp.Name,
-					Status:            temp.Status,
-					SellingPoints:     getSellingPointByAdvertisementId(temp.Id, spml),
+					Title:             ad.Title,
+					Stock:             ad.Stock,
+					SellingPrice:      ad.SellingPrice,
+					ProductId:         ad.ProductId,
+					CoverImage:        ad.CoverImage,
+					FirstImage:        ad.FirstImage,
+					SecondImage:       ad.SecondImage,
+					ThirdImage:        ad.ThirdImage,
+					FourthImage:       ad.FourthImage,
+					FifthImage:        ad.FifthImage,
+					PlaceOfOrigin:     ad.PlaceOFOrigin,
+					AdvertisementId:   ad.Id,
+					AdvertisementName: ad.Name,
+					Status:            ad.Status,
+					SellingPoints:     getSellingPointByAdvertisementId(ad.Id, spml),
 				}
-				itemHash[temp.ProductId] = append(itemHash[temp.ProductId], item)
+				itemHash[ad.ProductId] = append(itemHash[ad.ProductId], item)
 				output.RecordsOfADOfCarousel = append(output.RecordsOfADOfCarousel, item)
-				if !slices.Contains(productIdList, temp.Id) {
-					productIdList = append(productIdList, temp.ProductId)
+				if !slices.Contains(productIdList, ad.Id) {
+					productIdList = append(productIdList, ad.ProductId)
 				}
 			}
 			pml, err := product.GetModelListByIdList(productIdList)

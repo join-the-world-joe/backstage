@@ -220,3 +220,39 @@ func TestFetchRecordsOfADOfSnacks(t *testing.T) {
 	t.Log("code: ", rsp.Code)
 	t.Log("body: ", string(rsp.Body))
 }
+
+func TestFetchIdListOfAdvertisement(t *testing.T) {
+	diagnostic.SetupLogger()
+	diagnostic.SetupRegistry()
+	userId := int64(1)
+	name := []byte("title1")
+	behavior := 1
+	req := &FetchIdListOfAdvertisementReq{
+		Behavior:          behavior,
+		UserId:            userId,
+		AdvertisementName: name,
+	}
+	rsp := &FetchIdListOfAdvertisementRsp{}
+	err := FetchIdListOfAdvertisement(context.Background(), req, rsp)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("bytes: ", string(rsp.Body))
+}
+
+func TestFetchRecordsOfAdvertisement(t *testing.T) {
+	userId := int64(1)
+	idList := []int64{4}
+	diagnostic.SetupLogger()
+	diagnostic.SetupRegistry()
+	req := &FetchRecordsOfAdvertisementReq{
+		UserId:              userId,
+		AdvertisementIdList: idList,
+	}
+	rsp := &FetchRecordsOfAdvertisementRsp{}
+	err := FetchRecordsOfAdvertisement(context.Background(), req, rsp)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("rsp: ", string(rsp.Body))
+}

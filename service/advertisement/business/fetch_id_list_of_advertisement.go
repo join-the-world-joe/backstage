@@ -3,13 +3,11 @@ package business
 import (
 	"backstage/common/code"
 	"backstage/common/db/mysql/backend/advertisement"
-	"backstage/common/major"
-	"backstage/common/protocol/admin"
+	advertisement2 "backstage/common/protocol/advertisement"
 	"backstage/global/log"
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/spf13/cast"
 )
 
 type OutputOfIdListOfAdvertisement struct {
@@ -17,16 +15,7 @@ type OutputOfIdListOfAdvertisement struct {
 	IdListOfAdvertisement []int64 `json:"id_list_of_advertisement"`
 }
 
-func FetchIdListOfAdvertisement(ctx context.Context, req *admin.FetchIdListOfAdvertisementReq, rsp *admin.FetchIdListOfAdvertisementRsp) error {
-	if !hasPermission(
-		cast.ToInt(major.Admin),
-		cast.ToInt(admin.FetchIdListOfAdvertisementReq_),
-		req.UserId,
-	) {
-		rsp.Code = code.AccessDenied
-		return nil
-	}
-
+func FetchIdListOfAdvertisement(ctx context.Context, req *advertisement2.FetchIdListOfAdvertisementReq, rsp *advertisement2.FetchIdListOfAdvertisementRsp) error {
 	if len(req.AdvertisementName) <= 0 && (req.Behavior != 1 && req.Behavior != 2) {
 		rsp.Code = code.InvalidData
 		return nil

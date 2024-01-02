@@ -193,102 +193,26 @@ func FetchRecordsOfADOfSnacks(ctx context.Context, req *FetchRecordsOfADOfSnacks
 	return xClient.Call(ctx, "FetchRecordsOfADOfSnacks", req, rsp)
 }
 
-//func FetchADOfCarousel(ctx context.Context, req *FetchADOfCarouselReq, rsp *FetchADOfCarouselRsp) error {
-//	srv, err := global.SelectService(service.Advertisement)
-//	if err != nil {
-//		return err
-//	}
-//	xClient, err := rpc.GetXClient(service.Advertisement, srv.Id, srv.Ip, cast.ToString(srv.Port))
-//	if err != nil {
-//		return err
-//	}
-//	return xClient.Call(ctx, "FetchADOfCarousel", req, rsp)
-//}
-//
+func FetchIdListOfAdvertisement(ctx context.Context, req *FetchIdListOfAdvertisementReq, rsp *FetchIdListOfAdvertisementRsp) error {
+	srv, err := global.SelectService(service.Admin)
+	if err != nil {
+		return err
+	}
+	xClient, err := rpc.GetXClient(service.Admin, srv.Id, srv.Ip, cast.ToString(srv.Port))
+	if err != nil {
+		return err
+	}
+	return xClient.Call(ctx, "FetchIdListOfAdvertisement", req, rsp)
+}
 
-//
-//func FetchADOfDealsOfToday(ctx context.Context, req *FetchADOfDealsOfTodayReq, rsp *FetchADOfDealsOfTodayRsp) error {
-//	srv, err := global.SelectService(service.Advertisement)
-//	if err != nil {
-//		return err
-//	}
-//	xClient, err := rpc.GetXClient(service.Advertisement, srv.Id, srv.Ip, cast.ToString(srv.Port))
-//	if err != nil {
-//		return err
-//	}
-//	return xClient.Call(ctx, "FetchADOfDealsOfToday", req, rsp)
-//}
-//
-//
-//func FetchADOfHotDeals(ctx context.Context, req *FetchADOfHotDealsReq, rsp *FetchADOfHotDealsRsp) error {
-//	srv, err := global.SelectService(service.Advertisement)
-//	if err != nil {
-//		return err
-//	}
-//	xClient, err := rpc.GetXClient(service.Advertisement, srv.Id, srv.Ip, cast.ToString(srv.Port))
-//	if err != nil {
-//		return err
-//	}
-//	return xClient.Call(ctx, "FetchADOfHotDeals", req, rsp)
-//}
-//
-//func FetchVersionOfADOfHotDeals(ctx context.Context, req *FetchVersionOfADOfHotDealsReq, rsp *FetchVersionOfADOfHotDealsRsp) error {
-//	srv, err := global.SelectService(service.Advertisement)
-//	if err != nil {
-//		return err
-//	}
-//	xClient, err := rpc.GetXClient(service.Advertisement, srv.Id, srv.Ip, cast.ToString(srv.Port))
-//	if err != nil {
-//		return err
-//	}
-//	return xClient.Call(ctx, "FetchVersionOfADOfHotDeals", req, rsp)
-//}
-//
-//func FetchADOfBBQProducts(ctx context.Context, req *FetchADOfBBQProductsReq, rsp *FetchADOfBBQProductsRsp) error {
-//	srv, err := global.SelectService(service.Advertisement)
-//	if err != nil {
-//		return err
-//	}
-//	xClient, err := rpc.GetXClient(service.Advertisement, srv.Id, srv.Ip, cast.ToString(srv.Port))
-//	if err != nil {
-//		return err
-//	}
-//	return xClient.Call(ctx, "FetchADOfBBQProducts", req, rsp)
-//}
-//
-//func FetchVersionOfADOfBBQProducts(ctx context.Context, req *FetchVersionOfADOfBBQProductsReq, rsp *FetchVersionOfADOfBBQProductsRsp) error {
-//	srv, err := global.SelectService(service.Advertisement)
-//	if err != nil {
-//		return err
-//	}
-//	xClient, err := rpc.GetXClient(service.Advertisement, srv.Id, srv.Ip, cast.ToString(srv.Port))
-//	if err != nil {
-//		return err
-//	}
-//	return xClient.Call(ctx, "FetchVersionOfADOfBBQProducts", req, rsp)
-//}
-//
-//func FetchADOfSnackProducts(ctx context.Context, req *FetchADOfSnackProductsReq, rsp *FetchADOfSnackProductsRsp) error {
-//	srv, err := global.SelectService(service.Advertisement)
-//	if err != nil {
-//		return err
-//	}
-//	xClient, err := rpc.GetXClient(service.Advertisement, srv.Id, srv.Ip, cast.ToString(srv.Port))
-//	if err != nil {
-//		return err
-//	}
-//	return xClient.Call(ctx, "FetchADOfSnackProducts", req, rsp)
-//}
-//
-//func FetchVersionOfADOfSnackProducts(ctx context.Context, req *FetchVersionOfADOfSnackProductsReq, rsp *FetchVersionOfADOfSnackProductsRsp) error {
-//	srv, err := global.SelectService(service.Advertisement)
-//	if err != nil {
-//		return err
-//	}
-//	xClient, err := rpc.GetXClient(service.Advertisement, srv.Id, srv.Ip, cast.ToString(srv.Port))
-//	if err != nil {
-//		return err
-//	}
-//	return xClient.Call(ctx, "FetchVersionOfADOfSnackProducts", req, rsp)
-//}
-//
+func FetchRecordsOfAdvertisement(ctx context.Context, req *FetchRecordsOfAdvertisementReq, rsp *FetchRecordsOfAdvertisementRsp) error {
+	srv, err := global.SelectService(service.Admin)
+	if err != nil {
+		return err
+	}
+	xClient, err := rpc.GetXClient(service.Admin, srv.Id, srv.Ip, cast.ToString(srv.Port))
+	if err != nil {
+		return err
+	}
+	return xClient.Call(ctx, "FetchRecordsOfAdvertisement", req, rsp)
+}

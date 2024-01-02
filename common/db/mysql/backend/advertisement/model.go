@@ -6,7 +6,12 @@ type Model struct {
 	Id            int64  `gorm:"column:id;type:bigint not null;primary_key;comment:广告ID" json:"id,string"`
 	Name          string `gorm:"column:name;type:varchar(80) not null;default:'';comment:广告名称" json:"name"`
 	Title         string `gorm:"column:title;type:varchar(50) not null;default:'';comment:销售标题" json:"title"`
-	Image         string `gorm:"column:image;type:varchar(1024) not null;default:'';comment:广告图片信息" json:"image"` // key: 0-N, 0-thumbnail; 1-N, image; value: url of image
+	CoverImage    string `gorm:"column:cover_image;type:varchar(150) not null;default:'';comment:封面图" json:"cover_image"`
+	FirstImage    string `gorm:"column:first_image;type:varchar(150) not null;default:'';comment:广告首图" json:"first_image"`
+	SecondImage   string `gorm:"column:second_image;type:varchar(150) not null;default:'';comment:第二张广告图" json:"second_image"`
+	ThirdImage    string `gorm:"column:third_image;type:varchar(150) not null;default:'';comment:第三张广告图" json:"third_image"`
+	FourthImage   string `gorm:"column:fourth_image;type:varchar(150) not null;default:'';comment:第四张广告图" json:"fourth_image"`
+	FifthImage    string `gorm:"column:fifth_image;type:varchar(150) not null;default:'';comment:第五张广告图" json:"fifth_image"`
 	Stock         int    `gorm:"column:stock;type:int(20) not null; default:0;comment:库存数量" json:"stock,string"`
 	Status        int    `gorm:"column:status;type:tinyint(3) not null;default:1;comment:状态, 1-启用(active), 0-停用(inactive)" json:"status"`
 	Visible       int    `gorm:"column:visible;type:tinyint(3) not null;default:1;comment:软删除标记 1-可见、0-不可见，已删除" json:"visible,string"`

@@ -3,18 +3,18 @@ package dispatch
 import (
 	"backstage/common/major"
 	"backstage/common/payload"
-	"backstage/common/protocol/admin"
+	"backstage/common/protocol/advertisement"
 	"backstage/common/route"
 	"backstage/global/config"
 	"backstage/global/log"
-	"backstage/service/admin/business"
+	"backstage/service/advertisement/business"
 	"context"
 	"encoding/json"
 )
 
 func fetchIdListOfAdvertisement(packet *payload.PacketInternal) {
-	req := &admin.FetchIdListOfAdvertisementReq{}
-	rsp := &admin.FetchIdListOfAdvertisementRsp{}
+	req := &advertisement.FetchIdListOfAdvertisementReq{}
+	rsp := &advertisement.FetchIdListOfAdvertisementRsp{}
 
 	err := json.Unmarshal(packet.GetRequest().GetBody(), req)
 	if err != nil {
@@ -38,8 +38,8 @@ func fetchIdListOfAdvertisement(packet *payload.PacketInternal) {
 
 	packet.Response = &payload.PacketClient{
 		Header: &payload.Header{
-			Major: major.Admin,
-			Minor: admin.FetchIdListOfAdvertisementRsp_,
+			Major: major.Advertisement,
+			Minor: advertisement.FetchIdListOfAdvertisementRsp_,
 		},
 		Body: bytes,
 	}

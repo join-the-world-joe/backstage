@@ -49,42 +49,6 @@ AUeJ6PeW+DAkmJWF6QIDAQAB
 	t.Log("Encrypted Password: ", encryptedPasswordBytes)
 }
 
-func TestFetchIdListOfGood(t *testing.T) {
-	userId := int64(1)
-	behavior := 1
-	productName := []byte("product1")
-	diagnostic.SetupLogger()
-	diagnostic.SetupRegistry()
-	req := &FetchIdListOfGoodReq{
-		UserId:      userId,
-		Behavior:    behavior,
-		ProductName: productName,
-	}
-	rsp := &FetchIdListOfGoodRsp{}
-	err := FetchIdListOfGood(context.Background(), req, rsp)
-	if err != nil {
-		t.Fatal(err)
-	}
-	t.Log("rsp: ", string(rsp.Body))
-}
-
-func TestFetchRecordsOfGood(t *testing.T) {
-	userId := int64(1)
-	productIdList := []int64{1, 2, 3}
-	diagnostic.SetupLogger()
-	diagnostic.SetupRegistry()
-	req := &FetchRecordsOfGoodReq{
-		UserId:        userId,
-		ProductIdList: productIdList,
-	}
-	rsp := &FetchRecordsOfGoodRsp{}
-	err := FetchRecordsOfGood(context.Background(), req, rsp)
-	if err != nil {
-		t.Fatal(err)
-	}
-	t.Log("rsp: ", string(rsp.Body))
-}
-
 func TestInsertRecordOfGood(t *testing.T) {
 	userId := int64(1)
 	diagnostic.SetupLogger()
@@ -92,15 +56,15 @@ func TestInsertRecordOfGood(t *testing.T) {
 	name := []byte("蒙牛酸酸乳")
 	vendor := []byte("汕头市蒙牛奶业有限公司")
 	contact := []byte("0756-88788371")
-	req := &InsertRecordOfGoodReq{
+	req := &InsertRecordOfProductReq{
 		UserId:      userId,
 		Name:        name,
 		BuyingPrice: 100,
 		Vendor:      vendor,
 		Contact:     contact,
 	}
-	rsp := &InsertRecordOfGoodRsp{}
-	err := InsertRecordOfGood(context.Background(), req, rsp)
+	rsp := &InsertRecordOfProductRsp{}
+	err := InsertRecordOfProduct(context.Background(), req, rsp)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -111,12 +75,12 @@ func TestSoftDeleteRecordsOfGood(t *testing.T) {
 	productIdList := []int64{1, 2, 3, 4}
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
-	req := &SoftDeleteRecordsOfGoodReq{
+	req := &SoftDeleteRecordsOfProductReq{
 		UserId:        userId,
 		ProductIdList: productIdList,
 	}
-	rsp := &SoftDeleteRecordsOfGoodRsp{}
-	err := SoftDeleteRecordOfGood(context.Background(), req, rsp)
+	rsp := &SoftDeleteRecordsOfProductRsp{}
+	err := SoftDeleteRecordOfProduct(context.Background(), req, rsp)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -132,7 +96,7 @@ func TestUpdateRecordOfGood(t *testing.T) {
 	buyingPrice := 100
 	vendor := []byte("product_vendor")
 	contact := []byte("product_contact")
-	req := &UpdateRecordOfGoodReq{
+	req := &UpdateRecordOfProductReq{
 		Name:        name,
 		UserId:      userId,
 		Vendor:      vendor,
@@ -140,47 +104,11 @@ func TestUpdateRecordOfGood(t *testing.T) {
 		BuyingPrice: buyingPrice,
 		ProductId:   productId,
 	}
-	rsp := &UpdateRecordOfGoodRsp{}
-	err := UpdateRecordOfGood(context.Background(), req, rsp)
+	rsp := &UpdateRecordOfProductRsp{}
+	err := UpdateRecordOfProduct(context.Background(), req, rsp)
 	if err != nil {
 		t.Fatal(err)
 	}
-}
-
-func TestFetchIdListOfAdvertisement(t *testing.T) {
-	diagnostic.SetupLogger()
-	diagnostic.SetupRegistry()
-	userId := int64(1)
-	name := []byte("title1")
-	behavior := 1
-	req := &FetchIdListOfAdvertisementReq{
-		Behavior:          behavior,
-		UserId:            userId,
-		AdvertisementName: name,
-	}
-	rsp := &FetchIdListOfAdvertisementRsp{}
-	err := FetchIdListOfAdvertisement(context.Background(), req, rsp)
-	if err != nil {
-		t.Fatal(err)
-	}
-	t.Log("bytes: ", string(rsp.Body))
-}
-
-func TestFetchRecordsOfAdvertisement(t *testing.T) {
-	userId := int64(1)
-	idList := []int64{4}
-	diagnostic.SetupLogger()
-	diagnostic.SetupRegistry()
-	req := &FetchRecordsOfAdvertisementReq{
-		UserId:              userId,
-		AdvertisementIdList: idList,
-	}
-	rsp := &FetchRecordsOfAdvertisementRsp{}
-	err := FetchRecordsOfAdvertisement(context.Background(), req, rsp)
-	if err != nil {
-		t.Fatal(err)
-	}
-	t.Log("rsp: ", string(rsp.Body))
 }
 
 func TestInsertRecordOfAdvertisement(t *testing.T) {
@@ -190,7 +118,6 @@ func TestInsertRecordOfAdvertisement(t *testing.T) {
 	sellingPrice := 100
 	sellingPoints := [][]byte{[]byte("2"), []byte("大2")}
 	placeOfOrigin := []byte("地要工")
-	image := []byte("urlfd在")
 	stock := 10
 	productId := int64(1)
 	diagnostic.SetupLogger()
@@ -198,7 +125,6 @@ func TestInsertRecordOfAdvertisement(t *testing.T) {
 
 	req := &InsertRecordOfAdvertisementReq{
 		UserId:        userId,
-		Image:         image,
 		Name:          name,
 		Title:         title,
 		ProductId:     productId,

@@ -10,4 +10,5 @@ const (
 	Inform          = "6" // not an actual service, only act as a mark
 	Advertisement   = "7"
 	OSS             = "8"
+	Product         = "9"
 )

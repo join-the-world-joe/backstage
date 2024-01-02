@@ -33,7 +33,12 @@ func InsertRecordOfAdvertisement(ctx context.Context, req *admin.InsertRecordOfA
 	}
 
 	m, err := advertisement.InsertModel(&advertisement.Model{
-		Image:         string(req.Image),
+		CoverImage:    string(req.CoverImage),
+		FirstImage:    string(req.FirstImage),
+		SecondImage:   string(req.SecondImage),
+		ThirdImage:    string(req.ThirdImage),
+		FourthImage:   string(req.FourthImage),
+		FifthImage:    string(req.FifthImage),
 		Title:         string(req.Title),
 		Name:          string(req.Name),
 		PlaceOFOrigin: string(req.PlaceOfOrigin),

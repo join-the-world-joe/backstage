@@ -1,4 +1,4 @@
-package admin
+package advertisement
 
 import "encoding/json"
 

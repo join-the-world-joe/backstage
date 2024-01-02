@@ -20,7 +20,7 @@ func SignIn(ctx context.Context, req *SignInReq, rsp *SignInRsp) error {
 	return xClient.Call(ctx, "SignIn", req, rsp)
 }
 
-func InsertRecordOfGood(ctx context.Context, req *InsertRecordOfGoodReq, rsp *InsertRecordOfGoodRsp) error {
+func InsertRecordOfProduct(ctx context.Context, req *InsertRecordOfProductReq, rsp *InsertRecordOfProductRsp) error {
 	srv, err := global.SelectService(service.Admin)
 	if err != nil {
 		return err
@@ -29,10 +29,10 @@ func InsertRecordOfGood(ctx context.Context, req *InsertRecordOfGoodReq, rsp *In
 	if err != nil {
 		return err
 	}
-	return xClient.Call(ctx, "InsertRecordOfGood", req, rsp)
+	return xClient.Call(ctx, "InsertRecordOfProduct", req, rsp)
 }
 
-func FetchIdListOfGood(ctx context.Context, req *FetchIdListOfGoodReq, rsp *FetchIdListOfGoodRsp) error {
+func SoftDeleteRecordOfProduct(ctx context.Context, req *SoftDeleteRecordsOfProductReq, rsp *SoftDeleteRecordsOfProductRsp) error {
 	srv, err := global.SelectService(service.Admin)
 	if err != nil {
 		return err
@@ -41,10 +41,10 @@ func FetchIdListOfGood(ctx context.Context, req *FetchIdListOfGoodReq, rsp *Fetc
 	if err != nil {
 		return err
 	}
-	return xClient.Call(ctx, "FetchIdListOfGood", req, rsp)
+	return xClient.Call(ctx, "SoftDeleteRecordOfProduct", req, rsp)
 }
 
-func FetchRecordsOfGood(ctx context.Context, req *FetchRecordsOfGoodReq, rsp *FetchRecordsOfGoodRsp) error {
+func UpdateRecordOfProduct(ctx context.Context, req *UpdateRecordOfProductReq, rsp *UpdateRecordOfProductRsp) error {
 	srv, err := global.SelectService(service.Admin)
 	if err != nil {
 		return err
@@ -53,55 +53,7 @@ func FetchRecordsOfGood(ctx context.Context, req *FetchRecordsOfGoodReq, rsp *Fe
 	if err != nil {
 		return err
 	}
-	return xClient.Call(ctx, "FetchRecordsOfGood", req, rsp)
-}
-
-func SoftDeleteRecordOfGood(ctx context.Context, req *SoftDeleteRecordsOfGoodReq, rsp *SoftDeleteRecordsOfGoodRsp) error {
-	srv, err := global.SelectService(service.Admin)
-	if err != nil {
-		return err
-	}
-	xClient, err := rpc.GetXClient(service.Admin, srv.Id, srv.Ip, cast.ToString(srv.Port))
-	if err != nil {
-		return err
-	}
-	return xClient.Call(ctx, "SoftDeleteRecordOfGood", req, rsp)
-}
-
-func UpdateRecordOfGood(ctx context.Context, req *UpdateRecordOfGoodReq, rsp *UpdateRecordOfGoodRsp) error {
-	srv, err := global.SelectService(service.Admin)
-	if err != nil {
-		return err
-	}
-	xClient, err := rpc.GetXClient(service.Admin, srv.Id, srv.Ip, cast.ToString(srv.Port))
-	if err != nil {
-		return err
-	}
-	return xClient.Call(ctx, "UpdateRecordOfGood", req, rsp)
-}
-
-func FetchIdListOfAdvertisement(ctx context.Context, req *FetchIdListOfAdvertisementReq, rsp *FetchIdListOfAdvertisementRsp) error {
-	srv, err := global.SelectService(service.Admin)
-	if err != nil {
-		return err
-	}
-	xClient, err := rpc.GetXClient(service.Admin, srv.Id, srv.Ip, cast.ToString(srv.Port))
-	if err != nil {
-		return err
-	}
-	return xClient.Call(ctx, "FetchIdListOfAdvertisement", req, rsp)
-}
-
-func FetchRecordsOfAdvertisement(ctx context.Context, req *FetchRecordsOfAdvertisementReq, rsp *FetchRecordsOfAdvertisementRsp) error {
-	srv, err := global.SelectService(service.Admin)
-	if err != nil {
-		return err
-	}
-	xClient, err := rpc.GetXClient(service.Admin, srv.Id, srv.Ip, cast.ToString(srv.Port))
-	if err != nil {
-		return err
-	}
-	return xClient.Call(ctx, "FetchRecordsOfAdvertisement", req, rsp)
+	return xClient.Call(ctx, "UpdateRecordOfProduct", req, rsp)
 }
 
 func InsertRecordOfAdvertisement(ctx context.Context, req *InsertRecordOfAdvertisementReq, rsp *InsertRecordOfAdvertisementRsp) error {

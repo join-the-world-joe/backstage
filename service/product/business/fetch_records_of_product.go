@@ -5,8 +5,7 @@ import (
 	"backstage/common/db/mysql/backend/product"
 	"backstage/common/db/mysql/backend/user_role"
 	"backstage/common/macro/timestamp"
-	"backstage/common/major"
-	"backstage/common/protocol/admin"
+	product2 "backstage/common/protocol/product"
 	"backstage/global/log"
 	"backstage/global/rbac"
 	"context"
@@ -14,7 +13,7 @@ import (
 	"github.com/spf13/cast"
 )
 
-type RecordOfGood struct {
+type RecordOfProduct struct {
 	Id          int64  `json:"id"`
 	Name        string `json:"name"`
 	Vendor      string `json:"vendor"`
@@ -24,20 +23,12 @@ type RecordOfGood struct {
 	UpdatedAt   string `json:"updated_at"`
 }
 
-type OutputOfRecordsOfGood struct {
-	Behavior      int                     `json:"behavior"`
-	RecordsOfGood map[int64]*RecordOfGood `json:"records_of_good"`
+type OutputOfRecordsOfProduct struct {
+	Behavior         int                        `json:"behavior"`
+	RecordsOfProduct map[int64]*RecordOfProduct `json:"records_of_product"`
 }
 
-func FetchRecordsOfGood(ctx context.Context, req *admin.FetchRecordsOfGoodReq, rsp *admin.FetchRecordsOfGoodRsp) error {
-	if !hasPermission(
-		cast.ToInt(major.Admin),
-		cast.ToInt(admin.FetchRecordsOfGoodReq_),
-		req.UserId,
-	) {
-		rsp.Code = code.AccessDenied
-		return nil
-	}
+func FetchRecordsOfProduct(ctx context.Context, req *product2.FetchRecordsOfProductReq, rsp *product2.FetchRecordsOfProductRsp) error {
 	if len(req.ProductIdList) <= 0 {
 		rsp.Code = code.InvalidData
 		return nil
@@ -60,7 +51,7 @@ func FetchRecordsOfGood(ctx context.Context, req *admin.FetchRecordsOfGoodReq, r
 	// check if role_list has permission
 	hasPermission := false
 	for _, v := range roleList {
-		if rbac.HasPermission(v, cast.ToInt(admin.FetchRecordsOfGoodReq_)) {
+		if rbac.HasPermission(v, cast.ToInt(product2.FetchRecordsOfProductReq_)) {
 			hasPermission = true
 			break
 		}
@@ -71,8 +62,8 @@ func FetchRecordsOfGood(ctx context.Context, req *admin.FetchRecordsOfGoodReq, r
 		return nil
 	}
 
-	output := &OutputOfRecordsOfGood{
-		RecordsOfGood: map[int64]*RecordOfGood{},
+	output := &OutputOfRecordsOfProduct{
+		RecordsOfProduct: map[int64]*RecordOfProduct{},
 	}
 
 	ml, err := product.GetModelListByIdList(req.ProductIdList)
@@ -81,7 +72,7 @@ func FetchRecordsOfGood(ctx context.Context, req *admin.FetchRecordsOfGoodReq, r
 		return nil
 	}
 	for _, m := range ml {
-		output.RecordsOfGood[m.Id] = &RecordOfGood{
+		output.RecordsOfProduct[m.Id] = &RecordOfProduct{
 			Id:          m.Id,
 			Name:        m.Name,
 			Vendor:      m.Vendor,

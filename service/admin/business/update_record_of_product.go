@@ -10,10 +10,10 @@ import (
 	"github.com/spf13/cast"
 )
 
-func UpdateRecordOfGood(ctx context.Context, req *admin.UpdateRecordOfGoodReq, rsp *admin.UpdateRecordOfGoodRsp) error {
+func UpdateRecordOfProduct(ctx context.Context, req *admin.UpdateRecordOfProductReq, rsp *admin.UpdateRecordOfProductRsp) error {
 	if !hasPermission(
 		cast.ToInt(major.Admin),
-		cast.ToInt(admin.InsertRecordOfAdvertisementReq_),
+		cast.ToInt(admin.InsertRecordOfProductReq_),
 		req.UserId,
 	) {
 		rsp.Code = code.AccessDenied

@@ -26,32 +26,16 @@ func (p *Async) FetchMenuListOfCondition(ctx context.Context, req *admin.FetchMe
 	return business.FetchMenuListOfCondition(ctx, req, rsp)
 }
 
-func (p *Async) InsertRecordOfGood(ctx context.Context, req *admin.InsertRecordOfGoodReq, rsp *admin.InsertRecordOfGoodRsp) error {
-	return business.InsertRecordOfGood(ctx, req, rsp)
+func (p *Async) InsertRecordOfProduct(ctx context.Context, req *admin.InsertRecordOfProductReq, rsp *admin.InsertRecordOfProductRsp) error {
+	return business.InsertRecordOfProduct(ctx, req, rsp)
 }
 
-func (p *Async) FetchIdListOfGood(ctx context.Context, req *admin.FetchIdListOfGoodReq, rsp *admin.FetchIdListOfGoodRsp) error {
-	return business.FetchIdListOfGood(ctx, req, rsp)
+func (p *Async) SoftDeleteRecordOfProduct(ctx context.Context, req *admin.SoftDeleteRecordsOfProductReq, rsp *admin.SoftDeleteRecordsOfProductRsp) error {
+	return business.SoftDeleteRecordsOfProduct(ctx, req, rsp)
 }
 
-func (p *Async) FetchRecordsOfGood(ctx context.Context, req *admin.FetchRecordsOfGoodReq, rsp *admin.FetchRecordsOfGoodRsp) error {
-	return business.FetchRecordsOfGood(ctx, req, rsp)
-}
-
-func (p *Async) SoftDeleteRecordOfGood(ctx context.Context, req *admin.SoftDeleteRecordsOfGoodReq, rsp *admin.SoftDeleteRecordsOfGoodRsp) error {
-	return business.SoftDeleteRecordsOfGood(ctx, req, rsp)
-}
-
-func (p *Async) UpdateRecordOfGood(ctx context.Context, req *admin.UpdateRecordOfGoodReq, rsp *admin.UpdateRecordOfGoodRsp) error {
-	return business.UpdateRecordOfGood(ctx, req, rsp)
-}
-
-func (p *Async) FetchIdListOfAdvertisement(ctx context.Context, req *admin.FetchIdListOfAdvertisementReq, rsp *admin.FetchIdListOfAdvertisementRsp) error {
-	return business.FetchIdListOfAdvertisement(ctx, req, rsp)
-}
-
-func (p *Async) FetchRecordsOfAdvertisement(ctx context.Context, req *admin.FetchRecordsOfAdvertisementReq, rsp *admin.FetchRecordsOfAdvertisementRsp) error {
-	return business.FetchRecordsOfAdvertisement(ctx, req, rsp)
+func (p *Async) UpdateRecordOfGood(ctx context.Context, req *admin.UpdateRecordOfProductReq, rsp *admin.UpdateRecordOfProductRsp) error {
+	return business.UpdateRecordOfProduct(ctx, req, rsp)
 }
 
 func (p *Async) InsertRecordOfAdvertisement(ctx context.Context, req *admin.InsertRecordOfAdvertisementReq, rsp *admin.InsertRecordOfAdvertisementRsp) error {

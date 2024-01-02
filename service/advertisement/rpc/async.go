@@ -82,3 +82,12 @@ func (p *Async) FetchIdListOfADOfSnacks(ctx context.Context, req *advertisement.
 func (p *Async) FetchRecordsOfADOfSnacks(ctx context.Context, req *advertisement.FetchRecordsOfADOfSnacksReq, rsp *advertisement.FetchRecordsOfADOfSnacksRsp) error {
 	return business.FetchRecordsOfADOfSnacks(ctx, req, rsp)
 }
+
+// advertisement
+func (p *Async) FetchIdListOfAdvertisement(ctx context.Context, req *advertisement.FetchIdListOfAdvertisementReq, rsp *advertisement.FetchIdListOfAdvertisementRsp) error {
+	return business.FetchIdListOfAdvertisement(ctx, req, rsp)
+}
+
+func (p *Async) FetchRecordsOfAdvertisement(ctx context.Context, req *advertisement.FetchRecordsOfAdvertisementReq, rsp *advertisement.FetchRecordsOfAdvertisementRsp) error {
+	return business.FetchRecordsOfAdvertisement(ctx, req, rsp)
+}

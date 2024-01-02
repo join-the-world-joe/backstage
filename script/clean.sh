@@ -1,6 +1,6 @@
 #!/bin/bash
 
-filepath=("frontend_gateway" "sms" "backend_gateway" "account" "admin" "advertisement" "oss")
+filepath=("frontend_gateway" "sms" "backend_gateway" "account" "admin" "advertisement" "oss" "product")
 
 for e in ${filepath[@]}; do
 	p="../service/${e}/cmd/"
