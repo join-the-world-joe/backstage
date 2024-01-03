@@ -27,10 +27,10 @@ type ObjectFileRequestHeader struct {
 }
 
 type OutputOfHeaderListOfObjectFileListOfAdvertisement struct {
-	AdvertisementId int64                               `json:"advertisement_id"`
-	RequestHeader   map[string]*ObjectFileRequestHeader `json:"request_header"`
-	CommonPath      string                              `json:"common_path"`
-	Host            string                              `json:"host"`
+	Folder        string                              `json:"folder"`
+	RequestHeader map[string]*ObjectFileRequestHeader `json:"request_header"`
+	CommonPath    string                              `json:"common_path"`
+	Host          string                              `json:"host"`
 }
 
 func FetchHeaderListOfObjectFileListOfAdvertisement(ctx context.Context, req *oss.FetchHeaderListOfObjectFileListOfAdvertisementReq, rsp *oss.FetchHeaderListOfObjectFileListOfAdvertisementRsp) error {
@@ -43,7 +43,7 @@ func FetchHeaderListOfObjectFileListOfAdvertisement(ctx context.Context, req *os
 		return nil
 	}
 
-	if req.AdvertisementId <= 0 || len(req.NameListOfFile) <= 0 {
+	if len(req.OSSFolder) <= 0 || len(req.NameListOfFile) <= 0 {
 		rsp.Code = code.InvalidData
 		return nil
 	}
@@ -53,10 +53,10 @@ func FetchHeaderListOfObjectFileListOfAdvertisement(ctx context.Context, req *os
 	secret := []byte(config.OSSConf().OSS[oss2.AliYun].Secret)
 	endpoint := config.OSSConf().OSS[oss2.AliYun].Endpoint
 	output := &OutputOfHeaderListOfObjectFileListOfAdvertisement{
-		AdvertisementId: req.AdvertisementId,
-		RequestHeader:   map[string]*ObjectFileRequestHeader{},
-		Host:            bucket + "." + endpoint,
-		CommonPath:      "https://" + bucket + "." + endpoint + "/", // add object file to tail
+		Folder:        req.OSSFolder,
+		RequestHeader: map[string]*ObjectFileRequestHeader{},
+		Host:          bucket + "." + endpoint,
+		CommonPath:    "https://" + bucket + "." + endpoint + "/", // add object file to tail
 	}
 
 	for _, v := range req.NameListOfFile {

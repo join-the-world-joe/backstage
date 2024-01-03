@@ -15,6 +15,8 @@ type InsertRecordOfAdvertisementReq struct {
 	ThirdImage    []byte   `json:"third_image"`
 	FourthImage   []byte   `json:"fourth_image"`
 	FifthImage    []byte   `json:"fifth_image"`
+	OSSPath       []byte   `json:"oss_path"`   // includes oss folder
+	OSSFolder     []byte   `json:"oss_folder"` // an unique uuid
 	Stock         int      `json:"stock"`
 	Status        int      `json:"status"`
 	ProductId     int64    `json:"product_id"`

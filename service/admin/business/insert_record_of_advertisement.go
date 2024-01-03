@@ -39,6 +39,8 @@ func InsertRecordOfAdvertisement(ctx context.Context, req *admin.InsertRecordOfA
 		ThirdImage:    string(req.ThirdImage),
 		FourthImage:   string(req.FourthImage),
 		FifthImage:    string(req.FifthImage),
+		OSSFolder:     string(req.OSSFolder),
+		OSSPath:       string(req.OSSPath),
 		Title:         string(req.Title),
 		Name:          string(req.Name),
 		PlaceOFOrigin: string(req.PlaceOfOrigin),
