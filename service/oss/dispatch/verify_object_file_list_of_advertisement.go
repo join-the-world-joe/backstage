@@ -12,9 +12,9 @@ import (
 	"encoding/json"
 )
 
-func verifyObjectFileListOfAdvertisement(packet *payload.PacketInternal) {
-	req := &oss.VerifyObjectFileListOfAdvertisementReq{}
-	rsp := &oss.VerifyObjectFileListOfAdvertisementRsp{}
+func verifyObjectFileList(packet *payload.PacketInternal) {
+	req := &oss.VerifyObjectFileListReq{}
+	rsp := &oss.VerifyObjectFileListRsp{}
 
 	err := json.Unmarshal(packet.GetRequest().GetBody(), req)
 	if err != nil {
@@ -24,9 +24,9 @@ func verifyObjectFileListOfAdvertisement(packet *payload.PacketInternal) {
 
 	req.UserId = packet.GetSession().GetUserId()
 
-	err = business.VerifyObjectFileListOfAdvertisement(context.Background(), req, rsp)
+	err = business.VerifyObjectFileList(context.Background(), req, rsp)
 	if err != nil {
-		log.Error("business.VerifyObjectFileListOfAdvertisement failure, err: ", err.Error())
+		log.Error("business.VerifyObjectFileList failure, err: ", err.Error())
 		return
 	}
 
@@ -39,7 +39,7 @@ func verifyObjectFileListOfAdvertisement(packet *payload.PacketInternal) {
 	packet.Response = &payload.PacketClient{
 		Header: &payload.Header{
 			Major: major.OSS,
-			Minor: oss.VerifyObjectFileListOfAdvertisementRsp_,
+			Minor: oss.VerifyObjectFileListRsp_,
 		},
 		Body: bytes,
 	}

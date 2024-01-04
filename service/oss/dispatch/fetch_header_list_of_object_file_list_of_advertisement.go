@@ -12,9 +12,9 @@ import (
 	"encoding/json"
 )
 
-func fetchHeaderListOfObjectFileListOfAdvertisement(packet *payload.PacketInternal) {
-	req := &oss.FetchHeaderListOfObjectFileListOfAdvertisementReq{}
-	rsp := &oss.FetchHeaderListOfObjectFileListOfAdvertisementRsp{}
+func fetchHeaderListOfObjectFileList(packet *payload.PacketInternal) {
+	req := &oss.FetchHeaderListOfObjectFileListReq{}
+	rsp := &oss.FetchHeaderListOfObjectFileListRsp{}
 
 	err := json.Unmarshal(packet.GetRequest().GetBody(), req)
 	if err != nil {
@@ -24,9 +24,9 @@ func fetchHeaderListOfObjectFileListOfAdvertisement(packet *payload.PacketIntern
 
 	req.UserId = packet.GetSession().GetUserId()
 
-	err = business.FetchHeaderListOfObjectFileListOfAdvertisement(context.Background(), req, rsp)
+	err = business.FetchHeaderListOfObjectFileList(context.Background(), req, rsp)
 	if err != nil {
-		log.Error("business.FetchHeaderListOfObjectFileListOfAdvertisement failure, err: ", err.Error())
+		log.Error("business.FetchHeaderListOfObjectFileList failure, err: ", err.Error())
 		return
 	}
 
@@ -39,7 +39,7 @@ func fetchHeaderListOfObjectFileListOfAdvertisement(packet *payload.PacketIntern
 	packet.Response = &payload.PacketClient{
 		Header: &payload.Header{
 			Major: major.OSS,
-			Minor: oss.FetchHeaderListOfObjectFileListOfAdvertisementRsp_,
+			Minor: oss.FetchHeaderListOfObjectFileListRsp_,
 		},
 		Body: bytes,
 	}

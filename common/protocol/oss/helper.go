@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/cast"
 )
 
-func FetchHeaderListOfObjectFileListOfAdvertisement(ctx context.Context, req *FetchHeaderListOfObjectFileListOfAdvertisementReq, rsp *FetchHeaderListOfObjectFileListOfAdvertisementRsp) error {
+func FetchHeaderListOfObjectFileList(ctx context.Context, req *FetchHeaderListOfObjectFileListReq, rsp *FetchHeaderListOfObjectFileListRsp) error {
 	srv, err := global.SelectService(service.OSS)
 	if err != nil {
 		return err
@@ -17,10 +17,10 @@ func FetchHeaderListOfObjectFileListOfAdvertisement(ctx context.Context, req *Fe
 	if err != nil {
 		return err
 	}
-	return xClient.Call(ctx, "FetchHeaderListOfObjectFileListOfAdvertisement", req, rsp)
+	return xClient.Call(ctx, "FetchHeaderListOfObjectFileList", req, rsp)
 }
 
-func VerifyObjectFileListOfAdvertisement(ctx context.Context, req *VerifyObjectFileListOfAdvertisementReq, rsp *VerifyObjectFileListOfAdvertisementRsp) error {
+func VerifyObjectFileList(ctx context.Context, req *VerifyObjectFileListReq, rsp *VerifyObjectFileListRsp) error {
 	srv, err := global.SelectService(service.OSS)
 	if err != nil {
 		return err
@@ -29,7 +29,7 @@ func VerifyObjectFileListOfAdvertisement(ctx context.Context, req *VerifyObjectF
 	if err != nil {
 		return err
 	}
-	return xClient.Call(ctx, "VerifyObjectFileListOfAdvertisement", req, rsp)
+	return xClient.Call(ctx, "VerifyObjectFileList", req, rsp)
 }
 
 func RemoveListOfObjectFile(ctx context.Context, req *RemoveListOfObjectFileReq, rsp *RemoveListOfObjectFileRsp) error {

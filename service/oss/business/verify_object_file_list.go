@@ -14,15 +14,15 @@ import (
 	"github.com/spf13/cast"
 )
 
-type OutputOfObjectFileListOfAdvertisement struct {
-	AdvertisementId      int64    `json:"advertisement_id"`
+type OutputOfObjectFileList struct {
+	OSSFolder            string   `json:"oss_folder"`
 	NameListOfObjectFile []string `json:"name_list_of_object_file"`
 }
 
-func VerifyObjectFileListOfAdvertisement(ctx context.Context, req *oss.VerifyObjectFileListOfAdvertisementReq, rsp *oss.VerifyObjectFileListOfAdvertisementRsp) error {
+func VerifyObjectFileList(ctx context.Context, req *oss.VerifyObjectFileListReq, rsp *oss.VerifyObjectFileListRsp) error {
 	if !hasPermission(
 		cast.ToInt(major.OSS),
-		cast.ToInt(oss.VerifyObjectFileListOfAdvertisementReq_),
+		cast.ToInt(oss.VerifyObjectFileListReq_),
 		req.UserId,
 	) {
 		rsp.Code = code.AccessDenied
@@ -31,7 +31,7 @@ func VerifyObjectFileListOfAdvertisement(ctx context.Context, req *oss.VerifyObj
 
 	fmt.Println(req)
 
-	if req.AdvertisementId <= 0 || len(req.NameListOfObjectFile) <= 0 {
+	if len(req.OSSFolder) <= 0 || len(req.NameListOfObjectFile) <= 0 {
 		rsp.Code = code.InvalidData
 		return nil
 	}
@@ -47,7 +47,7 @@ func VerifyObjectFileListOfAdvertisement(ctx context.Context, req *oss.VerifyObj
 	}
 
 	for _, v := range req.NameListOfObjectFile {
-		path := fmt.Sprintf(oss2.FormatOfFullPathOfObjectFileOfAdvertisement, req.AdvertisementId, v)
+		path := fmt.Sprintf(oss2.FormatOfFullPathOfObjectFileOfAdvertisement, req.OSSFolder, v)
 		fmt.Println("path: ", path)
 		b, err := aliyun.IsObjectExist(oss2.AdvertisementImageBucket, path)
 		if err != nil {
@@ -60,8 +60,8 @@ func VerifyObjectFileListOfAdvertisement(ctx context.Context, req *oss.VerifyObj
 		}
 	}
 
-	output := &OutputOfObjectFileListOfAdvertisement{
-		AdvertisementId:      req.AdvertisementId,
+	output := &OutputOfObjectFileList{
+		OSSFolder:            req.OSSFolder,
 		NameListOfObjectFile: req.NameListOfObjectFile,
 	}
 

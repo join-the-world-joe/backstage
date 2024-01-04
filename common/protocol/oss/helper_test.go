@@ -6,12 +6,11 @@ import (
 	"testing"
 )
 
-func TestFetchHeaderListOfObjectFileListOfAdvertisement(t *testing.T) {
+func TestFetchHeaderListOfObjectFileList(t *testing.T) {
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
 
 	userId := int64(1)
-	advertisementId := int64(1)
 	nameListOfFile := []string{
 		"0.webp",
 		"1.jpg",
@@ -22,14 +21,13 @@ func TestFetchHeaderListOfObjectFileListOfAdvertisement(t *testing.T) {
 		"6.svg",
 		"7.gif",
 	}
-	req := &FetchHeaderListOfObjectFileListOfAdvertisementReq{
-		UserId:          userId,
-		AdvertisementId: advertisementId,
-		NameListOfFile:  nameListOfFile,
+	req := &FetchHeaderListOfObjectFileListReq{
+		UserId:         userId,
+		NameListOfFile: nameListOfFile,
 	}
-	rsp := &FetchHeaderListOfObjectFileListOfAdvertisementRsp{}
+	rsp := &FetchHeaderListOfObjectFileListRsp{}
 
-	err := FetchHeaderListOfObjectFileListOfAdvertisement(context.Background(), req, rsp)
+	err := FetchHeaderListOfObjectFileList(context.Background(), req, rsp)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -38,21 +36,21 @@ func TestFetchHeaderListOfObjectFileListOfAdvertisement(t *testing.T) {
 	t.Log("body: ", string(rsp.Body))
 }
 
-func TestVerifyObjectFileListOfAdvertisement(t *testing.T) {
+func TestVerifyObjectFileList(t *testing.T) {
 	diagnostic.SetupLogger()
 	diagnostic.SetupRegistry()
 
 	userId := int64(1)
-	advertisementId := int64(1)
+	ossFolder := ""
 	nameListOfObjectFile := []string{"3.jpg", "2.jpg"}
-	req := &VerifyObjectFileListOfAdvertisementReq{
+	req := &VerifyObjectFileListReq{
 		UserId:               userId,
-		AdvertisementId:      advertisementId,
+		OSSFolder:            ossFolder,
 		NameListOfObjectFile: nameListOfObjectFile,
 	}
-	rsp := &VerifyObjectFileListOfAdvertisementRsp{}
+	rsp := &VerifyObjectFileListRsp{}
 
-	err := VerifyObjectFileListOfAdvertisement(context.Background(), req, rsp)
+	err := VerifyObjectFileList(context.Background(), req, rsp)
 	if err != nil {
 		t.Fatal(err)
 	}

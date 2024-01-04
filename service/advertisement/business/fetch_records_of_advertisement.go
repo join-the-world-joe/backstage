@@ -28,6 +28,8 @@ type RecordOfAdvertisement struct {
 	Status        int      `json:"status"`
 	ProductId     int64    `json:"product_id"`
 	BuyingPrice   int      `json:"buying_price"`
+	OSSFolder     string   `json:"oss_folder"`
+	OSSPath       string   `json:"oss_path"`
 	CreatedAt     string   `json:"created_at"`
 	UpdatedAt     string   `json:"updated_at"`
 }
@@ -73,6 +75,8 @@ func FetchRecordsOfAdvertisement(ctx context.Context, req *advertisement2.FetchR
 			Stock:         m.Stock,
 			Status:        m.Status,
 			ProductId:     m.ProductId,
+			OSSFolder:     m.OSSFolder,
+			OSSPath:       m.OSSPath,
 			CreatedAt:     m.CreatedAt.Format(timestamp.YYMDHMS),
 			UpdatedAt:     m.UpdatedAt.Format(timestamp.YYMDHMS),
 		}

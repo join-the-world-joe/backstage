@@ -1,10 +1,10 @@
 package oss
 
 const (
-	FetchHeaderListOfObjectFileListOfAdvertisementReq_ = "1"
-	FetchHeaderListOfObjectFileListOfAdvertisementRsp_ = "2"
-	VerifyObjectFileListOfAdvertisementReq_            = "3"
-	VerifyObjectFileListOfAdvertisementRsp_            = "4"
-	RemoveListOfObjectFileReq_                         = "5"
-	RemoveListOfObjectFileRsp_                         = "6"
+	FetchHeaderListOfObjectFileListReq_ = "1"
+	FetchHeaderListOfObjectFileListRsp_ = "2"
+	VerifyObjectFileListReq_            = "3"
+	VerifyObjectFileListRsp_            = "4"
+	RemoveListOfObjectFileReq_          = "5"
+	RemoveListOfObjectFileRsp_          = "6"
 )

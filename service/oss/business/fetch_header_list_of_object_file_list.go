@@ -26,24 +26,23 @@ type ObjectFileRequestHeader struct {
 	XOSSDate      string `json:"x_oss_date"`
 }
 
-type OutputOfHeaderListOfObjectFileListOfAdvertisement struct {
-	Folder        string                              `json:"folder"`
+type OutputOfHeaderListOfObjectFileList struct {
 	RequestHeader map[string]*ObjectFileRequestHeader `json:"request_header"`
 	CommonPath    string                              `json:"common_path"`
 	Host          string                              `json:"host"`
 }
 
-func FetchHeaderListOfObjectFileListOfAdvertisement(ctx context.Context, req *oss.FetchHeaderListOfObjectFileListOfAdvertisementReq, rsp *oss.FetchHeaderListOfObjectFileListOfAdvertisementRsp) error {
+func FetchHeaderListOfObjectFileList(ctx context.Context, req *oss.FetchHeaderListOfObjectFileListReq, rsp *oss.FetchHeaderListOfObjectFileListRsp) error {
 	if !hasPermission(
 		cast.ToInt(major.OSS),
-		cast.ToInt(oss.FetchHeaderListOfObjectFileListOfAdvertisementReq_),
+		cast.ToInt(oss.FetchHeaderListOfObjectFileListReq_),
 		req.UserId,
 	) {
 		rsp.Code = code.AccessDenied
 		return nil
 	}
 
-	if len(req.OSSFolder) <= 0 || len(req.NameListOfFile) <= 0 {
+	if len(req.NameListOfFile) <= 0 {
 		rsp.Code = code.InvalidData
 		return nil
 	}
@@ -52,8 +51,7 @@ func FetchHeaderListOfObjectFileListOfAdvertisement(ctx context.Context, req *os
 	bucket := oss2.AdvertisementImageBucket
 	secret := []byte(config.OSSConf().OSS[oss2.AliYun].Secret)
 	endpoint := config.OSSConf().OSS[oss2.AliYun].Endpoint
-	output := &OutputOfHeaderListOfObjectFileListOfAdvertisement{
-		Folder:        req.OSSFolder,
+	output := &OutputOfHeaderListOfObjectFileList{
 		RequestHeader: map[string]*ObjectFileRequestHeader{},
 		Host:          bucket + "." + endpoint,
 		CommonPath:    "https://" + bucket + "." + endpoint + "/", // add object file to tail
