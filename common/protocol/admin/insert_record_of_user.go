@@ -1,6 +1,6 @@
 package admin
 
-type InsertUserRecordReq struct {
+type InsertRecordOfUserReq struct {
 	Id          int64    `json:"id"`
 	UserId      int64    `json:"user_id"`
 	Name        []byte   `json:"name"`
@@ -11,6 +11,6 @@ type InsertUserRecordReq struct {
 	RoleList    []string `json:"role_list"`
 }
 
-type InsertUserRecordRsp struct {
+type InsertRecordOfUserRsp struct {
 	Code int `json:"code"`
 }

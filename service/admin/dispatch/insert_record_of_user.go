@@ -17,34 +17,34 @@ import (
 	"time"
 )
 
-func updateUserRecord(packet *payload.PacketInternal) {
-	req := &admin.UpdateUserRecordReq{}
-	rsp := &admin.UpdateUserRecordRsp{}
+func insertRecordOfUser(packet *payload.PacketInternal) {
+	req := &admin.InsertRecordOfUserReq{}
+	rsp := &admin.InsertRecordOfUserRsp{}
 
 	err := json.Unmarshal(packet.GetRequest().GetBody(), req)
 	if err != nil {
-		log.Error("Dispatch.updateUserRecord.json.Unmarshal failure, err: ", err.Error())
+		log.Error("json.Unmarshal failure, err: ", err.Error())
 		return
 	}
 
 	req.Id = packet.GetSession().GetUserId()
 
-	err = business.UpdateUserRecord(context.Background(), req, rsp)
+	err = business.InsertRecordOfUser(context.Background(), req, rsp)
 	if err != nil {
-		log.Error("Dispatch.updateUserRecord.business.InsertUserRecord failure, err: ", err.Error())
+		log.Error("business.InsertUserRecord failure, err: ", err.Error())
 		return
 	}
 
 	bytes, err := json.Marshal(rsp)
 	if err != nil {
-		log.Error("Dispatch.updateUserRecord.json.Marshal failure, err: ", err.Error())
+		log.Error("json.Marshal failure, err: ", err.Error())
 		return
 	}
 
 	packet.Response = &payload.PacketClient{
 		Header: &payload.Header{
 			Major: major.Admin,
-			Minor: admin.UpdateUserRecordRsp_,
+			Minor: admin.InsertRecordOfUserRsp_,
 		},
 		Body: bytes,
 	}
@@ -54,7 +54,7 @@ func updateUserRecord(packet *payload.PacketInternal) {
 		packet,
 	)
 	if err != nil {
-		log.Error("Dispatch.updateUserRecord.route.Downstream failure, err: ", err.Error())
+		log.Error("route.Downstream failure, err: ", err.Error())
 		return
 	}
 
@@ -67,9 +67,9 @@ func updateUserRecord(packet *payload.PacketInternal) {
 		&track.Model{
 			Operator:   packet.GetSession().GetName(),
 			Major:      major.Admin,
-			Minor:      admin.UpdateUserRecordReq_,
+			Minor:      admin.InsertRecordOfUserReq_,
 			Request:    convert.Bytes2StringArray(packet.GetRequest().GetBody()),
-			Permission: permission.UpdateUserRecord,
+			Permission: permission.InsertRecordOfUser,
 			Response:   convert.Bytes2StringArray(bytes),
 			Timestamp:  time.Now().Unix(),
 		},

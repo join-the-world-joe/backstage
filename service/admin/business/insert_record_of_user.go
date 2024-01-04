@@ -14,9 +14,9 @@ import (
 	"github.com/spf13/cast"
 )
 
-func InsertUserRecord(ctx context.Context, req *admin.InsertUserRecordReq, rsp *admin.InsertUserRecordRsp) error {
+func InsertRecordOfUser(ctx context.Context, req *admin.InsertRecordOfUserReq, rsp *admin.InsertRecordOfUserRsp) error {
 	if req.Id <= 0 {
-		log.Error("InsertUserRecord failure, req.UserId <= 0")
+		log.Error("InsertRecordOfUser failure, req.UserId <= 0")
 		rsp.Code = code.InternalError
 		return nil
 	}
@@ -41,7 +41,7 @@ func InsertUserRecord(ctx context.Context, req *admin.InsertUserRecordReq, rsp *
 	// check if role_list has permission
 	hasPermission := false
 	for _, v := range roleList {
-		if rbac.HasPermission(v, cast.ToInt(admin.InsertUserRecordReq_)) {
+		if rbac.HasPermission(v, cast.ToInt(admin.InsertRecordOfUserReq_)) {
 			hasPermission = true
 			break
 		}

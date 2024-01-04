@@ -15,9 +15,9 @@ import (
 	"golang.org/x/exp/slices"
 )
 
-func UpdateUserRecord(ctx context.Context, req *admin.UpdateUserRecordReq, rsp *admin.UpdateUserRecordRsp) error {
+func UpdateRecordOfUser(ctx context.Context, req *admin.UpdateRecordOfUserReq, rsp *admin.UpdateRecordOfUserRsp) error {
 	if req.Id <= 0 {
-		log.Error("UpdateUserRecord failure, req.UserId <= 0")
+		log.Error("UpdateRecordOfUser failure, req.UserId <= 0")
 		rsp.Code = code.InternalError
 		return nil
 	}
@@ -33,7 +33,7 @@ func UpdateUserRecord(ctx context.Context, req *admin.UpdateUserRecordReq, rsp *
 	selfRoleList := user_role.GetRoleListByUserId(req.Id)
 
 	if len(selfRoleList) <= 0 {
-		log.Error("UpdateUserRecord failure, len(roleList) <= 0")
+		log.Error("UpdateRecordOfUser failure, len(roleList) <= 0")
 		rsp.Code = code.InternalError
 		return nil
 	}
@@ -41,7 +41,7 @@ func UpdateUserRecord(ctx context.Context, req *admin.UpdateUserRecordReq, rsp *
 	// check if role_list has permission
 	hasPermission := false
 	for _, v := range selfRoleList {
-		if rbac.HasPermission(v, cast.ToInt(admin.UpdateUserRecordReq_)) {
+		if rbac.HasPermission(v, cast.ToInt(admin.UpdateRecordOfUserReq_)) {
 			hasPermission = true
 			break
 		}

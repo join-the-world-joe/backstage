@@ -16,12 +16,12 @@ func Dispatch(packet *payload.PacketInternal) {
 		fetchRoleListOfCondition(packet)
 	case admin.FetchPermissionListOfConditionReq_:
 		fetchPermissionListOfCondition(packet)
-	case admin.InsertUserRecordReq_:
-		insertUserRecord(packet)
-	case admin.SoftDeleteUserRecordReq_:
-		softDeleteUserRecord(packet)
-	case admin.UpdateUserRecordReq_:
-		updateUserRecord(packet)
+	case admin.InsertRecordOfUserReq_:
+		insertRecordOfUser(packet)
+	case admin.SoftDeleteRecordOfUserReq_:
+		softDeleteRecordOfUser(packet)
+	case admin.UpdateRecordOfUserReq_:
+		updateRecordOfUser(packet)
 	case admin.FetchFieldListOfConditionReq_:
 		fetchFieldListOfCondition(packet)
 	case admin.FetchTrackListOfConditionReq_:

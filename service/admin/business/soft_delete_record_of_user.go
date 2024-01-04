@@ -11,10 +11,10 @@ import (
 	"github.com/spf13/cast"
 )
 
-func SoftDeleteUserRecord(ctx context.Context, req *admin.SoftDeleteUserRecordReq, rsp *admin.SoftDeleteUserRecordRsp) error {
+func SoftDeleteRecordOfUser(ctx context.Context, req *admin.SoftDeleteRecordOfUserReq, rsp *admin.SoftDeleteRecordOfUserRsp) error {
 	if !hasPermission(
 		cast.ToInt(major.Admin),
-		cast.ToInt(admin.InsertRecordOfAdvertisementReq_),
+		cast.ToInt(admin.SoftDeleteRecordOfUserReq_),
 		req.UserId,
 	) {
 		rsp.Code = code.AccessDenied
@@ -29,11 +29,11 @@ func SoftDeleteUserRecord(ctx context.Context, req *admin.SoftDeleteUserRecordRe
 	for _, userId := range req.UserIdList {
 		err := user.UpdateVisibleById(userId, 0)
 		if err != nil {
-			log.Error("SoftDeleteUserRecord.user.UpdateVisibleById failure, err: ", err.Error())
+			log.Error("user.UpdateVisibleById failure, err: ", err.Error())
 		}
 		err = user_role.UpdateVisibleByUserId(userId, 0)
 		if err != nil {
-			log.Error("SoftDeleteUserRecord.user_role.UpdateVisibleById failure, err: ", err.Error())
+			log.Error("user_role.UpdateVisibleById failure, err: ", err.Error())
 		}
 	}
 

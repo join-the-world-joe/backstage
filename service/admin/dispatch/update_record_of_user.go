@@ -17,34 +17,34 @@ import (
 	"time"
 )
 
-func insertUserRecord(packet *payload.PacketInternal) {
-	req := &admin.InsertUserRecordReq{}
-	rsp := &admin.InsertUserRecordRsp{}
+func updateRecordOfUser(packet *payload.PacketInternal) {
+	req := &admin.UpdateRecordOfUserReq{}
+	rsp := &admin.UpdateRecordOfUserRsp{}
 
 	err := json.Unmarshal(packet.GetRequest().GetBody(), req)
 	if err != nil {
-		log.Error("Dispatch.insertUserRecord.json.Unmarshal failure, err: ", err.Error())
+		log.Error("json.Unmarshal failure, err: ", err.Error())
 		return
 	}
 
 	req.Id = packet.GetSession().GetUserId()
 
-	err = business.InsertUserRecord(context.Background(), req, rsp)
+	err = business.UpdateRecordOfUser(context.Background(), req, rsp)
 	if err != nil {
-		log.Error("Dispatch.insertUserRecord.business.InsertUserRecord failure, err: ", err.Error())
+		log.Error("business.InsertUserRecord failure, err: ", err.Error())
 		return
 	}
 
 	bytes, err := json.Marshal(rsp)
 	if err != nil {
-		log.Error("Dispatch.insertUserRecord.json.Marshal failure, err: ", err.Error())
+		log.Error("json.Marshal failure, err: ", err.Error())
 		return
 	}
 
 	packet.Response = &payload.PacketClient{
 		Header: &payload.Header{
 			Major: major.Admin,
-			Minor: admin.InsertUserRecordRsp_,
+			Minor: admin.UpdateRecordOfUserRsp_,
 		},
 		Body: bytes,
 	}
@@ -54,7 +54,7 @@ func insertUserRecord(packet *payload.PacketInternal) {
 		packet,
 	)
 	if err != nil {
-		log.Error("Dispatch.insertUserRecord.route.Downstream failure, err: ", err.Error())
+		log.Error("route.Downstream failure, err: ", err.Error())
 		return
 	}
 
@@ -67,13 +67,13 @@ func insertUserRecord(packet *payload.PacketInternal) {
 		&track.Model{
 			Operator:   packet.GetSession().GetName(),
 			Major:      major.Admin,
-			Minor:      admin.InsertUserRecordReq_,
+			Minor:      admin.UpdateRecordOfUserReq_,
 			Request:    convert.Bytes2StringArray(packet.GetRequest().GetBody()),
-			Permission: permission.InsertUserRecord,
+			Permission: permission.UpdateRecordOfUser,
 			Response:   convert.Bytes2StringArray(bytes),
 			Timestamp:  time.Now().Unix(),
 		},
 	); err != nil {
-		log.ErrorF("insertUserRecord failure, err :", err.Error())
+		log.ErrorF("updateRecordOfUser failure, err :", err.Error())
 	}
 }

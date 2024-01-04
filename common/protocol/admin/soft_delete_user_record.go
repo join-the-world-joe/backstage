@@ -1,10 +1,10 @@
 package admin
 
-type SoftDeleteUserRecordReq struct {
+type SoftDeleteRecordOfUserReq struct {
 	UserId     int64
 	UserIdList []int64 `json:"user_id_list"`
 }
 
-type SoftDeleteUserRecordRsp struct {
+type SoftDeleteRecordOfUserRsp struct {
 	Code int `json:"code"`
 }

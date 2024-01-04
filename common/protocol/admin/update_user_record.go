@@ -1,6 +1,6 @@
 package admin
 
-type UpdateUserRecordReq struct {
+type UpdateRecordOfUserReq struct {
 	Id          int64    `json:"id"`
 	Name        []byte   `json:"name"`
 	UserId      int64    `json:"user_id"`
@@ -11,6 +11,6 @@ type UpdateUserRecordReq struct {
 	RoleList    []string `json:"role_list"`
 }
 
-type UpdateUserRecordRsp struct {
+type UpdateRecordOfUserRsp struct {
 	Code int `json:"code"`
 }
