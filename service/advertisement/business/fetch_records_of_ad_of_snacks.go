@@ -49,6 +49,7 @@ func FetchRecordsOfADOfSnacks(ctx context.Context, req *advertisement.FetchRecor
 					FourthImage:       ad.FourthImage,
 					FifthImage:        ad.FifthImage,
 					PlaceOfOrigin:     ad.PlaceOFOrigin,
+					OSSPath:           ad.OSSPath,
 					AdvertisementId:   ad.Id,
 					AdvertisementName: ad.Name,
 					Status:            ad.Status,

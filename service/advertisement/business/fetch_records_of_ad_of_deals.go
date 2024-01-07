@@ -50,6 +50,7 @@ func FetchRecordsOfADOfDeals(ctx context.Context, req *advertisement.FetchRecord
 					FourthImage:       ad.FourthImage,
 					FifthImage:        ad.FifthImage,
 					PlaceOfOrigin:     ad.PlaceOFOrigin,
+					OSSPath:           ad.OSSPath,
 					AdvertisementId:   ad.Id,
 					AdvertisementName: ad.Name,
 					SellingPoints:     getSellingPointByAdvertisementId(ad.Id, spml),

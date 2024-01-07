@@ -49,6 +49,7 @@ func FetchRecordsOfADOfBarbecue(ctx context.Context, req *advertisement.FetchRec
 					FourthImage:       ad.FourthImage,
 					FifthImage:        ad.FifthImage,
 					PlaceOfOrigin:     ad.PlaceOFOrigin,
+					OSSPath:           ad.OSSPath,
 					Status:            ad.Status,
 					AdvertisementId:   ad.Id,
 					AdvertisementName: ad.Name,
